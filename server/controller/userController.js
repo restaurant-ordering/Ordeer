@@ -1,22 +1,7 @@
-// import { auth } from 'firebase'
-import firebase from 'firebase'
-import {googleProvider} from '../../src/firebase/firebase'
+import { firebase, auth, googleProvider } from '../../src/firebase/firebase'
 
-// const login = async (req, res, next) => {
-// 	let user
-// 	let result = await auth.signInWithPopup(googleProvider).then(result => {
-// 		user = result.user
-// 	})
-// 	if (result) {
-// 		try {
-// 			res.status(200).send(user)
-// 		} catch {
-// 			res.status(400).send('Could not login')
-// 		}
-// 	}
-// }
-const register = async (req, res, next) => {
-	const restaurantsRef = firebase.database().ref('restaurants')
+import firebase from 'firebase'
+const checkRestaurantEmail = (email) => {
 	let result = await firebase
 		.database()
 		.ref('restaurants')
@@ -26,11 +11,39 @@ const register = async (req, res, next) => {
 		})
 	let filterResult
 	for (let i = 1; i < result.length; i++) {
-		if (result[i].email == req.body.email) {
+		if (result[i].email == email) {
 			filterResult = result[i]
 		}
 	}
-	if (!filterResult) {
+	return filterResult
+}
+const login = async (req, res, next) => {
+	let result = await checkRestaurantEmail(req.body.email)
+	if (result) {
+		//send to restaurant home page
+		firebase.auth().signInWithPopup(googleProvider).then(result => {
+			let user = result.user
+			user.isRestaurant = true
+			res.status(200).send(user)
+		})
+		try{} catch{}
+	} else {
+		//send to user home page
+		firebase.auth().signInWithPopup(googleProvider).then(result => {
+			// let user = result.user
+			res.status(200).send(result.user)
+		})
+	}
+}
+const logout = (req, res, next) => {
+	firebase.auth().signOut().then(() => {
+		res.status(200).send('Logout Successful')
+	}).catch(err=>console.log(err))
+}
+const register = async (req, res, next) => {
+	const restaurantsRef = firebase.database().ref('restaurants')
+	let result = await checkRestaurantEmail(req.body.email)
+	if (!result) {
 		try {
 			let newRestaurant = req.body
 			restaurantsRef.push(newRestaurant)
@@ -43,6 +56,7 @@ const register = async (req, res, next) => {
 	}
 }
 module.exports = {
-	// login,
+	login,
+	logout,
 	register
 }
