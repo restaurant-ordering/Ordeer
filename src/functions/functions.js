@@ -1,5 +1,5 @@
 import firebase from '../firebase/firebase'
-import {checkPropTypes} from 'prop-types'
+// import {checkPropTypes} from 'prop-types'
 module.exports = {
 	login: () => {
 		auth.signInWithPopup(provider).then(result => {
