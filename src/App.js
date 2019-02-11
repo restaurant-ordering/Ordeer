@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
+import routes from './routes'
 import firebase from './firebase/firebase'
-// import {auth, googleProvider} from './firebase/firebase'
 
-const App = props => {
-	return <div className='App'>Hello all</div>
+class App extends Component {
+	render() {
+		return (
+			<Router>
+				<div className='App_Container'>{routes}</div>
+			</Router>
+		)
+	}
 }
 
 export default App
