@@ -4,14 +4,17 @@
 	justify-content: flex-end;
 	align-items: center;
 
-    border: 2px solid black;
-    height: 10vh;
-    width: 97vw;
-    margin-top: 0.5%
+	background-color: #1B3022;
+	height: 8vh;
+    /* background-color: #1B3022; */
+    /* border: 2px solid black; */
 }
 
 .Navbar_Login {
-    /* border: 1px solid; */
-    margin-right: 10%;
-    width: 50px;
+	margin-left: -50px
+}
+
+.Navbar_Login_Text {
+	color: white;
+	text-decoration: none;
 }
