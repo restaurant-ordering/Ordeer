@@ -5,9 +5,9 @@ import firebase from './firebase/firebase'
 class App extends Component {
 	render() {
 		return (
-			<Router>
+			// <Router>
 				<div className='App_Container'>{routes}</div>
-			</Router>
+			// </Router>
 		)
 	}
 }
