@@ -1,5 +1,4 @@
 import { firebase, auth, googleProvider } from '../../src/firebase/firebase'
-
 import firebase from 'firebase'
 const checkRestaurantEmail = (email) => {
 	let result = await firebase
@@ -17,26 +16,52 @@ const checkRestaurantEmail = (email) => {
 	}
 	return filterResult
 }
+const checkAdminEmail = (email) => {
+	let result = await firebase.database().ref('users').once('value').then(res => { return res.val() })
+	if (result) {
+		let filterResult
+		for (let i = 1; i < result.length; i++){
+			if (result[i].email == email && result[i].isAdmin) {
+				filterResult = result[i]
+			}
+		}
+		return filterResult
+	}
+}
 const login = async (req, res, next) => {
 	let result = await checkRestaurantEmail(req.body.email)
+	let adminResult = await checkAdminEmail(req.body.email)
 	if (result) {
 		//send to restaurant home page
-		firebase.auth().signInWithPopup(googleProvider).then(result => {
-			let user = result.user
-			user.isRestaurant = true
-			res.status(200).send(user)
-		})
-		try{} catch{}
-	} else {
+		try {
+			auth().signInWithPopup(googleProvider).then(result => {
+				let user = result.user
+				user.isRestaurant = true
+				res.status(200).send(user)
+			})
+		} catch{
+			res.status(400).send('Could not login')
+		}
+	} else if (adminResult) {
+		try {
+			auth().signInWithPopup(googleProvider).then(result => {
+				let user = result.user
+				user.isAdmin = true
+				res.status(200).send(user)
+			})
+		} catch{
+			res.status(400).send('Could not login')
+		}
+	} else{
 		//send to user home page
-		firebase.auth().signInWithPopup(googleProvider).then(result => {
+		auth().signInWithPopup(googleProvider).then(result => {
 			// let user = result.user
 			res.status(200).send(result.user)
 		})
 	}
 }
 const logout = (req, res, next) => {
-	firebase.auth().signOut().then(() => {
+	auth().signOut().then(() => {
 		res.status(200).send('Logout Successful')
 	}).catch(err=>console.log(err))
 }

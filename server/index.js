@@ -11,7 +11,7 @@ app.use(json())
 //user endpoints
 // app.get('/getuser', getUser)
 // app.post('/addUser', addUser)
-// app.post('/login', login)
+app.post('/login', login)
 app.post('/register', register)
 app.get('/logout', logout)
 // app.delete('/deleteUser', deleteUser)
