@@ -1,4 +1,5 @@
-import {auth} from 'firebase'
+// import { auth } from 'firebase'
+import firebase from 'firebase'
 import {googleProvider} from '../../src/firebase/firebase'
 
 // const login = async (req, res, next) => {
@@ -14,6 +15,25 @@ import {googleProvider} from '../../src/firebase/firebase'
 // 		}
 // 	}
 // }
+const register = async (req, res, next) => {
+	const restaurantsRef = firebase.database().ref('restaurants')
+	let result = firebase
+		.database()
+		.ref('restaurants')
+		.child(req.body.email)
+	if (!result) {
+		try {
+			let newRestaurant = req.body
+			restaurantsRef.push(newRestaurant)
+			res.status(200).send(restaurantsRef)
+		} catch {
+			console.log('there was an error')
+		}
+	} else {
+		res.status(400).send('There is already a restaurant with that email')
+	}
+}
 module.exports = {
-	login
+	// login,
+	register
 }

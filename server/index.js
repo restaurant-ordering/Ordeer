@@ -12,7 +12,7 @@ app.use(json())
 // app.get('/getuser', getUser)
 // app.post('/addUser', addUser)
 // app.post('/login', login)
-// app.post('/register', register)
+app.post('/register', register)
 // app.delete('/deleteUser', deleteUser)
 // //restaurant endpoints
 // app.get('/getAllRestaurants', getRestaurants)
