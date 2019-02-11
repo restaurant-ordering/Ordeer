@@ -1,8 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import firebase from '../firebase/firebase'
 
 const App = props => {
-	return <div className='App'>Hello all</div>
+	return (
+		<>
+		</>
+	)
 }
 
 export default App
