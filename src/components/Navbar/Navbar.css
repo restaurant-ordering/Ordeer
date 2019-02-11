@@ -1,0 +1,17 @@
+.Navbar_Container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+
+    border: 2px solid black;
+    height: 10vh;
+    width: 97vw;
+    margin-top: 0.5%
+}
+
+.Navbar_Login {
+    /* border: 1px solid; */
+    margin-right: 10%;
+    width: 50px;
+}
