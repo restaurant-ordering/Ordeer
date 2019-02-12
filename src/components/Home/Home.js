@@ -1,25 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import RestaurantCard from './RestaurantCard/RestaurantCard';
+import Navbar from '../Navbar/Navbar';
 import FilterBar from './FilterBar/FilterBar';
+import RestaurantCard from './RestaurantCard/RestaurantCard';
 
 const Home = props => {
 
-	const [restaurants, updateRestaurants] = useState()
+	const [restaurants, updateRestaurants] = useState([])
 	
 	const getRestaurants = () => {
 		axios.get('/api/restaurants')
 		.then(response=>{
 			console.log(response)
-			//updateRestaurants(response.data)
+			//convert response to array of restaurant objects
+			let restaurantArray = []
+			for(let i in response.data){
+				response.data[i].name = i
+				restaurantArray.push(response.data[i])
+			}
+			updateRestaurants(restaurantArray)
 		})
 		.catch(err=>console.log(err))
 	}
-	
+
 	useEffect(getRestaurants, [])
 	
+	const map = restaurants.map(restaurant=>{
+		return (
+			<RestaurantCard key={restaurant.name} restaurant={restaurant} />
+		)
+	})
+
 	return (
 		<>
+		<Navbar/>
+		<FilterBar restaurants={restaurants} updateRestaurants={updateRestaurants}/>
+		{map}
 		</>
 	)
 }
