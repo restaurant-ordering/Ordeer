@@ -10,23 +10,21 @@ const app = express()
 app.use(json())
 
 //user endpoints
-// app.get('/api/user', getUser)
-// app.post('/api/user', addUser)
-// app.post('/api/login', login)
+// app.get('/api/users', getUser)
+// app.post('/api/users', addUser)
+app.post('/api/login', login)
 app.post('/api/register', register)
-app.get('/api/logout', logout)
-// app.delete('/api/user', deleteUser)
-
+// app.get('/api/logout', logout)
+// app.delete('/api/users', deleteUser)
 //restaurant endpoints
 app.get('/api/restaurants', getAllRestaurants)
-app.get('/api/menu', getMenu)
-app.post('/api/menu', addMenu)
-app.delete('/api/restaurant', deleteRestaurant)
-app.delete('/api/menu', deleteMenu)
-
+app.get('/api/menus', getMenu)
+app.post('/api/menus', addMenu)
+app.delete('/api/restaurants', deleteRestaurant)
+app.delete('/api/menus', deleteMenu)
 //admin endpoints
-// app.get('/api/getAllUsers', getAllUsers)
-// app.get('/api/getAllOrders', getAllOrders)
+// app.get('/api/all-users', getAllUsers)
+// app.get('/api/all-orders', getAllOrders)
 
 
 app.listen(SERVER_PORT, () => {
