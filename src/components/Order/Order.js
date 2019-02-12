@@ -27,7 +27,7 @@ const Order = props => {
 		}
 	}
 	//componentDidMount
-	useEffect(getRestaurants, [])
+	useEffect(()=>{getRestaurants()}, [])
 	//gets current restaurant object from list of all restaurants
 	const restaurantObj = restaurants.filter(restaurant=>restaurant.name===restaurantname)[0]
 
