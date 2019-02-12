@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+const firebase = require('firebase')
 
 const getAllRestaurants = async (req, res) => {
   const restaurantsRef = await firebase.database().ref('restaurants')
@@ -52,7 +52,7 @@ const deleteRestaurant = async (req, res) => {
     res.status(400).send('could not access restaurant')
   }
 }
-const deleteMenu = async (res, res) => {
+const deleteMenu = async (req, res) => {
   const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
   //to put delete function here
 }
