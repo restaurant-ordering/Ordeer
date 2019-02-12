@@ -16,13 +16,8 @@ const getMenu = async (req, res) => {
   const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
   if (restaurantRef.menus) {
     try {
-      // let menuRef
-      // for (let i = 1; i < restaurantRef.length; i++) {
-      //   if (restaurantsRef[i].menus.length) {
       let menuRef = restaurantRef.menus
-      // }
       res.status(200).send(menuRef)
-      // }
     } catch {
       res.status(400).send('could not find menu for that restaurant')
     }
@@ -35,8 +30,7 @@ const addMenu = async (req, res) => {
   if (restaurantRef) {
     try {
       let newMenuList = restaurantRef.menus.push(req.body)
-      res.status(200)
-        .send(newMenuList)
+      res.status(200).send(newMenuList)
     } catch {
       res.status(400).send('could not add menu')
     }
