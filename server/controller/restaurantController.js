@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { resultKeyNameFromField } from 'apollo-utilities';
+
 const getAllRestaurants = async (req, res) => {
   const restaurantsRef = await firebase.database().ref('restaurants')
   if (restaurantsRef) {
