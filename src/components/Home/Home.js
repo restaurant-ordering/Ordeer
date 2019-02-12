@@ -12,7 +12,12 @@ const Home = props => {
 		axios.get('/api/restaurants')
 		.then(response=>{
 			console.log(response)
-			//updateRestaurants(response.data)
+			//convert response to array of restaurant objects
+			// let restaurantArray = []
+			// for(let i in response.data){
+			// 	restaurantArray.push(response.data[i])
+			// }
+			// updateRestaurants(restaurantArray)
 		})
 		.catch(err=>console.log(err))
 	}
@@ -26,7 +31,7 @@ const Home = props => {
 	return (
 		<>
 		<Navbar/>
-		<FilterBar updateRestaurants={updateRestaurants}/>
+		<FilterBar restaurants={restaurants} updateRestaurants={updateRestaurants}/>
 		{map}
 		</>
 	)

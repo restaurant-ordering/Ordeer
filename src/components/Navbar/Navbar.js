@@ -8,7 +8,6 @@ import './Navbar.css'
 const Navbar = props => {
 	const [user, updateUser] = useState({})
 	const [redirect, activateRedirect] = useState(false)
-	console.log(user)
 	return (
 		<>
 			<div className='Navbar_Container'>
@@ -17,8 +16,7 @@ const Navbar = props => {
 							className='Navbar_Login_Text'
 							onClick={() =>
 								auth.signInWithPopup(googleProvider).then(result => {
-									const user = result.user
-									props.updateUser(user)
+									props.updateUser(result.user)
 									activateRedirect(true)
 								})
 							}>
