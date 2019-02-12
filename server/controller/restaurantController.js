@@ -1,10 +1,13 @@
-import firebase from 'firebase'
+// import firebase from 'firebase'
+const { firebase } = require('../../src/firebase/firebase')
 
 const getAllRestaurants = async (req, res) => {
   const restaurantsRef = await firebase.database().ref('restaurants')
+  let restaurantsValue = await restaurantsRef.once('value').then(res => res.val()).catch(err => console.log(err))
+  console.log('this is restaurantsValue', restaurantsValue)
   if (restaurantsRef) {
     try {
-      res.status(200).send(restaurantsRef)
+      res.status(200).json(restaurantsValue)
     } catch{
       res.status(400).send(['There are no restuarants to show!'])
     }
@@ -52,7 +55,7 @@ const deleteRestaurant = async (req, res) => {
     res.status(400).send('could not access restaurant')
   }
 }
-const deleteMenu = async (res, res) => {
+const deleteMenu = async (req, res) => {
   const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
   //to put delete function here
 }
