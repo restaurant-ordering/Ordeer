@@ -2,29 +2,26 @@
 const { firebase, auth, googleProvider } = require('../../src/firebase/firebase')
 
 const checkRestaurantEmail = async email => {
-	let result = await firebase.database()
-		.ref('restaurants')
-		.once('value')
-		.then(res => {
-			return res.val()
-		})
-	let filterResult
-	for (let i = 1; i < result.length; i++) {
-		if (result[i].email == email) {
-			filterResult = result[i]
+	let ref = await firebase.database().ref('restaurants').once('value')
+	let result
+	if (ref) { async res => { result = await res.val() } }
+	try {
+		let filterResult
+		for (let i = 1; i < result.length; i++) {
+			if (result[i].email == email) {
+				filterResult = result[i]
+			}
 		}
+		return filterResult
+	} catch{
+		return 'could not check if restaurant'
 	}
-	return filterResult
 }
 const checkAdminEmail = async email => {
-	let result = await firebase
-		.database()
-		.ref('users')
-		.once('value')
-		.then(res => {
-			return res.val()
-		})
-	if (result) {
+	let ref = await firebase.database().ref('users').once('value')
+	let result
+	if (ref) { async res => { result = await res.val() } }
+	try {
 		let filterResult
 		for (let i = 1; i < result.length; i++) {
 			if (result[i].email == email && result[i].isAdmin) {
@@ -32,6 +29,8 @@ const checkAdminEmail = async email => {
 			}
 		}
 		return filterResult
+	} catch{
+		return 'could not check if admin'
 	}
 }
 const login = async (req, res, next) => {
@@ -40,45 +39,46 @@ const login = async (req, res, next) => {
 	if (result) {
 		//send to restaurant home page
 		try {
-			auth()
-				.signInWithPopup(googleProvider)
-				.then(result => {
+			let result = auth().signInWithPopup(googleProvider)
+			if (result) {
+				result => {
 					let user = result.user
 					user.isRestaurant = true
 					res.status(200).send(user)
-				})
+				}
+			}
 		} catch {
 			res.status(400).send('Could not login')
 		}
 	} else if (adminResult) {
 		try {
-			auth()
-				.signInWithPopup(googleProvider)
-				.then(result => {
+			let result = auth().signInWithPopup(googleProvider)
+			if (result) {
+				result => {
 					let user = result.user
 					user.isAdmin = true
 					res.status(200).send(user)
-				})
+				}
+			}
 		} catch {
 			res.status(400).send('Could not login')
 		}
 	} else {
 		//send to user home page
-		auth()
-			.signInWithPopup(googleProvider)
-			.then(result => {
+		let result = auth().signInWithPopup(googleProvider)
+		if (result) {
+			result => {
 				// let user = result.user
 				res.status(200).send(result.user)
-			})
+			}
+		}
 	}
 }
-const logout = (req, res, next) => {
-	auth()
-		.signOut()
-		.then(() => {
-			res.status(200).send('Logout Successful')
-		})
-		.catch(err => console.log(err))
+const logout = async (req, res, next) => {
+	let result = await auth().signOut()
+	if (result) {
+		try { res.status(200).send('Logout Successful') } catch{ res.status(400).send('Logout Unsuccessful') }
+	}
 }
 const register = async (req, res, next) => {
 	const restaurantsRef = firebase.database().ref('restaurants')
