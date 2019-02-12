@@ -33,7 +33,6 @@ const getMenu = async (req, res) => {
 const addMenu = async (req, res) => {
   const { menuName, categories, restaurantName } = req.body
   const restaurantRef = await firebase.database().ref('restaurants' + `/${restaurantName}`)
-  // console.log('this is restaurant ref:', restaurantRef)
   const restaurantValue = await restaurantRef.once('value').then(res => res.val()).catch(err => console.log(err))
   if (!restaurantValue.menus[menuName]) {
     try {
