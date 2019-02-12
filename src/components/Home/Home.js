@@ -7,6 +7,7 @@ import RestaurantCard from './RestaurantCard/RestaurantCard';
 const Home = props => {
 
 	const [restaurants, updateRestaurants] = useState([])
+	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
 	
 	const getRestaurants = () => {
 		axios.get('/api/restaurants')
@@ -19,13 +20,16 @@ const Home = props => {
 				restaurantArray.push(response.data[i])
 			}
 			updateRestaurants(restaurantArray)
+			updateDisplayedRestaurants(restaurantArray)
 		})
 		.catch(err=>console.log(err))
 	}
-
-	useEffect(getRestaurants, [])
 	
-	const map = restaurants.map(restaurant=>{
+	useEffect(getRestaurants, [])
+
+	console.log('displayed',displayedRestaurants)
+	
+	const map = displayedRestaurants.map(restaurant=>{
 		return (
 			<RestaurantCard key={restaurant.name} restaurant={restaurant} />
 		)
@@ -34,7 +38,7 @@ const Home = props => {
 	return (
 		<>
 		<Navbar/>
-		<FilterBar restaurants={restaurants} updateRestaurants={updateRestaurants}/>
+		<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants}/>
 		{map}
 		</>
 	)

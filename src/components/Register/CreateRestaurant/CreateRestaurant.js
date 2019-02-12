@@ -11,6 +11,7 @@ const CreateRestaurant = props => {
 	const [zip, updateZip] = useState('')
 	const [email, updateEmail] = useState('')
 	const [owner, updateOwner] = useState('')
+	const [name, updateName] = useState('')
 	const [redirect, activateRedirect] = useState(false)
 	
 	const captureBasicInfo = (e) => {
@@ -21,13 +22,19 @@ const CreateRestaurant = props => {
 
 	const captureAddress = async (e) => {
 		e.preventDefault()
-		let restaurant = {owner, email, addresses: {
-			address: {
-				city,
-				state,
-				zip
+		let restaurant = {
+			[name]:{
+				owner, 
+				email, 
+				addresses: {
+					address: {
+						city,
+						state,
+						zip
+					}
+				}
 			}
-		}}
+		}
 		axios.post('/api/register', {restaurant})
 		.then(response=> {
 			props.updateRestaurant(restaurant)
@@ -45,6 +52,7 @@ const CreateRestaurant = props => {
 		!restaurantObj.email
 		? 
 			<form onSubmit={captureBasicInfo}>
+				<input value={name} onChange={(e)=>updateName(e.target.value)} placeholder="restaurant name" name="name"/>
 				<input value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
 				<input value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
 				<button>Next</button>
