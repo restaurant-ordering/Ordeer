@@ -22,7 +22,7 @@ const Home = props => {
 		updateDisplayedRestaurants(restaurantArray)
 	}
 	
-	useEffect(getRestaurants, [])
+	useEffect(()=>{getRestaurants()}, [])
 
 	console.log('displayed',displayedRestaurants)
 	
