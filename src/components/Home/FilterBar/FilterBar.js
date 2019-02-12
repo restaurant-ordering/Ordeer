@@ -24,6 +24,8 @@ const FilterBar = props => {
 					props.updateDisplayedRestaurants(props.restaurants)
 				}
 				break;
+			default:
+				console.log('no match')
 		}
 	}
 

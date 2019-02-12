@@ -10,7 +10,7 @@ const Landing = props => {
 			<div className = "Landing_Container">
 				<div className = "Landing_Header">
 					<div className = "Landing_Logo">
-						<img className = "Landing_Logo_Image" src = "https://image.flaticon.com/icons/svg/47/47226.svg" />
+						<img className = "Landing_Logo_Image" alt = "ordeer logo" src = "https://image.flaticon.com/icons/svg/47/47226.svg" />
 					</div>
 					<div className = "Landing_Name">
 						<p className = "Landing_Name_Text"> Ordeer </p>
