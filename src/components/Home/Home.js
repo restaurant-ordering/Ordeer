@@ -9,23 +9,20 @@ const Home = props => {
 	const [restaurants, updateRestaurants] = useState([])
 	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
 	
-	const getRestaurants = () => {
-		axios.get('/api/restaurants')
-		.then(response=>{
-			console.log(response)
-			//convert response to array of restaurant objects
-			let restaurantArray = []
-			for(let i in response.data){
-				response.data[i].name = i
-				restaurantArray.push(response.data[i])
-			}
-			updateRestaurants(restaurantArray)
-			updateDisplayedRestaurants(restaurantArray)
-		})
-		.catch(err=>console.log(err))
+	const getRestaurants = async () => {
+		const response = await axios.get('/api/restaurants')
+		console.log(response)
+		//convert response to array of restaurant objects
+		let restaurantArray = []
+		for(let i in response.data){
+			response.data[i].name = i
+			restaurantArray.push(response.data[i])
+		}
+		updateRestaurants(restaurantArray)
+		updateDisplayedRestaurants(restaurantArray)
 	}
 	
-	useEffect(getRestaurants, [])
+	useEffect(()=>{getRestaurants()}, [])
 
 	console.log('displayed',displayedRestaurants)
 	

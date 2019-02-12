@@ -35,12 +35,9 @@ const CreateRestaurant = props => {
 				}
 			}
 		}
-		axios.post('/api/register', {restaurant})
-		.then(response=> {
+		const response = await axios.post('/api/register', {restaurant})
 			props.updateRestaurant(restaurant)
 			activateRedirect(true)
-		})
-		.catch(err=>console.log(err))
 	}
 
 
