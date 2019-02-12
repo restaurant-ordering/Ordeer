@@ -12,6 +12,12 @@ const CreateRestaurant = props => {
 	const [email, updateEmail] = useState('')
 	const [owner, updateOwner] = useState('')
 	const [redirect, activateRedirect] = useState(false)
+	
+	const captureBasicInfo = (e) => {
+		e.preventDefault()
+		let restaurantObject = {owner, email}
+		updateRestaurantObj(restaurantObject)
+	}
 
 	const captureAddress = async (e) => {
 		e.preventDefault()
@@ -23,36 +29,34 @@ const CreateRestaurant = props => {
 			}
 		}}
 		axios.post('/api/register', {restaurant})
-		.then(response=> activateRedirect(true))
+		.then(response=> {
+			props.updateRestaurant(restaurant)
+			activateRedirect(true)
+		})
 		.catch(err=>console.log(err))
 	}
 
-	const captureBasicInfo = (e) => {
-		e.preventDefault()
-		let restaurantObject = {owner, email}
-		updateRestaurantObj(restaurantObject)
-	}
 
 	return (
+		redirect
+		? //after form is complete, redirect to home
+			<Redirect to="/home"></Redirect>
+		: //if restaurant object is empty, capture basic info
 		!restaurantObj.email
 		? 
-		<form onSubmit={captureBasicInfo}>
-			<input value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"></input>
-			<input value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"></input>
-			<button>Next</button>
-		</form>
-		:
-		redirect
-		?
-		<Redirect to="/home"></Redirect>
-		:
-		<form onSubmit={captureAddress}>
-			<input value={address} onChange={(e)=>{updateAddress(e.target.value)}} placeholder="address" name="address"></input>
-			<input value={city} onChange={(e)=>{updateCity(e.target.value)}} placeholder="city" name="city"></input>
-			<input value={state} onChange={(e)=>{updateState(e.target.value)}} placeholder="state" name="state"></input>
-			<input value={zip} onChange={(e)=>{updateZip(e.target.value)}} placeholder="zip code" name="zip"></input>
-			<button>Submit</button>
-		</form>
+			<form onSubmit={captureBasicInfo}>
+				<input value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
+				<input value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
+				<button>Next</button>
+			</form>
+		: //if restaurant object is not empty, add address
+			<form onSubmit={captureAddress}>
+				<input value={address} onChange={(e)=>{updateAddress(e.target.value)}} placeholder="address" name="address"/>
+				<input value={city} onChange={(e)=>{updateCity(e.target.value)}} placeholder="city" name="city"/>
+				<input value={state} onChange={(e)=>{updateState(e.target.value)}} placeholder="state" name="state"/>
+				<input value={zip} onChange={(e)=>{updateZip(e.target.value)}} placeholder="zip code" name="zip"/>
+				<button>Submit</button>
+			</form>
 	)
 }
 
