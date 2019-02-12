@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // import firebase from 'firebase'
 const { firebase } = require('../../src/firebase/firebase')
+=======
+const firebase = require('firebase')
+>>>>>>> master
 
 const getAllRestaurants = async (req, res) => {
   const restaurantsRef = await firebase.database().ref('restaurants')

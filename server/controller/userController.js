@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // import { firebase, auth, googleProvider } from '../../src/firebase/firebase'
 const { firebase, auth, googleProvider } = require('../../src/firebase/firebase')
+=======
+const {auth, googleProvider} = require('../../src/firebase/firebase')
+>>>>>>> master
 
 const checkRestaurantEmail = async email => {
 	let result = await firebase.database()
