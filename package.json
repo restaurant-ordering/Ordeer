@@ -10,8 +10,8 @@
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "firebase": "^5.8.2",
-    "material-ui": "^0.20.2",
     "firebaseui": "^3.5.2",
+    "material-ui": "^0.20.2",
     "react": "^16.8.1",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.8.1",
@@ -22,6 +22,7 @@
     "redux-promise-middleware": "^6.0.1",
     "stripe": "^6.23.1"
   },
+  "proxy": "http://localhost:5050",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
