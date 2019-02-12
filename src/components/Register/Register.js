@@ -1,5 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react';
+import CreateRestaurant from './CreateRestaurant/CreateRestaurant';
+import CreateMenu from './CreateMenu/CreateMenu';
+
 const Register = props => {
-	return <> Register</>
+
+	const [restaurant, updateRestaurant] = useState({})
+
+	return (
+		<CreateRestaurant updateRestaurant={updateRestaurant}/>
+	)
 }
-export default Register
+
+export default Register;
