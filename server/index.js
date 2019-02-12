@@ -18,8 +18,9 @@ app.post('/api/register', register)
 // app.delete('/api/users', deleteUser)
 //restaurant endpoints
 app.get('/api/restaurants', getAllRestaurants)
-app.get('/api/menus', getMenu)
-app.post('/api/menus', addMenu)
+//this needs to be a post so that we can access the restaurant menu name
+app.post('/api/menus', getMenu)
+app.post('/api/add-menus', addMenu)
 app.delete('/api/restaurants', deleteRestaurant)
 app.delete('/api/menus', deleteMenu)
 //admin endpoints
