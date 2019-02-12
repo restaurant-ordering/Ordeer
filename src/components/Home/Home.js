@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import RestaurantCard from './RestaurantCard/RestaurantCard';
+import Navbar from '../Navbar/Navbar';
 import FilterBar from './FilterBar/FilterBar';
+import RestaurantCard from './RestaurantCard/RestaurantCard';
 
 const Home = props => {
 
-	const [restaurants, updateRestaurants] = useState()
+	const [restaurants, updateRestaurants] = useState([])
 	
 	const getRestaurants = () => {
 		axios.get('/api/restaurants')
@@ -15,11 +16,18 @@ const Home = props => {
 		})
 		.catch(err=>console.log(err))
 	}
-	
+
 	useEffect(getRestaurants, [])
 	
+	const map = restaurants.map(restaurant=>{
+		return <RestaurantCard restaurant={restaurant} />
+	})
+
 	return (
 		<>
+		<Navbar/>
+		<FilterBar updateRestaurants={updateRestaurants}/>
+		{map}
 		</>
 	)
 }
