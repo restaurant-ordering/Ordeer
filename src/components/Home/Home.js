@@ -13,11 +13,12 @@ const Home = props => {
 		.then(response=>{
 			console.log(response)
 			//convert response to array of restaurant objects
-			// let restaurantArray = []
-			// for(let i in response.data){
-			// 	restaurantArray.push(response.data[i])
-			// }
-			// updateRestaurants(restaurantArray)
+			let restaurantArray = []
+			for(let i in response.data){
+				response.data[i].name = i
+				restaurantArray.push(response.data[i])
+			}
+			updateRestaurants(restaurantArray)
 		})
 		.catch(err=>console.log(err))
 	}
@@ -25,7 +26,9 @@ const Home = props => {
 	useEffect(getRestaurants, [])
 	
 	const map = restaurants.map(restaurant=>{
-		return <RestaurantCard restaurant={restaurant} />
+		return (
+			<RestaurantCard key={restaurant.name} restaurant={restaurant} />
+		)
 	})
 
 	return (
