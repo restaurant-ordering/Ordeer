@@ -17,9 +17,11 @@ const getAllRestaurants = async (req, res) => {
 }
 const getMenu = async (req, res) => {
   const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
-  if (restaurantRef.menus) {
+  let restaurantValue = await restaurantRef.once('value').then(res => res.val()).catch(err => console.log(err))
+  console.log(restaurantValue)
+  if (restaurantValue.menus) {
     try {
-      let menuRef = restaurantRef.menus
+      let menuRef = restaurantV.menus.child(req.body.menuName)
       res.status(200).send(menuRef)
     } catch {
       res.status(400).send('could not find menu for that restaurant')
@@ -29,11 +31,17 @@ const getMenu = async (req, res) => {
   }
 }
 const addMenu = async (req, res) => {
-  const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
-  if (restaurantRef) {
+  const { menuName, categories, restaurantName } = req.body
+  const restaurantRef = await firebase.database().ref('restaurants' + `/${restaurantName}`)
+  // console.log('this is restaurant ref:', restaurantRef)
+  const restaurantValue = await restaurantRef.once('value').then(res => res.val()).catch(err => console.log(err))
+  if (!restaurantValue.menus[menuName]) {
     try {
-      let newMenuList = restaurantRef.menus.push(req.body)
-      res.status(200).send(newMenuList)
+      let objectToPush = {
+        [menuName]: categories
+      }
+      restaurantRef.child("menus").update(objectToPush)
+      res.status(200).send('added menu')
     } catch {
       res.status(400).send('could not add menu')
     }
@@ -42,8 +50,8 @@ const addMenu = async (req, res) => {
   }
 }
 const deleteRestaurant = async (req, res) => {
-  const restaurantsRef = await firebase.database().ref('restaurants')
   const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
+  // let restaurantValue = await restaurantRef.once('value').then(res => res.val()).catch(err => console.log(err))
   if (restaurantRef) {
     try {
       restaurantRef.remove()
@@ -56,7 +64,14 @@ const deleteRestaurant = async (req, res) => {
   }
 }
 const deleteMenu = async (req, res) => {
-  const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
+  const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}` + `/menus/${req.body.menuName}`)
+  if (restaurantRef) {
+    restaurantRef.remove()
+    res.status(200)
+  } else {
+    res.status(400).send('could not remove menu')
+  }
+
   //to put delete function here
 }
 module.exports = {
