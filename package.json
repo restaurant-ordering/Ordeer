@@ -45,7 +45,6 @@
     "url": "git+https://github.com/restaurant-ordering/Ordeer.git"
   },
   "author": "",
-  "proxy" : "http://localhost:5050",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/restaurant-ordering/Ordeer/issues"
