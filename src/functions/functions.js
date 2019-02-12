@@ -1,11 +1,10 @@
 import firebase from '../firebase/firebase'
 // import {checkPropTypes} from 'prop-types'
 module.exports = {
-	login: () => {
-		auth.signInWithPopup(provider).then(result => {
-			const user = result.user
-			this.setState({user})
-		})
+	login: async () => {
+		const result = await auth.signInWithPopup(provider)
+		const user = result.user
+		this.setState({user})
 	},
 	postUser: user => {
 		const usersRef = firebase.database().ref('users')

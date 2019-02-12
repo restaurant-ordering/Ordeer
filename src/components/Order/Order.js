@@ -12,18 +12,19 @@ const Order = props => {
 	//stores all of the restaurants
 	const [restaurants, updateRestaurants] = useState([])
 	//gets all the restaurants from the backend
-	const getRestaurants = () => {
-		axios.get('/api/restaurants')
-			.then(response => {
-				//convert response to array of restaurant objects
-				let restaurantArray = []
-				for (let i in response.data) {
-					response.data[i].name = i
-					restaurantArray.push(response.data[i])
-				}
-				updateRestaurants(restaurantArray)
-			})
-			.catch(err => console.log(err))
+	const getRestaurants = async () => {
+		try {
+			const response = await axios.get('/api/restaurants')
+			//convert response to array of restaurant objects
+			let restaurantArray = []
+			for (let i in response.data) {
+				response.data[i].name = i
+				restaurantArray.push(response.data[i])
+			}
+			updateRestaurants(restaurantArray)
+		} catch (error){
+			console.log(error)
+		}
 	}
 	//componentDidMount
 	useEffect(getRestaurants, [])

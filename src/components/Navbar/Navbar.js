@@ -14,12 +14,11 @@ const Navbar = props => {
 					<div className='Navbar_Login'>
 						<p
 							className='Navbar_Login_Text'
-							onClick={() =>
-								auth.signInWithPopup(googleProvider).then(result => {
-									props.updateUser(result.user)
-									activateRedirect(true)
-								})
-							}>
+							onClick={async () =>{
+								const result = await auth.signInWithPopup(googleProvider)
+								props.updateUser(result.user)
+								activateRedirect(true)
+							}}>
 							{' '}
 							Login{' '}
 						</p>
