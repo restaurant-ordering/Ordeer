@@ -19,7 +19,7 @@ const getMenu = async (req, res) => {
       // let menuRef
       // for (let i = 1; i < restaurantRef.length; i++) {
       //   if (restaurantsRef[i].menus.length) {
-      menuRef = restaurantRef.menus
+      let menuRef = restaurantRef.menus
       // }
       res.status(200).send(menuRef)
       // }
