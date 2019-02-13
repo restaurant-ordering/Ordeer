@@ -3,10 +3,12 @@ const { firebase, auth, googleProvider } = require('../../src/firebase/firebase'
 
 const checkRestaurantEmail = async email => {
 	let ref = await firebase.database().ref('restaurants').once('value')
+	console.log('this is ref in checkRestaurantEmail:', ref)
 	let result
 	if (ref) { async res => { result = await res.val() } }
 	try {
 		let filterResult
+		console.log('this is filterResult in checkRestaurantEmail:', filterResult)
 		for (let i = 1; i < result.length; i++) {
 			if (result[i].email == email) {
 				filterResult = result[i]
@@ -14,7 +16,7 @@ const checkRestaurantEmail = async email => {
 		}
 		return filterResult
 	} catch{
-		return 'could not check if restaurant'
+		console.log('could not check if restaurant')
 	}
 }
 const checkAdminEmail = async email => {
@@ -30,7 +32,7 @@ const checkAdminEmail = async email => {
 		}
 		return filterResult
 	} catch{
-		return 'could not check if admin'
+		console.log('could not check if admin')
 	}
 }
 const login = async (req, res, next) => {
@@ -83,6 +85,7 @@ const logout = async (req, res, next) => {
 const register = async (req, res, next) => {
 	const restaurantsRef = firebase.database().ref('restaurants')
 	let result = await checkRestaurantEmail(req.body.email)
+	console.log(result)
 	if (!result) {
 		try {
 			let info = req.body

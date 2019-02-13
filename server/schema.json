@@ -1,26 +1,26 @@
 {
-	"restaurants" : {
-		"____restaurant name" : {
-			"owner" : "",
-			"email" : "",
-			"addresses" : {
-				"____address" : {
-					"city" : "",
-					"menu" : "",
-					"state" : "",
-					"zip" : ""
+	"restaurants": {
+		"____restaurant name": {
+			"owner": "",
+			"email": "",
+			"addresses": {
+				"____address": {
+					"city": "",
+					"menu": "",
+					"state": "",
+					"zip": ""
 				}
 			},
-			"menus" : {
-				"____menu name" : {
-					"categories" : {
-						"____category name" : {
-							"____menu item" : {
-								"image" : "",
-								"price" : "$",
-								"description" : "",
-								"customization" : {
-									"____customization option" : ""
+			"menus": {
+				"____menu name": {
+					"categories": {
+						"____category name": {
+							"____menu item": {
+								"image": "",
+								"price": "$",
+								"description": "",
+								"customization": {
+									"____customization option": ""
 								}
 							}
 						}
@@ -29,13 +29,23 @@
 			}
 		}
 	},
-	"users" : {
-		"____userId" : {
-			"email" : "",
-			"first_name" : "",
-			"isRestaurant" : "",
-			"last_name" : "",
-			"photoUrl" : ""
+	"users": {
+		"____userId": {
+			"email": "",
+			"first_name": "",
+			"isRestaurant": "",
+			"last_name": "",
+			"photoUrl": ""
+		}
+	},
+	"orders": {
+		"___orderKey": {
+			"___userId": "",
+			"___restaurantName": "",
+			"cart": [],
+			"date": "",
+			"price": "",
+			"completed": false
 		}
 	}
 }

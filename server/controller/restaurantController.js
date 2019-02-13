@@ -24,14 +24,14 @@ const getMenu = async (req, res) => {
   let restaurantValue
   if (result) {
     try {
-      restaurantValue = result.val()
+      restaurantValue = await result.val()
     } catch{
       console.log('Could not get restaurant value')
     }
   }
   if (restaurantValue.menus) {
     try {
-      let menuRef = restaurantV.menus.child(req.body.menuName)
+      let menuRef = await restaurantValue.menus[req.body.menuName]
       res.status(200).send(menuRef)
     } catch {
       res.status(400).send('Could not find menu for that restaurant')
