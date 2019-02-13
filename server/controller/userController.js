@@ -5,10 +5,8 @@ const checkRestaurantEmail = async email => {
 	try {
 		let ref = await firebase.database().ref('restaurants')
 		let refResult = await ref.once('value')
-		// console.log('this is ref in checkRestaurantEmail:', refResult)
 		let result = await refResult.val()
 		let filterResult
-		// console.log('this is filterResult in checkRestaurantEmail:', filterResult)
 		for (let i = 1; i < result.length; i++) {
 			if (result[i].email == email) {
 				filterResult = result[i]
@@ -76,7 +74,6 @@ const checkRestaurantEmail = async email => {
 // }
 const logout = async (req, res, next) => {
 	auth().signOut()
-
 }
 const register = async (req, res, next) => {
 	try {
