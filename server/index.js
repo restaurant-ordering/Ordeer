@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const { json } = require('body-parser')
-const { getUser, addUser, login, register, logout, deleteUser } = require('./controller/userController')
+const { login, register, logout } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu } = require('./controller/restaurantController')
 const { SERVER_PORT } = process.env
 
@@ -9,16 +9,12 @@ const app = express()
 
 app.use(json())
 
-//user endpoints
-// app.get('/api/users', getUser)
-// app.post('/api/users', addUser)
+
 app.post('/api/login', login)
 app.post('/api/register', register)
-// app.get('/api/logout', logout)
-// app.delete('/api/users', deleteUser)
+app.get('/api/logout', logout)
 //restaurant endpoints
 app.get('/api/restaurants', getAllRestaurants)
-//this needs to be a post so that we can access the restaurant menu name
 app.post('/api/menus', getMenu)
 app.post('/api/add-menus', addMenu)
 app.delete('/api/restaurants', deleteRestaurant)
