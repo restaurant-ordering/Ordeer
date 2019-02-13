@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,27 +14,30 @@ const ItemDetails = props =>{
 		props.prevStep();
 	};
 
-	const { values, handleChange } = props;
+	const [itemNumber, changeItemNumber] = useState(0)
+	const [categoryNumber, changeCategoryNumber] = useState(0)
+
+	const { values, handleChange, stageControllers } = props;
 	return (
 		<>
-			<AppBar title="Enter First Items Details" />
+			<AppBar title={`Enter Details for Item ${itemNumber} in ${values.category_details[categoryNumber].name} Category`} />
 			<TextField
 			hintText="Enter in the Item's Image"
 			floatingLabelText="Image"
 			onChange={handleChange('city')}
-			defaultValue={values.city}
+			value={values.city}
 			/>
 			<TextField
 			hintText="Enter in the Item's Price"
 			floatingLabelText="Price"
 			onChange={handleChange('price')}
-			defaultValue={values.price}
+			value={values.price}
 			/>
 			<TextField
 			hintText="Enter in the Item's Description"
 			floatingLabelText="Description"
 			onChange={handleChange('description')}
-			defaultValue={values.desscription}
+			value={values.desscription}
 			/>
 			<RaisedButton
 			label="Back"
