@@ -1,5 +1,5 @@
 // import { firebase, auth, googleProvider } from '../../src/firebase/firebase'
-const { firebase, auth, googleProvider } = require('../../src/firebase/firebase')
+const { firebase } = require('../../src/firebase/firebase')
 
 const checkRestaurantEmail = async email => {
 	try {
@@ -17,9 +17,6 @@ const checkRestaurantEmail = async email => {
 		console.log('could not check if restaurant')
 	}
 }
-const logout = async (req, res, next) => {
-	auth().signOut()
-}
 const register = async (req, res, next) => {
 	try {
 		const restaurantsRef = firebase.database().ref('restaurants')
@@ -34,6 +31,5 @@ const register = async (req, res, next) => {
 	}
 }
 module.exports = {
-	logout,
 	register
 }

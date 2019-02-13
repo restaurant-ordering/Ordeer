@@ -37,5 +37,4 @@ export const checkAdminEmail = async email => {
 }
 export const logout = async () => {
 	auth().signOut()
-
 }
