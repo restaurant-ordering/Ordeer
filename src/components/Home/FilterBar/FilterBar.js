@@ -1,24 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const FilterBar = props => {
-	console.log(props.restaurants)
 
 	const [searchTerm, changeSearchTerm] = useState('')
 	const [searchCity, changeSearchCity] = useState('')
 
-	const search = async (e) => {
+	const search = (e) => {
 		switch(e.target.name){
 			case 'changeSearchTerm':
-				await changeSearchTerm(e.target.value)
-				if(searchTerm.length>0){
+				changeSearchTerm(e.target.value)
+					console.log('filter',props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm)))
 					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm)))
-				} else {
-					props.updateDisplayedRestaurants(props.restaurants)
-				}
 				break;
 			case 'changeSearchCity':
-				await changeSearchCity(e.target.value)
-				if(searchCity.length>0){
+				changeSearchCity(e.target.value)
 					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => {
 						let includesCity = []
 						for(let i in restaurant.addresses){
@@ -26,9 +21,6 @@ const FilterBar = props => {
 						}
 						return includesCity
 					}))
-				} else {
-					props.updateDisplayedRestaurants(props.restaurants)
-				}
 				break;
 			default:
 				console.log('no match')
