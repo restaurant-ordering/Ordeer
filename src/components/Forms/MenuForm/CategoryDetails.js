@@ -19,7 +19,7 @@ const CategoryDetails = props => {
 
 	return (
 		<>
-			<AppBar title="Enter First Category Details" />
+			<AppBar title="Enter Category Details" />
 			<TextField
 			hintText="Enter the Number of Items"
 			floatingLabelText="Items"

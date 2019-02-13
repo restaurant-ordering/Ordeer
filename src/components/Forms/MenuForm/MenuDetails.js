@@ -18,7 +18,7 @@ const MenuDetails = props => {
 			/>
 			<TextField
 			hintText="Enter the Number of Categories"
-			floatingLabelText="Category"
+			floatingLabelText="Menu Categories"
 			onChange={handleChange('categories')}
 			defaultValue={values.categories}
 			/>

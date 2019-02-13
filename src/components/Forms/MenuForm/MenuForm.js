@@ -9,16 +9,32 @@ import {Redirect} from 'react-router-dom';
 
 const MenuForm = (props) =>{
 
-	const [step, changeStep] = useState(1)
-	const [menu_name, changeMenuName] = useState('')
-	const [categories, changeCategories] = useState('')
-	const [category_name, changeCategoryName] = useState('')
-	const [menu_item, changeMenuItem] = useState('')
-	const [image, changeImage] = useState('')
-	const [price, changePrice] = useState('')
-	const [description, changeDescription] = useState('')
-	const [customization, changeCustomization] = useState('')
-
+	//MenuDetails
+		//used to switch pages
+		const [step, changeStep] = useState(1)
+		//stores overall menu name
+		const [menu_name, changeMenuName] = useState('')
+		//stores the numer of categories
+		const [categories, changeCategories] = useState('')
+	//CategoryDetails
+		//stores name of category currently being edited
+		const [category_name, changeCategoryName] = useState('')
+		//an array to store category objects
+		const [category_details, changeCategoryDetails] = useState([])
+	//ItemDetails
+		//stores the name of the current menu item
+		const [menu_item, changeMenuItem] = useState('')
+		//stores the img url of the current menu item
+		const [image, changeImage] = useState('')
+		//stores the price of the current menu item
+		const [price, changePrice] = useState('')
+		//stores the description of the current menu item
+		const [description, changeDescription] = useState('')
+		//stores the customization options for the current menu item (should be an object)
+		const [customization, changeCustomization] = useState('')
+		//an array to store menu items for the current category
+		const [menu_items, changeMenuItems] = useState([])
+		
 	// Handle the Input Field Change Function
 	const handleChange = input => e => {
 		switch(input){
@@ -61,7 +77,7 @@ const MenuForm = (props) =>{
 		changeStep(step-1)
 	};
 
-	const values = { menu_name, categories, category_name, menu_item, image, price, description, customization};
+	const values = { menu_name, categories, category_name, menu_item, image, price, description, customization, menu_items};
 
 	switch (step) {
 		case 1:
@@ -81,12 +97,14 @@ const MenuForm = (props) =>{
 			prevStep={prevStep}
 			handleChange={handleChange}
 			values={values}
+			changeCategoryDetails={changeCategoryDetails}
 		/>
 		);
 		case 3:
 		// Directs user to the FirstItemDetails Page
 		return (
 		<ItemDetails
+			changeMenuItems={changeMenuItems}
 			nextStep={nextStep}
 			prevStep={prevStep}
 			handleChange={handleChange}
