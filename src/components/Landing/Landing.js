@@ -8,12 +8,6 @@ const Landing = props => {
 	return (
 		<div className = "Landing_Page">
 			<Navbar />
-<<<<<<< HEAD
-			<div className = "Landing_Container">
-				<div className = "Landing_Header">
-					<div className = "Landing_Logo">
-						<img className = "Landing_Logo_Image" alt = "ordeer logo" src = "https://image.flaticon.com/icons/svg/47/47226.svg" />
-=======
 			<div className = "Landing_Header">
 				<p className = "Landing_Header_Title_Text"> Ordeer </p>
 				<p className = "Landing_Header_Slogan_Text"> a leap above the rest </p>
@@ -22,7 +16,6 @@ const Landing = props => {
 				<div className = "Landing_MC_Top">
 					<div className = "Landing_MC_Container_Paragraph">
 						<p className ="Landing_MC_Paragraph_Text"> Explore restaurants that are close to you: </p>
->>>>>>> master
 					</div>
 					<div className = "Landing_MC_Container_Input">
 						<input className = "Landing_MC_Input" type = "text" />
