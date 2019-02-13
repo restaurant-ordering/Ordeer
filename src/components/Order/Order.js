@@ -34,8 +34,8 @@ const Order = props => {
 	console.log(restaurantObj)
 
 	return (
-		<>
-		</>
+		<div>
+		</div>
 	)
 }
 

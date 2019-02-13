@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
 
 const CreateRestaurant = props => {
 
@@ -12,7 +11,6 @@ const CreateRestaurant = props => {
 	const [email, updateEmail] = useState('')
 	const [owner, updateOwner] = useState('')
 	const [name, updateName] = useState('')
-	const [redirect, activateRedirect] = useState(false)
 	
 	const captureBasicInfo = (e) => {
 		e.preventDefault()
@@ -35,17 +33,20 @@ const CreateRestaurant = props => {
 				}
 			}
 		}
-		const response = await axios.post('/api/register', {restaurant})
-			props.updateRestaurant(restaurant)
-			activateRedirect(true)
+		try {
+			console.log('submitting restaurant', restaurant)
+			const response = await axios.post('/api/register', {restaurant})
+			console.log('submission successful',response)
+		} catch (error) {
+			console.log('submission not successful')
+			console.log(error)
+		}
+		props.updateRestaurant(restaurant)
 	}
 
 
 	return (
-		redirect
-		? //after form is complete, redirect to home
-			<Redirect to="/home"></Redirect>
-		: //if restaurant object is empty, capture basic info
+		//if restaurant object is empty, capture basic info
 		!restaurantObj.email
 		? 
 			<form onSubmit={captureBasicInfo}>

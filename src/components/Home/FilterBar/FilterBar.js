@@ -19,7 +19,13 @@ const FilterBar = props => {
 			case 'changeSearchCity':
 				await changeSearchCity(e.target.value)
 				if(searchCity.length>0){
-					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => {for(let i in restaurant.addresses){return restaurant.addresses[i].city.includes(searchCity)}}))
+					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => {
+						let includesCity = []
+						for(let i in restaurant.addresses){
+							includesCity.push(restaurant.addresses[i].city.includes(searchCity))
+						}
+						return includesCity
+					}))
 				} else {
 					props.updateDisplayedRestaurants(props.restaurants)
 				}

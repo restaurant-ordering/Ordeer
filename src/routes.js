@@ -5,6 +5,7 @@ import Home from './components/Home/Home'
 import Account from './components/Account/Account'
 import Order from './components/Order/Order'
 import Register from './components/Register/Register'
+import CreateMenu from './components/Register/CreateMenu/CreateMenu'
 
 export default (
 	<Switch>
@@ -12,6 +13,7 @@ export default (
 		<Route path='/home' component={Home} />
 		<Route path='/account' component={Account} />
 		<Route path='/register' component={Register} />
+		<Route path='/addmenu' component={CreateMenu} />
 		<Route path='/order' component={Order} />
 	</Switch>
 )
