@@ -15,7 +15,7 @@ const Landing = props => {
 			<div className = "Landing_MC">
 				<div className = "Landing_MC_Top">
 					<div className = "Landing_MC_Container_Paragraph">
-						<p className ="Landing_MC_Paragraph_Text"> Explore restaurants that are close to you: </p>
+						<p className ="Landing_MC_Paragraph_Text"> Explore restaurants that are close to you </p>
 					</div>
 					<div className = "Landing_MC_Container_Input">
 						<input className = "Landing_MC_Input" type = "text" />
