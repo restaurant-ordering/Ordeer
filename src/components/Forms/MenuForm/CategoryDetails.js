@@ -1,36 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const CategoryDetails = props => {
 
+	const [currentCategory, switchCategory] = useState(1)
+	const { values, handleChange, stateControllers } = props;
+
 	const forward = e => {
-		e.preventDefault();
-		props.nextStep();
+		stateControllers.changeCategoryDetails([...values.category_details, {name: values.category_name, items: values.itemQuantity}])
+		if(currentCategory === values.categories){
+			props.nextStep();
+		} else {
+			stateControllers.changeItemQuantity('')
+			stateControllers.changeCategoryName('')
+			switchCategory(currentCategory + 1)
+		}
 	};
 
 	const back = e => {
-		e.preventDefault();
-		props.prevStep();
+		if(currentCategory === 1){
+			props.prevStep();
+		}
+		else {
+			let category = values.category_details.pop()
+			stateControllers.changeCategoryDetails(values.category_details)
+			stateControllers.changeItemQuantity(category.items)
+			stateControllers.changeCategoryName(category.name)
+			switchCategory(currentCategory - 1)
+		}
 	};
-
-	const { values, handleChange } = props;
 
 	return (
 		<>
-			<AppBar title="Enter Category Details" />
+			<AppBar title={`Enter Category ${currentCategory} Details`} />
 			<TextField
-			hintText="Enter the Number of Items"
-			floatingLabelText="Items"
+			hintText={`Category ${currentCategory} name`}
+			floatingLabelText="Category name"
 			onChange={handleChange('category_name')}
-			defaultValue={values.category_name}
+			value={values.category_name}
 			/>
 			<TextField
-			hintText="Enter the Item's Name"
-			floatingLabelText="Name"
-			onChange={handleChange('menu_item')}
-			defaultValue={values.menu_item}
+			hintText="Number items in category"
+			floatingLabelText="Menu items"
+			onChange={handleChange('itemQuantity')}
+			value={values.itemQuantity}
 			/>
 			<RaisedButton
 			label="Back"

@@ -19,6 +19,8 @@ const MenuForm = (props) =>{
 	//CategoryDetails
 		//stores name of category currently being edited
 		const [category_name, changeCategoryName] = useState('')
+		//stores the number of menu items in the current category
+		const [itemQuantity, changeItemQuantity] = useState('')
 		//an array to store category objects
 		const [category_details, changeCategoryDetails] = useState([])
 	//ItemDetails
@@ -41,8 +43,11 @@ const MenuForm = (props) =>{
 			case 'menu_name': 
 			changeMenuName(e.target.value)
 			break;
+			case 'itemQuantity': 
+			changeItemQuantity(e.target.value)
+			break;
 			case 'categories':
-			changeCategories(e.target.value)
+			changeCategories(+e.target.value)
 			break;
 			case 'category_name':
 			changeCategoryName(e.target.value)
@@ -77,7 +82,10 @@ const MenuForm = (props) =>{
 		changeStep(step-1)
 	};
 
-	const values = { menu_name, categories, category_name, menu_item, image, price, description, customization, menu_items};
+	const values = { itemQuantity, menu_items, category_details, menu_name, categories, category_name, menu_item, image, price, description, customization, menu_items};
+	const stateControllers = {changeMenuName, changeItemQuantity, changeCategories, changeCategoryName, changeMenuItem, changeImage, changePrice, changeDescription, changeCustomization, changeCategoryDetails, changeMenuItems}
+
+	console.log('values', values)
 
 	switch (step) {
 		case 1:
@@ -97,14 +105,14 @@ const MenuForm = (props) =>{
 			prevStep={prevStep}
 			handleChange={handleChange}
 			values={values}
-			changeCategoryDetails={changeCategoryDetails}
+			stateControllers={stateControllers}
 		/>
 		);
 		case 3:
 		// Directs user to the FirstItemDetails Page
 		return (
 		<ItemDetails
-			changeMenuItems={changeMenuItems}
+			stateControllers={stateControllers}
 			nextStep={nextStep}
 			prevStep={prevStep}
 			handleChange={handleChange}
@@ -118,6 +126,7 @@ const MenuForm = (props) =>{
 			nextStep={nextStep}
 			prevStep={prevStep}
 			values={values}
+			updateMenu={props.updateMenu}
 		/>
 		)
 		case 5:

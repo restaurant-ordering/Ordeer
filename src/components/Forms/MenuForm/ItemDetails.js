@@ -6,12 +6,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 const ItemDetails = props =>{
 	const forward = e => {
 		e.preventDefault();
-		this.props.nextStep();
+		props.nextStep();
 	};
 
 	const back = e => {
 		e.preventDefault();
-		this.props.prevStep();
+		props.prevStep();
 	};
 
 	const { values, handleChange } = props;

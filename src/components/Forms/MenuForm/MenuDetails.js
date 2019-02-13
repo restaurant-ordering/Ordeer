@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const MenuDetails = props => {
 
-	const { values, handleChange } = props;
+	const { values, handleChange} = props;
 
 	return (
 		<>

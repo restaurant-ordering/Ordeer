@@ -6,9 +6,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 const MenuConfirmation = props => {
 	const forward = e => {
 		e.preventDefault();
-		//create menu object
-		//post menu object to db
-		//props.updateMenu
+		props.updateMenu({
+			[menu_name]:{
+				categories: {
+					//category name for each category : {
+						//menu item name : {
+							//menu item info
+						//}
+					//}
+				}
+			}
+		})
 		this.props.nextStep();
 	};
 
@@ -18,7 +26,7 @@ const MenuConfirmation = props => {
 	};
 
 	const {
-		values: { menu_name, categories, category_name, menu_item, image, price, description, customization }
+		values: { menu_items, category_details, menu_name, categories, category_name, menu_item, image, price, description, customization }
 	} = props;
 
 	return (
