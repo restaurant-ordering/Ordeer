@@ -5,6 +5,7 @@ import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
 import Googler from '../../Images/Google2.png'
+import { checkAdminEmail, checkRestaurantEmail } from '../../functions/functions'
 import './Navbar.css'
 
 const Navbar = props => {
