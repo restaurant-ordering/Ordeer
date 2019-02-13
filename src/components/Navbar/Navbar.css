@@ -19,11 +19,11 @@
 	/* border: 1px solid black; */
 	height: 30px;
 	width: 30px;
-	margin-left: 1%
+	margin-left: 2%
 }
 
 .Navbar_Logo {
-	height: 25px;
+	height: 55px;
 }
 
 .Navbar_Container_Login{
@@ -36,8 +36,8 @@
 	box-shadow: 1px 1px 4px grey;
 	/* border: 1px solid black; */
 	border-radius: 4px;
-	height: 20px;
-	width: 52px;
+	height: 40px;
+	width: 80px;
 	margin-right: 1%
 }
 
@@ -51,11 +51,11 @@
 	border-radius: 2px;
 	height: 15px;
 	width: 15px;
-	margin-left: 4%
+	margin-left: 12%
 }
 
 .Navbar_Login_Logo {
-	height: 15px;
+	height: 20px;
 }
 
 .Navbar_Container_Login_Text {
@@ -72,5 +72,6 @@
 
 .Navbar_Login_Text {
 	color: white;
-	font-size: 11px;
+	font-size: 15px;
+	margin-left: 20%
 }
