@@ -2,11 +2,13 @@
 const { firebase, auth, googleProvider } = require('../../src/firebase/firebase')
 
 const checkRestaurantEmail = async email => {
-	let ref = await firebase.database().ref('restaurants').once('value')
-	let result
-	if (ref) { async res => { result = await res.val() } }
 	try {
+		let ref = await firebase.database().ref('restaurants')
+		let refResult = await ref.once('value')
+		// console.log('this is ref in checkRestaurantEmail:', refResult)
+		let result = await refResult.val()
 		let filterResult
+		// console.log('this is filterResult in checkRestaurantEmail:', filterResult)
 		for (let i = 1; i < result.length; i++) {
 			if (result[i].email == email) {
 				filterResult = result[i]
@@ -14,14 +16,13 @@ const checkRestaurantEmail = async email => {
 		}
 		return filterResult
 	} catch{
-		return 'could not check if restaurant'
+		console.log('could not check if restaurant')
 	}
 }
 const checkAdminEmail = async email => {
-	let ref = await firebase.database().ref('users').once('value')
-	let result
-	if (ref) { async res => { result = await res.val() } }
 	try {
+		let ref = await firebase.database().ref('users').once('value')
+		let result = await ref.val()
 		let filterResult
 		for (let i = 1; i < result.length; i++) {
 			if (result[i].email == email && result[i].isAdmin) {
@@ -30,10 +31,11 @@ const checkAdminEmail = async email => {
 		}
 		return filterResult
 	} catch{
-		return 'could not check if admin'
+		console.log('could not check if admin')
 	}
 }
 const login = async (req, res, next) => {
+	//i need to fix this one so please don't look at it too hard
 	let result = await checkRestaurantEmail(req.body.email)
 	let adminResult = await checkAdminEmail(req.body.email)
 	if (result) {
@@ -64,35 +66,33 @@ const login = async (req, res, next) => {
 			res.status(400).send('Could not login')
 		}
 	} else {
-		//send to user home page
-		let result = auth().signInWithPopup(googleProvider)
-		if (result) {
-			result => {
-				// let user = result.user
-				res.status(200).send(result.user)
+		try {
+			let result = await auth().signInWithPopup(googleProvider)
+			if (result) {
+				result => {
+					// let user = result.user
+					res.status(200).send(result.user)
+				}
 			}
+		} catch{
+			res.status(400).send("Could not login")
 		}
 	}
 }
 const logout = async (req, res, next) => {
-	let result = await auth().signOut()
-	if (result) {
-		try { res.status(200).send('Logout Successful') } catch{ res.status(400).send('Logout Unsuccessful') }
-	}
+	auth().signOut()
+	res.status(200).send('Logout Successful')
 }
 const register = async (req, res, next) => {
-	const restaurantsRef = firebase.database().ref('restaurants')
-	let result = await checkRestaurantEmail(req.body.email)
-	if (!result) {
-		try {
-			// restaurantsRef.child(req.body.name).set(req.body)
+	try {
+		const restaurantsRef = firebase.database().ref('restaurants')
+		let result = await checkRestaurantEmail(req.body.email)
+		if (!result) {
 			let info = req.body
 			restaurantsRef.update(info)
 			res.sendStatus(200)
-		} catch {
-			console.log('there was an error')
 		}
-	} else {
+	} catch {
 		res.status(400).send('There is already a restaurant with that email')
 	}
 }
