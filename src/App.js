@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import routes from './routes'
-import firebase from './firebase/firebase'
+import { firebase } from './firebase/firebase'
 
 class App extends Component {
 	render() {
 		return (
 			// <Router>
-				<div className='App_Container'>{routes}</div>
+			<div className='App_Container'>{routes}</div>
 			// </Router>
 		)
 	}

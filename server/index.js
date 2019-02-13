@@ -11,7 +11,7 @@ const app = express()
 app.use(json())
 
 
-app.post('/api/login', login)
+
 app.post('/api/register', register)
 app.get('/api/logout', logout)
 //restaurant endpoints
