@@ -21,12 +21,12 @@
 }
 
 .Landing_Header_Title_Text {
-    font-size: 34px;
+    font-size: 70px;
     letter-spacing: 6px
 }
 
 .Landing_Header_Slogan_Text {
-    font-size: 8px;
+    font-size: 20px;
     font-style: italic
 
 }
@@ -53,12 +53,12 @@
 
 .Landing_MC_Container_Paragraph {
     /* border: 1px solid black; */
-    height: 40px;
-    width: 150px;    
+    height: 80px;
+    width: 260px;    
 }
 
 .Landing_MC_Paragraph_Text {
-    font-size: 15px
+    font-size: 30px
 }
 
 .Landing_MC_Container_Input {
@@ -75,8 +75,9 @@
 .Landing_MC_Input {
     border-radius: 2px;
     border: 1px solid black;
-    height: 10px;
-    width: 100px;
+    height: 19.5px;
+    width: 200px;
+    margin-top: -10%
 }
 
 .Landing_MC_Container_Button {
@@ -91,19 +92,20 @@
     box-shadow: 1px 1px 4px grey;
     border: none;
     /* border: 1px solid black; */
-    height: 13px;
-    width: 25px;
-    margin-left: -7%
+    height: 22px;
+    width: 45px;
+    margin-top: -14px;
+    margin-left: 1.2%
 }
 
 .Landing_MC_Button_Text {
-    font-size: 5px;
+    font-size: 12px;
     color: white;
 }
 
 .Landing_MC_Bottom {
     border: 1px solid black;
-    height: 15.7vh
+    height: 15.7vh;
 }
 
 
@@ -127,8 +129,8 @@
     background-color: #0A544E;
     border-radius: 4px;
     box-shadow: 1px 1px 4px grey;
-    height: 20px;
-    width: 90px;
+    height: 40px;
+    width: 150px;
     margin-right: 1%;
     text-decoration: none;
 }
@@ -138,12 +140,13 @@
 }
 
 .Landing_Footer_Button_Text {
-    font-size: 9px;
+    font-size: 15px;
     color: white;
     margin-left: 1%
 }
 
 .Landing_Footer_Button_Logo {
-    height: 10px;
-    margin-left: 1%
+    height: 12px;
+    margin-top: 1%;
+    margin-left: 4%
 }
