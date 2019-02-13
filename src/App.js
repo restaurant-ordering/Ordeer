@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import routes from './routes'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 

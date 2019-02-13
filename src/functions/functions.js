@@ -1,23 +1,40 @@
-import firebase from '../firebase/firebase'
+import { firebase, auth } from '../firebase/firebase'
 // import {checkPropTypes} from 'prop-types'
-module.exports = {
-	login: async () => {
-		const result = await auth.signInWithPopup(provider)
-		const user = result.user
-		this.setState({user})
-	},
-	postUser: user => {
-		const usersRef = firebase.database().ref('users')
-		const userRef = firebase.database().ref(`users/${user.id}`)
-		let isRestaurant = firebase.database().ref(`users/${user.id.isRestaurant}`)
 
-		let newUser = {
-			first_name: user.firstName,
-			last_name: user.lastName,
-			photoUrl: user.photoUrl,
-			email: user.email,
-			isRestaurant: isRestaurant ? true : false
+export const checkRestaurantEmail = async email => {
+	try {
+		let ref = await firebase.database().ref('restaurants')
+		let refResult = await ref.once('value')
+		// console.log('this is ref in checkRestaurantEmail:', refResult)
+		let result = await refResult.val()
+		let filterResult
+		// console.log('this is filterResult in checkRestaurantEmail:', filterResult)
+		for (let i = 1; i < result.length; i++) {
+			if (result[i].email == email) {
+				filterResult = result[i]
+			}
 		}
-		usersRef.push(newUser)
+		return filterResult
+	} catch{
+		console.log('could not check if restaurant')
 	}
+}
+export const checkAdminEmail = async email => {
+	try {
+		let ref = await firebase.database().ref('users').once('value')
+		let result = await ref.val()
+		let filterResult
+		for (let i = 1; i < result.length; i++) {
+			if (result[i].email == email && result[i].isAdmin) {
+				filterResult = result[i]
+			}
+		}
+		return filterResult
+	} catch{
+		console.log('could not check if admin')
+	}
+
+}
+export const logout = async () => {
+	auth().signOut()
 }
