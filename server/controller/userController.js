@@ -85,7 +85,6 @@ const register = async (req, res, next) => {
 	let result = await checkRestaurantEmail(req.body.email)
 	if (!result) {
 		try {
-			// restaurantsRef.child(req.body.name).set(req.body)
 			let info = req.body
 			restaurantsRef.update(info)
 			res.sendStatus(200)
