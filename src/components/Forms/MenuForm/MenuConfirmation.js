@@ -34,7 +34,6 @@ const MenuConfirmation = props => {
 				<ListItem primaryText="Description" secondaryText={description} />
 				<ListItem primaryText="Customization" secondaryText={customization} />
 			</List>
-			<br />
 			<RaisedButton
 			label="Back"
 			primary={false}

@@ -24,21 +24,18 @@ const ItemDetails = props =>{
 			onChange={handleChange('city')}
 			defaultValue={values.city}
 			/>
-			<br />
 			<TextField
 			hintText="Enter in the Item's Price"
 			floatingLabelText="Price"
 			onChange={handleChange('price')}
 			defaultValue={values.price}
 			/>
-			<br />
 			<TextField
 			hintText="Enter in the Item's Description"
 			floatingLabelText="Description"
 			onChange={handleChange('description')}
 			defaultValue={values.desscription}
 			/>
-			<br />
 			<RaisedButton
 			label="Back"
 			primary={false}

@@ -26,14 +26,12 @@ const CategoryDetails = props => {
 			onChange={handleChange('category_name')}
 			defaultValue={values.category_name}
 			/>
-			<br />
 			<TextField
 			hintText="Enter the Item's Name"
 			floatingLabelText="Name"
 			onChange={handleChange('menu_item')}
 			defaultValue={values.menu_item}
 			/>
-			<br />
 			<RaisedButton
 			label="Back"
 			primary={false}

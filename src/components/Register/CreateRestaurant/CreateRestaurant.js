@@ -50,20 +50,20 @@ const CreateRestaurant = props => {
 		//if restaurant object is empty, capture basic info
 		!restaurantObj.email
 		? 
-			<form onSubmit={captureBasicInfo}>
-				<input value={name} onChange={(e)=>updateName(e.target.value)} placeholder="restaurant name" name="name"/>
-				<input value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
-				<input value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
-				<button>Next</button>
-			</form>
+			<>
+				<TextField value={name} onChange={(e)=>updateName(e.target.value)} placeholder="restaurant name" name="name"/>
+				<TextField value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
+				<TextField value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
+				<RaisedButton onClick={captureBasicInfo}>Next</RaisedButton>
+			</>
 		: //if restaurant object is not empty, add address
-			<form onSubmit={captureAddress}>
-				<input value={address} onChange={(e)=>{updateAddress(e.target.value)}} placeholder="address" name="address"/>
-				<input value={city} onChange={(e)=>{updateCity(e.target.value)}} placeholder="city" name="city"/>
-				<input value={state} onChange={(e)=>{updateState(e.target.value)}} placeholder="state" name="state"/>
-				<input value={zip} onChange={(e)=>{updateZip(e.target.value)}} placeholder="zip code" name="zip"/>
-				<button>Submit</button>
-			</form>
+			<>
+				<TextField value={address} onChange={(e)=>{updateAddress(e.target.value)}} placeholder="address" name="address"/>
+				<TextField value={city} onChange={(e)=>{updateCity(e.target.value)}} placeholder="city" name="city"/>
+				<TextField value={state} onChange={(e)=>{updateState(e.target.value)}} placeholder="state" name="state"/>
+				<TextField value={zip} onChange={(e)=>{updateZip(e.target.value)}} placeholder="zip code" name="zip"/>
+				<RaisedButton onClick={captureAddress}>Submit</RaisedButton>
+			</>
 	)
 }
 
