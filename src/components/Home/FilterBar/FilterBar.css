@@ -1,0 +1,37 @@
+.FilterBar_Container {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+    align-items: center;
+    
+    /* border: 1px solid black; */
+    height: 10vh;
+}
+
+.Filter_Input_Container {
+    display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+    
+    border: 1px solid black;
+    height: 40px;
+    width: 300px;
+}
+
+.Filter_Input_Button_Container {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+    
+    background-color: white;
+    border: 1px solid black;
+    height: 35px;
+    width: 40px;
+    margin-left: 1%
+}
+
+.Filter_Input_Button_Icon {
+    height: 25px;
+}

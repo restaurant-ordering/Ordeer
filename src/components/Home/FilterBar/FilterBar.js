@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Search from '../../../Images/Search.png';
 import './FilterBar.css';
 
 const FilterBar = props => {
@@ -30,7 +31,18 @@ const FilterBar = props => {
 
 	return (
 		<div className = "FilterBar_Container">
-			<h1> FilterBar </h1>
+			<div className = "Filter_Input_Container">
+				<button className = "Filter_Input_Button_Container">
+					<img className = "Filter_Input_Button_Icon" src = { Search } />
+				</button>
+				<input></input>
+			</div>
+			<div className = "Filter_Input_Container">
+				<button className = "Filter_Input_Button_Container">
+					<img className = "Filter_Input_Button_Icon" src = { Search } />
+				</button>
+				<input></input>
+			</div>
 		</div>
 	)
 }
