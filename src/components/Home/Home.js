@@ -34,13 +34,16 @@ const Home = props => {
 		)
 	})
 
-	return (
-		<>
-		<Navbar/>
-		<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants}/>
-		{map}
-		</>
+	return(
+		<div className = "Home_Container">
+			<Navbar />
+			<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants}/>
+			<div className = "RestaurantCard_Container">
+				<h1> Restaurant Card </h1>
+			</div>
+			{/* {map} */}
+		</div>
 	)
 }
-
-export default Home
+	
+export default Home;
