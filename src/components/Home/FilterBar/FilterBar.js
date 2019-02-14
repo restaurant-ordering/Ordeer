@@ -32,16 +32,31 @@ const FilterBar = props => {
 	return (
 		<div className = "FilterBar_Container">
 			<div className = "Filter_Input_Container">
-				<button className = "Filter_Input_Button_Container">
+				<div className = "Filter_Input_Button_Container">
 					<img className = "Filter_Input_Button_Icon" src = { Search } />
-				</button>
-				<input></input>
+				</div>
+				<input 
+					className = "Filter_Input" 
+					type = "text" 
+					value = {searchTerm} 
+					name = "changeSearchTerm" 
+					placeholder = "Search by Name" 
+					type = "text" 
+					onChange={search} 
+				/>
 			</div>
 			<div className = "Filter_Input_Container">
-				<button className = "Filter_Input_Button_Container">
+				<div className = "Filter_Input_Button_Container">
 					<img className = "Filter_Input_Button_Icon" src = { Search } />
-				</button>
-				<input></input>
+				</div>
+				<input 
+					className = "Filter_Input" 
+					type = "text" 
+					value = {searchCity} 
+					name = "changeSearchCity" 
+					placeholder = "Search by City" 
+					onChange={search} 
+				/>
 			</div>
 		</div>
 	)

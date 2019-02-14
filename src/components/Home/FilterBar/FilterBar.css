@@ -14,7 +14,7 @@
 	justify-content: flex-start;
 	align-items: center;
     
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 40px;
     width: 300px;
 }
@@ -26,12 +26,23 @@
 	align-items: center;
     
     background-color: white;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: none;
     height: 35px;
     width: 40px;
     margin-left: 1%
 }
 
 .Filter_Input_Button_Icon {
-    height: 25px;
+    height: 20px;
+}
+
+.Filter_Input {
+    background: transparent;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    border-bottom: 1.5px solid grey;
+    height: 20px;
+    width: 200px; 
 }
