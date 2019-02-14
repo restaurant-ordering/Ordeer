@@ -21,6 +21,7 @@ const register = async (req, res, next) => {
 	try {
 		const restaurantsRef = firebase.database().ref('restaurants')
 		let result = await checkRestaurantEmail(req.body.email)
+		console.log('registration result',result)
 		if (!result) {
 			let info = req.body.restaurant
 			restaurantsRef.update(info)
