@@ -48,7 +48,7 @@ const CreateRestaurant = props => {
 				email, 
 				image,
 				addresses: {
-					address: {
+					[address]: {
 						city,
 						state,
 						zip

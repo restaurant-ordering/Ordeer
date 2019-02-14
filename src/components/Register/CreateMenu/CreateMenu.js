@@ -17,17 +17,20 @@ const CreateMenu = props => {
 	} else {
 		restaurantName = '???'
 	}
-	
-	if(menu.categories){
+	console.log('menu', menu)
+
+	if(Object.keys(menu).length>0){
 		menuName = Object.keys(menu)[0]
-		categories = Object.values(menu.categories)
+		categories = Object.values(menu)[0].categories
 	}
 
 	const submitMenu = async () => {
 		if(Object.keys(menu).length>0){
 			console.log('submitting menu')
+			console.log('restaurantName', restaurantName, 'menuName', menuName, 'categories', categories)
 			try{
 				await axios.post('/api/add-menus', {restaurantName, menuName, categories})
+				console.log('menu submitted')
 			}catch (error){
 				console.log(error)
 			}
@@ -36,7 +39,7 @@ const CreateMenu = props => {
 			console.log('first render')
 		}
 	}
-	//find a way to prevent useEffect from firing when component mounts
+
 	useEffect(()=>{submitMenu()},[menu])
 	
 	return (
