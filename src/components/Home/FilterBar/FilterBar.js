@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import './FilterBar.css';
 
 const FilterBar = props => {
 	console.log(props.restaurants)
@@ -28,13 +29,14 @@ const FilterBar = props => {
 	}
 
 	return (
-		<>
-			<p>Filter restaurants by name</p>
-			<input value={searchTerm} name="changeSearchTerm" onChange={search}/>
-			<p>Filter restaurants by city</p>
-			<input value={searchCity} name="changeSearchCity" onChange={search}/>
-		</>
+		<div className = "FilterBar_Container">
+			<h1> FilterBar </h1>
+		</div>
 	)
 }
 
 export default FilterBar
+{/* <p>Filter restaurants by name</p>
+<input value={searchTerm} name="changeSearchTerm" onChange={search}/>
+<p>Filter restaurants by city</p>
+<input value={searchCity} name="changeSearchCity" onChange={search}/> */}
