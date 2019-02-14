@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import React, {useState, useEffect} from 'react'
-=======
 import React, {useState} from 'react';
 import Search from '../../../Images/Search.png';
 import './FilterBar.css';
->>>>>>> master
 
 const FilterBar = props => {
 
