@@ -23,6 +23,8 @@ const register = async (req, res, next) => {
 		let result = await checkRestaurantEmail(req.body.email)
 		console.log('registration result',result)
 		if (!result) {
+			//changing this to req.body instead of req.body.restaurant should fix the current issue
+			//where restaurants dont have unique keys
 			let info = req.body.restaurant
 			restaurantsRef.update(info)
 			res.sendStatus(200)
