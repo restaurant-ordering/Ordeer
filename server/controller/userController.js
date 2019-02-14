@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
 		if (!result) {
 			//changing this to req.body instead of req.body.restaurant should fix the current issue
 			//where restaurants dont have unique keys
-			let info = req.body
+			let info = req.body.restaurant
 			restaurantsRef.update(info)
 			res.sendStatus(200)
 		}
