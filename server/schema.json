@@ -3,6 +3,7 @@
 		"____restaurant name": {
 			"owner": "",
 			"email": "",
+			"image": "",
 			"addresses": {
 				"____address": {
 					"city": "",

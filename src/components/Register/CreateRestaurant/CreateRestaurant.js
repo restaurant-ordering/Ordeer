@@ -14,10 +14,11 @@ const CreateRestaurant = props => {
 	const [email, updateEmail] = useState('')
 	const [owner, updateOwner] = useState('')
 	const [name, updateName] = useState('')
+	const [image, updateImage] = useState('')
 	
 	const captureBasicInfo = (e) => {
 		e.preventDefault()
-		let restaurantObject = {owner, email}
+		let restaurantObject = {owner, email, image}
 		updateRestaurantObj(restaurantObject)
 	}
 
@@ -27,6 +28,7 @@ const CreateRestaurant = props => {
 			[name]:{
 				owner, 
 				email, 
+				image,
 				addresses: {
 					address: {
 						city,
@@ -54,6 +56,7 @@ const CreateRestaurant = props => {
 				<TextField value={name} onChange={(e)=>updateName(e.target.value)} placeholder="restaurant name" name="name"/>
 				<TextField value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
 				<TextField value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
+				<TextField value={image} onChange={(e)=>{updateImage(e.target.value)}} placeholder="logo image url" name="image"/>
 				<RaisedButton onClick={captureBasicInfo}>Next</RaisedButton>
 			</>
 		: //if restaurant object is not empty, add address
