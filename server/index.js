@@ -4,6 +4,7 @@ const { json } = require('body-parser')
 const { register } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu } = require('./controller/restaurantController')
 const { getUserOrders, getOrder, checkout, addOrder, getCart, deleteCart, editCart, deleteItem } = require('./controller/orderController')
+const { getAllOrders, getAllUsers } = require('./controller/adminController')
 const { SERVER_PORT } = process.env
 
 const app = express()
@@ -29,8 +30,8 @@ app.delete('/api/cart:item', deleteItem)
 app.post('/api/orders', getUserOrders)
 app.post('/api/orders:id', getOrder)
 //admin endpoints
-// app.get('/api/all-users', getAllUsers)
-// app.get('/api/all-orders', getAllOrders)
+app.get('/api/admin/users', getAllUsers)
+app.get('/api/admin/orders', getAllOrders)
 
 
 app.listen(SERVER_PORT, () => {
