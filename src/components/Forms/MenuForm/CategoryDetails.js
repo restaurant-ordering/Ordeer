@@ -8,13 +8,13 @@ const CategoryDetails = props => {
 	const [ currentCategory, switchCategory ] = useState(1)
 	const { values, handleChange, setValues } = props;
 
-	const forward = e => {
-		setValues({ ...values, category_details: [...values.category_details, { name: values.category_name, items: +values.itemQuantity }]})
-		if(currentCategory === values.categories){
-			props.nextStep();
+	const forward = async e => {
+		if(currentCategory >= values.categories){
+			let storedValues = {name: values.category_name, items: +values.itemQuantity}
+			setValues({ ...values, step: values.step + 1, category_name: '', itemQuantity: '', category_details: [...values.category_details, storedValues] })
 		} else {
-			setValues({...values, itemQuantity: ''})
-			setValues({...values, category_name: ''})
+			let storedValues = { name: values.category_name, items: +values.itemQuantity }
+			setValues({ ...values, category_name: '', itemQuantity: '', category_details: [...values.category_details, storedValues] })
 			switchCategory(currentCategory + 1)
 		}
 	};
@@ -24,9 +24,9 @@ const CategoryDetails = props => {
 			props.prevStep();
 		}
 		else {
-			let category = values.category_details.pop()
-			setValues({...values, itemQuantity: category.items})
-			setValues({...values, category_name: category.name})
+			let newCategoryDetails = [...values.category_details]
+			let category = newCategoryDetails.pop()
+			setValues({ ...values, category_details: newCategoryDetails, itemQuantity: category.items, category_name: category.name})
 			switchCategory(currentCategory - 1)
 		}
 	};
@@ -39,6 +39,7 @@ const CategoryDetails = props => {
 			floatingLabelText="Category name"
 			onChange={handleChange}
 			value={values.category_name}
+			name="category_name"
 			/>
 			<TextField
 			hintText="Number items in category"
@@ -46,6 +47,7 @@ const CategoryDetails = props => {
 			onChange={handleChange}
 			value={values.itemQuantity}
 			type="number"
+			name="itemQuantity"
 			/>
 			<RaisedButton
 			label="Back"

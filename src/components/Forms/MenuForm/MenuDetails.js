@@ -12,11 +12,13 @@ const MenuDetails = props => {
 			<AppBar title="Enter Menu Details" />
 			<TextField
 			hintText="Enter Your Menu Name"
+			name="menu_name"
 			floatingLabelText="Menu Name"
 			onChange={handleChange}
 			value={values.menu_name}
 			/>
 			<TextField
+			name="categories"
 			hintText="Enter the Number of Categories"
 			floatingLabelText="Menu Categories"
 			onChange={handleChange}
