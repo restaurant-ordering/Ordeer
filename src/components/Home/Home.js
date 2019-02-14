@@ -41,7 +41,7 @@ const Home = props => {
 			<div className = "RestaurantCard_Container">
 				<h1> Restaurant Card </h1>
 			</div>
-			{/* {map} */}
+			{map}
 		</div>
 	)
 }

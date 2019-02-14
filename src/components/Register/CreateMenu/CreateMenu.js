@@ -26,7 +26,7 @@ const CreateMenu = props => {
 	
 	return (
 		<>
-			{redirect?<Redirect to='/home'/>:<></>}
+			{redirect&&<Redirect to='/home'/>}
 			<MenuForm updateMenu={updateMenu}/>
 		</>
 	)

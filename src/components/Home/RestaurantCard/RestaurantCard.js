@@ -11,7 +11,7 @@ const RestaurantCard = props => {
 		restaurant.name
 		?
 		<div className="RestaurantCard" onClick={()=>activateRedirect(true)}>
-			<img src={restaurant.imgUrl} alt="restaurant logo"></img>
+			<img src={restaurant.image} alt="restaurant logo"></img>
 			<p>{restaurant.name}</p>
 			{redirect?<Redirect to={`/order/${restaurant.name}`}/>:<></>}
 		</div>

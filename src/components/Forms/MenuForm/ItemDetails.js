@@ -8,7 +8,7 @@ const ItemDetails = props =>{
 		e.preventDefault();
 		if(itemNumber === values.category_details[categoryNumber].items && categoryNumber +1 === values.categories){
 			//add item details to item number @ category number
-
+			
 			//go to menu confirmation if this is the last item in the last category
 			props.nextStep();
 		} else if (itemNumber === values.category_details[categoryNumber].items){

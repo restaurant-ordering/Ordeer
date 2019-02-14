@@ -6,20 +6,38 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const CreateRestaurant = props => {
 
-	const [restaurantObj, updateRestaurantObj] = useState({})
-	const [address, updateAddress] = useState('')
-	const [city, updateCity] = useState('')
-	const [state, updateState] = useState('')
-	const [zip, updateZip] = useState('')
-	const [email, updateEmail] = useState('')
-	const [owner, updateOwner] = useState('')
-	const [name, updateName] = useState('')
-	const [image, updateImage] = useState('')
+	const [values, setValues] = useState({
+		restaurantObj: {},
+		address: '',
+		city: '',
+		state: '',
+		zip: '',
+		email: '',
+		owner: '',
+		name: '',
+		image: ''
+	})
+
+	const onChange = e => {
+		setValues({...values, [e.target.name]:e.target.value})
+	}
+
+	const {
+		restaurantObj, 
+		address,
+		city,
+		state,
+		zip,
+		email,
+		owner,
+		name,
+		image,
+	} = values
 	
 	const captureBasicInfo = (e) => {
 		e.preventDefault()
 		let restaurantObject = {owner, email, image}
-		updateRestaurantObj(restaurantObject)
+		setValues({...values, restaurantObj: restaurantObject})
 	}
 
 	const captureAddress = async (e) => {
@@ -53,18 +71,18 @@ const CreateRestaurant = props => {
 		!restaurantObj.email
 		? 
 			<>
-				<TextField value={name} onChange={(e)=>updateName(e.target.value)} placeholder="restaurant name" name="name"/>
-				<TextField value={owner} onChange={(e)=>{updateOwner(e.target.value)}} placeholder="owner name" name="owner"/>
-				<TextField value={email} onChange={(e)=>{updateEmail(e.target.value)}} placeholder="email" name="email"/>
-				<TextField value={image} onChange={(e)=>{updateImage(e.target.value)}} placeholder="logo image url" name="image"/>
+				<TextField value={name} onChange={onChange} placeholder="restaurant name" name="name"/>
+				<TextField value={owner} onChange={onChange} placeholder="owner name" name="owner"/>
+				<TextField value={email} onChange={onChange} placeholder="email" name="email"/>
+				<TextField value={image} onChange={onChange} placeholder="logo image url" name="image"/>
 				<RaisedButton onClick={captureBasicInfo}>Next</RaisedButton>
 			</>
 		: //if restaurant object is not empty, add address
 			<>
-				<TextField value={address} onChange={(e)=>{updateAddress(e.target.value)}} placeholder="address" name="address"/>
-				<TextField value={city} onChange={(e)=>{updateCity(e.target.value)}} placeholder="city" name="city"/>
-				<TextField value={state} onChange={(e)=>{updateState(e.target.value)}} placeholder="state" name="state"/>
-				<TextField value={zip} onChange={(e)=>{updateZip(e.target.value)}} placeholder="zip code" name="zip"/>
+				<TextField value={address} onChange={onChange} placeholder="address" name="address"/>
+				<TextField value={city} onChange={onChange} placeholder="city" name="city"/>
+				<TextField value={state} onChange={onChange} placeholder="state" name="state"/>
+				<TextField value={zip} onChange={onChange} placeholder="zip code" name="zip"/>
 				<RaisedButton onClick={captureAddress}>Submit</RaisedButton>
 			</>
 	)
