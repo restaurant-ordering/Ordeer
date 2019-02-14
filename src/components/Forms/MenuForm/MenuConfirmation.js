@@ -1,62 +1,64 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export class MenuConfirmation extends Component {
-  continue = e => {
-    e.preventDefault();
-    // PROCESS FORM //
-    this.props.nextStep();
-  };
+const MenuConfirmation = props => {
 
-  back = e => {
-    e.preventDefault();
-    this.props.prevStep();
-  };
+	const { values, updateMenu } = props;
 
-  render() {
-    const {
-      values: { menu_name, categories, category_name, menu_item, image, price, description, customization }
-    } = this.props;
-    return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Confirm Menu Data" />
-          <List>
-            <ListItem primaryText="Menu Name" secondaryText={menu_name} />
-            <ListItem primaryText="Categories" secondaryText={categories} />
-            <ListItem primaryText="Category Name" secondaryText={category_name} />
-            <ListItem primaryText="Menu Item" secondaryText={menu_item} />
-            <ListItem primaryText="Image" secondaryText={image} />
-            <ListItem primaryText="Price" secondaryText={price} />
-            <ListItem primaryText="Description" secondaryText={description} />
-            <ListItem primaryText="Customization" secondaryText={customization} />
-          </List>
-          <br />
-          <RaisedButton
-            label="Back"
-            primary={false}
-            style={styles.button}
-            onClick={this.back}
-          />
-          <RaisedButton
-            label="Confirm & Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
-    );
-  }
+	const valuesToUse = { ...values }
+	for (let i = 0; i < valuesToUse.category_details.length; i++) {
+		valuesToUse.category_details[i].menu_items = valuesToUse.menu_items.filter(item => {
+			return item.category === i+1
+		})
+	}
+
+	console.log(valuesToUse.category_details)
+
+	const forward = e => {
+		e.preventDefault();
+		updateMenu({
+			[valuesToUse.menu_name]:{
+				categories: {
+					...valuesToUse.category_details
+				}
+			}
+		})
+	};
+
+	const back = e => {
+		e.preventDefault();
+		props.prevStep();
+	};
+
+	return (
+		<>
+			<AppBar title="Confirm Menu Data" />
+			<List>
+				<ListItem primaryText="Menu Name" secondaryText={values.menu_name} />
+				<ListItem primaryText="Categories" secondaryText={values.categories} />
+			</List>
+			<RaisedButton
+			label="Back"
+			primary={false}
+			style={styles.button}
+			onClick={back}
+			/>
+			<RaisedButton
+			label="Confirm & Continue"
+			primary={true}
+			style={styles.button}
+			onClick={forward}
+			/>
+		</>
+	);
 }
 
 const styles = {
-  button: {
-    margin: 15
-  }
+	button: {
+		margin: 15
+	}
 };
 
 export default MenuConfirmation;

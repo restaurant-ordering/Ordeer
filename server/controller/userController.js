@@ -21,6 +21,7 @@ const register = async (req, res, next) => {
 	try {
 		const restaurantsRef = firebase.database().ref('restaurants')
 		let result = await checkRestaurantEmail(req.body.email)
+		console.log('registration result',result)
 		if (!result) {
 			//changing this to req.body instead of req.body.restaurant should fix the current issue
 			//where restaurants dont have unique keys
