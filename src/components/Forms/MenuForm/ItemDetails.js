@@ -8,7 +8,7 @@ const ItemDetails = props =>{
 		e.preventDefault();
 		if(itemNumber === values.category_details[categoryNumber].items && categoryNumber +1 === values.categories){
 			//add item details to item number @ category number
-			
+
 			//go to menu confirmation if this is the last item in the last category
 			props.nextStep();
 		} else if (itemNumber === values.category_details[categoryNumber].items){
@@ -33,7 +33,7 @@ const ItemDetails = props =>{
 	const [itemNumber, changeItemNumber] = useState(1)
 	const [categoryNumber, changeCategoryNumber] = useState(0)
 
-	const { values, handleChange, stageControllers } = props;
+	const { values, handleChange, setValues} = props;
 	return (
 		<>
 			<AppBar title={`Enter Details for Item ${itemNumber} in ${values.category_details[categoryNumber].name} Category`} />

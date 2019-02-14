@@ -13,14 +13,14 @@ const MenuDetails = props => {
 			<TextField
 			hintText="Enter Your Menu Name"
 			floatingLabelText="Menu Name"
-			onChange={handleChange('menu_name')}
-			defaultValue={values.menu_name}
+			onChange={handleChange}
+			value={values.menu_name}
 			/>
 			<TextField
 			hintText="Enter the Number of Categories"
 			floatingLabelText="Menu Categories"
-			onChange={handleChange('categories')}
-			defaultValue={values.categories}
+			onChange={handleChange}
+			value={values.categories}
 			type="number"
 			/>
 			<RaisedButton

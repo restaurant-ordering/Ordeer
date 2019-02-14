@@ -5,16 +5,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const CategoryDetails = props => {
 
-	const [currentCategory, switchCategory] = useState(1)
-	const { values, handleChange, stateControllers } = props;
+	const [ currentCategory, switchCategory ] = useState(1)
+	const { values, handleChange, setValues } = props;
 
 	const forward = e => {
-		stateControllers.changeCategoryDetails([...values.category_details, {name: values.category_name, items: +values.itemQuantity}])
+		setValues({ ...values, category_details: [...values.category_details, { name: values.category_name, items: +values.itemQuantity }]})
 		if(currentCategory === values.categories){
 			props.nextStep();
 		} else {
-			stateControllers.changeItemQuantity('')
-			stateControllers.changeCategoryName('')
+			setValues({...values, itemQuantity: ''})
+			setValues({...values, category_name: ''})
 			switchCategory(currentCategory + 1)
 		}
 	};
@@ -25,9 +25,8 @@ const CategoryDetails = props => {
 		}
 		else {
 			let category = values.category_details.pop()
-			stateControllers.changeCategoryDetails(values.category_details)
-			stateControllers.changeItemQuantity(category.items)
-			stateControllers.changeCategoryName(category.name)
+			setValues({...values, itemQuantity: category.items})
+			setValues({...values, category_name: category.name})
 			switchCategory(currentCategory - 1)
 		}
 	};
@@ -38,13 +37,13 @@ const CategoryDetails = props => {
 			<TextField
 			hintText={`Category ${currentCategory} name`}
 			floatingLabelText="Category name"
-			onChange={handleChange('category_name')}
+			onChange={handleChange}
 			value={values.category_name}
 			/>
 			<TextField
 			hintText="Number items in category"
 			floatingLabelText="Menu items"
-			onChange={handleChange('itemQuantity')}
+			onChange={handleChange}
 			value={values.itemQuantity}
 			type="number"
 			/>
