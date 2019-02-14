@@ -16,7 +16,7 @@ const Register = props => {
 		</>
 		:
 		<>
-		<CreateMenu />
+		<CreateMenu restaurant={restaurant}/>
 		</>
 	)
 }
