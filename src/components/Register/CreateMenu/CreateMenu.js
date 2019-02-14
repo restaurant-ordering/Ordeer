@@ -9,17 +9,19 @@ const CreateMenu = props => {
 	const [redirect, activateRedirect] = useState(false)
 
 	let restaurantName;
+	let menuName;
+	let categories;
 
 	if(props.restaurant){
 		restaurantName = Object.keys(props.restaurant)[0]
 	} else {
 		restaurantName = '???'
 	}
-
-	console.log(menu)
-
-	let menuName = menu.keys[0]
-	let categories = Object.values(menu.categories)
+	
+	if(menu.categories){
+		menuName = Object.keys(menu)[0]
+		categories = Object.values(menu.categories)
+	}
 
 	const submitMenu = async () => {
 		if(Object.keys(menu).length>0){
