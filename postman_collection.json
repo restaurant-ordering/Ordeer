@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "df9eda3e-18cb-473b-ab93-c780a41d545d",
+		"name": "Ordeer Collection",
+		"description": "A collection of endpoint tests for the Ordeer application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get- All Restaurants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get individual menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "Get an individual menu by restaurant name"
+			},
+			"response": []
+		},
+		{
+			"name": "Post- Add Menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fc1edec-f555-420f-b6a4-e1ae23ace299",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is returned\", function () {",
+							"    pm.response.to.have.body;",
+							"});",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"restaurantName\":\"testing1\",\n\t\"menuName\":\"what's up buddy\",\n\t\"categories\": {\n                    \"beverages\": {\n                        \"coke\": {\n                            \"image\": \"url\",\n                            \"price\": \"$1.50\"\n                        }\n                    },\n                    \"entrees\": {\n                        \"salad\": {\n                            \"customization\": {\n                                \"extra lettuce\": \"+$0.50\"\n                            },\n                            \"description\": \"a salad\",\n                            \"image\": \"url\",\n                            \"price\": \"$144444.50\"\n                        }\n                    },\n                    \"sides\": {\n                        \"tomatoes\": {\n                            \"description\": \"delicious\",\n                            \"image\": \"url\",\n                            \"price\": \"$12.00\"\n                        }\n                    }\n                }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/add-menus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"add-menus"
+					]
+				},
+				"description": "Add a menu to a given restaurant"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete- Delete Menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f46137ae-5f87-42cd-928f-ddfc3f51393a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body(\"Menu deleted\");",
+							"});",
+							"",
+							"pm.test(\"Body is returned\", function () {",
+							"    pm.response.to.have.body;",
+							"});",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\"id\":\"testing1\",\n\t\"menuName\":\"this works again??\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/menus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"menus"
+					]
+				},
+				"description": "Delete a menu from a restaurant"
+			},
+			"response": []
+		},
+		{
+			"name": "Post- Register Restaurant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"restaurant\":{\n\t\"Subway Part Dos\": {\n            \"addresses\": {\n                \"address\": {\n                    \"city\": \"Dallas\",\n                    \"state\": \"TX\",\n                    \"zip\": \"75201\"\n                }\n            }\n\t\t\n\t}\n\t},\n            \"email\": \"timbilestimbilesthesecondone@gmail.com\",\n            \"owner\": \"Tim Biles\"\n        \n   }"
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
