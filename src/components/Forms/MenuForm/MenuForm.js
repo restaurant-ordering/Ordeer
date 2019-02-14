@@ -81,9 +81,6 @@ const MenuForm = (props) =>{
 			updateMenu={props.updateMenu}
 		/>
 		)
-		case 5:
-		// Directs user back to homepage
-		return <Redirect to='/home'/>;
 		default:
 		return <div>Error</div>
 	}

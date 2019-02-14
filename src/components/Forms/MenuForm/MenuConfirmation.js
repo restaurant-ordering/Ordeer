@@ -4,20 +4,27 @@ import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const MenuConfirmation = props => {
+
+	const { values, updateMenu } = props;
+
+	const valuesToUse = { ...values }
+	for (let i = 0; i < valuesToUse.category_details.length; i++) {
+		valuesToUse.category_details[i].menu_items = valuesToUse.menu_items.filter(item => {
+			return item.category === i+1
+		})
+	}
+
+	console.log(valuesToUse.category_details)
+
 	const forward = e => {
 		e.preventDefault();
-		props.updateMenu({
-			[menu_name]:{
+		updateMenu({
+			[valuesToUse.menu_name]:{
 				categories: {
-					//category name for each category : {
-						//menu item name : {
-							//menu item info
-						//}
-					//}
+					...valuesToUse.category_details
 				}
 			}
 		})
-		props.nextStep();
 	};
 
 	const back = e => {
@@ -25,22 +32,12 @@ const MenuConfirmation = props => {
 		props.prevStep();
 	};
 
-	const {
-		values: { menu_items, category_details, menu_name, categories, category_name, menu_item, image, price, description, customization }
-	} = props;
-
 	return (
 		<>
 			<AppBar title="Confirm Menu Data" />
 			<List>
-				<ListItem primaryText="Menu Name" secondaryText={menu_name} />
-				<ListItem primaryText="Categories" secondaryText={categories} />
-				<ListItem primaryText="Category Name" secondaryText={category_name} />
-				<ListItem primaryText="Menu Item" secondaryText={menu_item} />
-				<ListItem primaryText="Image" secondaryText={image} />
-				<ListItem primaryText="Price" secondaryText={price} />
-				<ListItem primaryText="Description" secondaryText={description} />
-				<ListItem primaryText="Customization" secondaryText={customization} />
+				<ListItem primaryText="Menu Name" secondaryText={values.menu_name} />
+				<ListItem primaryText="Categories" secondaryText={values.categories} />
 			</List>
 			<RaisedButton
 			label="Back"
