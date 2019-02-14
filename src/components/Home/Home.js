@@ -4,6 +4,8 @@ import Navbar from '../Navbar/Navbar';
 import FilterBar from './FilterBar/FilterBar';
 import RestaurantCard from './RestaurantCard/RestaurantCard';
 
+import './Home.css';
+
 const Home = props => {
 
 	const [restaurants, updateRestaurants] = useState([])
@@ -32,12 +34,15 @@ const Home = props => {
 		)
 	})
 
-	return (
-		<>
-		<Navbar/>
-		<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants}/>
-		{map}
-		</>
+	return(
+		<div className = "Home_Container">
+			<Navbar />
+			<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants}/>
+			<div className = "RestaurantCard_Container">
+				<h1> Restaurant Card </h1>
+			</div>
+			{/* {map} */}
+		</div>
 	)
 }
 
