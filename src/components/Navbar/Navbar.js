@@ -15,8 +15,11 @@ const Navbar = props => {
 		<>
 			<div className='Navbar_Container'>
 				<div className='Navbar_Login'>
-					<p
-						className='Navbar_Login_Text'
+					<div className="Navbar_Container_Logo">
+						<img className="Navbar_Logo" src={Ordeer} />
+					</div>
+				</div>
+				<div className="Navbar_Container_Login"
 						onClick={async () => {
 							const result = await auth.signInWithPopup(googleProvider)
 							let adminCheck = await checkAdminEmail(result.user.email)
@@ -25,18 +28,6 @@ const Navbar = props => {
 							adminCheck ? result.user.isAdmin = true : restaurantCheck ? result.user.isRestaurant = true : user = user
 							props.updateUser(user)
 							console.log(user)
-							activateRedirect(true)
-						}}>
-						{' '}
-						Login{' '}
-					</p>
-					<div className="Navbar_Container_Logo">
-						<img className="Navbar_Logo" src={Ordeer} />
-					</div>
-					<div className="Navbar_Container_Login"
-						onClick={async () => {
-							const result = await auth.signInWithPopup(googleProvider)
-							props.updateUser(result.user)
 							activateRedirect(true)
 						}}
 					>
@@ -47,7 +38,6 @@ const Navbar = props => {
 							<p className="Navbar_Login_Text"> Login </p>
 						</div>
 					</div>
-				</div>
 				{//redirects you to home after you are logged in using activateRedirect()
 					redirect ? <Redirect to="/home" /> : <></>
 				}

@@ -1,8 +1,10 @@
 .Navbar_Container {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
+	align-content: stretch;
 
     /* background-color and border are templates */
 	/* background-color: lightblue; */
@@ -19,7 +21,8 @@
 	/* border: 1px solid black; */
 	height: 30px;
 	width: 30px;
-	margin-left: 2%
+	/* margin-top: 2px; */
+	margin-left: 120%
 }
 
 .Navbar_Logo {

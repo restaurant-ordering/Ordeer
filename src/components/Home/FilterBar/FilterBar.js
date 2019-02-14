@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import Search from '../../../Images/Search.png';
+import './FilterBar.css';
 
 const FilterBar = props => {
 	console.log(props.restaurants)
@@ -28,13 +30,40 @@ const FilterBar = props => {
 	}
 
 	return (
-		<>
-			<p>Filter restaurants by name</p>
-			<input value={searchTerm} name="changeSearchTerm" onChange={search}/>
-			<p>Filter restaurants by city</p>
-			<input value={searchCity} name="changeSearchCity" onChange={search}/>
-		</>
+		<div className = "FilterBar_Container">
+			<div className = "Filter_Input_Container">
+				<div className = "Filter_Input_Button_Container">
+					<img className = "Filter_Input_Button_Icon" src = { Search } />
+				</div>
+				<input 
+					className = "Filter_Input" 
+					type = "text" 
+					value = {searchTerm} 
+					name = "changeSearchTerm" 
+					placeholder = "Search by Name" 
+					type = "text" 
+					onChange={search} 
+				/>
+			</div>
+			<div className = "Filter_Input_Container">
+				<div className = "Filter_Input_Button_Container">
+					<img className = "Filter_Input_Button_Icon" src = { Search } />
+				</div>
+				<input 
+					className = "Filter_Input" 
+					type = "text" 
+					value = {searchCity} 
+					name = "changeSearchCity" 
+					placeholder = "Search by City" 
+					onChange={search} 
+				/>
+			</div>
+		</div>
 	)
 }
 
 export default FilterBar
+{/* <p>Filter restaurants by name</p>
+<input value={searchTerm} name="changeSearchTerm" onChange={search}/>
+<p>Filter restaurants by city</p>
+<input value={searchCity} name="changeSearchCity" onChange={search}/> */}
