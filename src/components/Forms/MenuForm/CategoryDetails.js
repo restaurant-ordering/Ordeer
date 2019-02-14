@@ -9,7 +9,7 @@ const CategoryDetails = props => {
 	const { values, handleChange, stateControllers } = props;
 
 	const forward = e => {
-		stateControllers.changeCategoryDetails([...values.category_details, {name: values.category_name, items: values.itemQuantity}])
+		stateControllers.changeCategoryDetails([...values.category_details, {name: values.category_name, items: +values.itemQuantity}])
 		if(currentCategory === values.categories){
 			props.nextStep();
 		} else {
@@ -46,6 +46,7 @@ const CategoryDetails = props => {
 			floatingLabelText="Menu items"
 			onChange={handleChange('itemQuantity')}
 			value={values.itemQuantity}
+			type="number"
 			/>
 			<RaisedButton
 			label="Back"

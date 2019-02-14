@@ -21,6 +21,7 @@ const MenuDetails = props => {
 			floatingLabelText="Menu Categories"
 			onChange={handleChange('categories')}
 			defaultValue={values.categories}
+			type="number"
 			/>
 			<RaisedButton
 			label="Continue"

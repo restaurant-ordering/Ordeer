@@ -36,7 +36,7 @@ const MenuForm = (props) =>{
 		const [customization, changeCustomization] = useState('')
 		//an array to store menu items for the current category
 		const [menu_items, changeMenuItems] = useState([])
-		
+
 	// Handle the Input Field Change Function
 	const handleChange = input => e => {
 		switch(input){
@@ -82,7 +82,8 @@ const MenuForm = (props) =>{
 		changeStep(step-1)
 	};
 
-	const values = { itemQuantity, menu_items, category_details, menu_name, categories, category_name, menu_item, image, price, description, customization, menu_items};
+	const values = { itemQuantity, category_details, menu_name, categories, category_name, menu_item, image, price, description, customization, menu_items};
+
 	const stateControllers = {changeMenuName, changeItemQuantity, changeCategories, changeCategoryName, changeMenuItem, changeImage, changePrice, changeDescription, changeCustomization, changeCategoryDetails, changeMenuItems}
 
 	console.log('values', values)

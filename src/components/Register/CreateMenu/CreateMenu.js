@@ -9,14 +9,19 @@ const CreateMenu = props => {
 	const [redirect, activateRedirect] = useState(false)
 
 	const submitMenu = async () => {
-		try{
-			await axios.post('/api/add-menus', {menu})
-		}catch (error){
-			console.log(error)
+		if(Object.keys(menu).length>1){
+			console.log('submitting menu')
+			try{
+				await axios.post('/api/add-menus', {menu})
+			}catch (error){
+				console.log(error)
+			}
+			activateRedirect(true)
+		} else {
+			console.log('first render')
 		}
-		activateRedirect(true)
 	}
-
+	//find a way to prevent useEffect from firing when component mounts
 	useEffect(()=>{submitMenu()},[menu])
 	
 	return (

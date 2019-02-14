@@ -6,7 +6,24 @@ import RaisedButton from 'material-ui/RaisedButton';
 const ItemDetails = props =>{
 	const forward = e => {
 		e.preventDefault();
-		props.nextStep();
+		if(itemNumber === values.category_details[categoryNumber].items && categoryNumber +1 === values.categories){
+			let itemDetails = {}
+			//add item details to item number @ category number
+			values.category_details[categoryNumber].items[itemNumber]={itemDetails}
+			//go to menu confirmation if this is the last item in the last category
+			props.nextStep();
+		} else if (itemNumber === values.category_details[categoryNumber].items){
+			//add item details to item number @ category number
+			//reset input form
+			//go to the next category if this is the last item in a category
+			changeCategoryNumber(categoryNumber + 1)
+			changeItemNumber(1)
+		} else {
+			//add item details to item number @ category number
+			//reset input form
+			//go to the next item
+			changeItemNumber(itemNumber + 1)
+		}
 	};
 
 	const back = e => {
@@ -14,7 +31,7 @@ const ItemDetails = props =>{
 		props.prevStep();
 	};
 
-	const [itemNumber, changeItemNumber] = useState(0)
+	const [itemNumber, changeItemNumber] = useState(1)
 	const [categoryNumber, changeCategoryNumber] = useState(0)
 
 	const { values, handleChange, stageControllers } = props;
@@ -22,10 +39,16 @@ const ItemDetails = props =>{
 		<>
 			<AppBar title={`Enter Details for Item ${itemNumber} in ${values.category_details[categoryNumber].name} Category`} />
 			<TextField
+			hintText="Enter the name of this item"
+			floatingLabelText="Name"
+			onChange={handleChange('menu_item')}
+			value={values.menu_item}
+			/>
+			<TextField
 			hintText="Enter in the Item's Image"
 			floatingLabelText="Image"
-			onChange={handleChange('city')}
-			value={values.city}
+			onChange={handleChange('image')}
+			value={values.image}
 			/>
 			<TextField
 			hintText="Enter in the Item's Price"
@@ -37,7 +60,7 @@ const ItemDetails = props =>{
 			hintText="Enter in the Item's Description"
 			floatingLabelText="Description"
 			onChange={handleChange('description')}
-			value={values.desscription}
+			value={values.description}
 			/>
 			<RaisedButton
 			label="Back"
@@ -53,7 +76,6 @@ const ItemDetails = props =>{
 			/>
 		</>
 	);
-
 }
 
 const styles = {

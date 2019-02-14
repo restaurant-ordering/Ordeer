@@ -17,12 +17,12 @@ const MenuConfirmation = props => {
 				}
 			}
 		})
-		this.props.nextStep();
+		props.nextStep();
 	};
 
 	const back = e => {
 		e.preventDefault();
-		this.props.prevStep();
+		props.prevStep();
 	};
 
 	const {

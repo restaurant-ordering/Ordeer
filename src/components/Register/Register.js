@@ -11,9 +11,13 @@ const Register = props => {
 	return (
 		Object.keys(restaurant).length===0
 		?
+		<>
 		<CreateRestaurant updateRestaurant={updateRestaurant}/>
-		: 
+		</>
+		:
+		<>
 		<CreateMenu />
+		</>
 	)
 }
 
