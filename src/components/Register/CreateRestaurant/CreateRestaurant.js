@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
@@ -23,7 +23,7 @@ const CreateRestaurant = props => {
 	}
 
 	const {
-		restaurantObj, 
+		restaurantObj,
 		address,
 		city,
 		state,
@@ -33,7 +33,7 @@ const CreateRestaurant = props => {
 		name,
 		image,
 	} = values
-	
+
 	const captureBasicInfo = (e) => {
 		e.preventDefault()
 		let restaurantObject = {owner, email, image}
@@ -44,8 +44,8 @@ const CreateRestaurant = props => {
 		e.preventDefault()
 		let restaurant = {
 			[name]:{
-				owner, 
-				email, 
+				owner,
+				email,
 				image,
 				addresses: {
 					[address]: {
@@ -69,7 +69,7 @@ const CreateRestaurant = props => {
 	return (
 		//if restaurant object is empty, capture basic info
 		!restaurantObj.email
-		? 
+		?
 			<>
 				<TextField value={name} onChange={onChange} placeholder="restaurant name" name="name"/>
 				<TextField value={owner} onChange={onChange} placeholder="owner name" name="owner"/>

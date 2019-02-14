@@ -33,7 +33,28 @@ export const checkAdminEmail = async email => {
 	} catch{
 		console.log('could not check if admin')
 	}
-
+}
+export const alreadyUser = async (user) => {
+	try {
+		console.log('got to alreadyUser')
+		const ref = await firebase.database().ref('users')
+		const result = await ref.once('value')
+		const users = await result.val()
+		for (let i = 0; i < users.length; i++) {
+			if (users[i] == user.email) {
+				console.log('adding to db')
+				return true
+			}
+			console.log('already user')
+			return false
+		}
+	} catch{
+		console.log('couldnt check if user')
+	}
+}
+export const postUser = async (user) => {
+	let ref = firebase.database().ref('users')
+	ref.update(user)
 }
 export const logout = async () => {
 	auth().signOut()
