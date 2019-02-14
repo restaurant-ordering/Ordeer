@@ -27,6 +27,23 @@ const getOrder = async (req, res, next) => {
     res.status(400).send('Cant get order details')
   }
 }
+const addOrder = async (req, res, next) => {
+  try {
+    /*req.body = {
+      cart=[],
+      date:'',
+      price:num,
+      restaurant:'',
+      user:''
+    }
+    */
+    const ordersRef = await firebase.database().ref(`orders`)
+    ordersRef.push(req.body)
+    res.status(200).send('Added order')
+  } catch{
+    res.status(400).send('Could not add order')
+  }
+}
 const getCart = async (req, res, next) => {
   try {
     const cartRef = await firebase.database().ref(`orders/${req.params.orderId}/cart}`)
@@ -39,7 +56,7 @@ const getCart = async (req, res, next) => {
 const editCart = async (req, res, next) => {
   try {
     const cartRef = await firebase.database().ref(`orders/${req.params.orderId}/cart}`)
-    const newCart = await cartRef.update(req.body)
+    const newCart = await cartRef.set(req.body)
     res.status(200).send(newCart)
   } catch{
     res.status(400).send('Could not update cart details')
@@ -73,6 +90,7 @@ module.exports = {
   getOrder,
   checkout,
   getCart,
+  addOrder,
   deleteCart,
   editCart,
   deleteItem

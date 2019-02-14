@@ -3,7 +3,7 @@ const express = require('express')
 const { json } = require('body-parser')
 const { register } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu } = require('./controller/restaurantController')
-const { getUserOrders, getOrder, checkout, getCart, deleteCart, editCart, deleteItem } = require('./controller/orderController')
+const { getUserOrders, getOrder, checkout, addOrder, getCart, deleteCart, editCart, deleteItem } = require('./controller/orderController')
 const { SERVER_PORT } = process.env
 
 const app = express()
@@ -21,7 +21,7 @@ app.delete('/api/restaurants', deleteRestaurant)
 app.delete('/api/menus', deleteMenu)
 //order endpoints
 app.post('/api/checkout', checkout)
-app.post('/api/cart', addCart)
+app.post('/api/cart', addOrder)
 app.get('/api/cart', getCart)
 app.delete('/api/cart', deleteCart)
 app.put('/api/cart', editCart)
