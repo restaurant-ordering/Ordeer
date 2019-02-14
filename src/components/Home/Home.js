@@ -4,6 +4,8 @@ import Navbar from '../Navbar/Navbar';
 import FilterBar from './FilterBar/FilterBar';
 import RestaurantCard from './RestaurantCard/RestaurantCard';
 
+import './Home.css';
+
 const Home = props => {
 
 	const [restaurants, updateRestaurants] = useState([])
