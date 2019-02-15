@@ -21,7 +21,13 @@ const CreateMenu = props => {
 
 	if(Object.keys(menu).length>0){
 		menuName = Object.keys(menu)[0]
-		categories = Object.values(menu)[0].categories
+		let preformattedCategories = Object.values(menu)[0].categories
+		for(let i in preformattedCategories){
+			let name = preformattedCategories[i].name 
+			let menu_items = preformattedCategories[i].menu_items
+			categories = Object.assign({}, categories, {[name]:menu_items})
+		}
+		console.log(categories)
 	}
 
 	const submitMenu = async () => {
