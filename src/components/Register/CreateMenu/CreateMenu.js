@@ -8,11 +8,35 @@ const CreateMenu = props => {
 	const [menu, updateMenu] = useState({})
 	const [redirect, activateRedirect] = useState(false)
 
+	let restaurantName;
+	let menuName;
+	let categories;
+
+	if(props.restaurant){
+		restaurantName = Object.keys(props.restaurant)[0]
+	} else {
+		restaurantName = '???'
+	}
+	console.log('menu', menu)
+
+	if(Object.keys(menu).length>0){
+		menuName = Object.keys(menu)[0]
+		let preformattedCategories = Object.values(menu)[0].categories
+		for(let i in preformattedCategories){
+			let name = preformattedCategories[i].name 
+			let menu_items = preformattedCategories[i].menu_items
+			categories = Object.assign({}, categories, {[name]:menu_items})
+		}
+		console.log(categories)
+	}
+
 	const submitMenu = async () => {
-		if(Object.keys(menu).length>1){
+		if(Object.keys(menu).length>0){
 			console.log('submitting menu')
+			console.log('restaurantName', restaurantName, 'menuName', menuName, 'categories', categories)
 			try{
-				await axios.post('/api/add-menus', {menu})
+				await axios.post('/api/add-menus', {restaurantName, menuName, categories})
+				console.log('menu submitted')
 			}catch (error){
 				console.log(error)
 			}
@@ -21,7 +45,7 @@ const CreateMenu = props => {
 			console.log('first render')
 		}
 	}
-	//find a way to prevent useEffect from firing when component mounts
+
 	useEffect(()=>{submitMenu()},[menu])
 	
 	return (
