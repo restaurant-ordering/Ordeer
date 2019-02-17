@@ -13,7 +13,6 @@ const Home = props => {
 	
 	const getRestaurants = async () => {
 		const response = await axios.get('/api/restaurants')
-		console.log(response)
 		//convert response to array of restaurant objects
 		let restaurantArray = []
 		for(let i in response.data){
@@ -25,8 +24,6 @@ const Home = props => {
 	}
 	
 	useEffect(()=>{getRestaurants()}, [])
-
-	console.log('displayed',displayedRestaurants)
 	
 	const map = displayedRestaurants.map(restaurant=>{
 		return (

@@ -16,13 +16,11 @@
 				"____menu name": {
 					"categories": {
 						"____category name": {
-							"____menu item": {
+							"itemIndex": {
 								"image": "",
 								"price": "$",
 								"description": "",
-								"customization": {
-									"____customization option": ""
-								}
+								"name" : ""
 							}
 						}
 					}
