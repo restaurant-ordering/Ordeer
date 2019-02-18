@@ -3,7 +3,6 @@ import MenuDetails from './MenuDetails';
 import CategoryDetails from './CategoryDetails';
 import ItemDetails from './ItemDetails';
 import MenuConfirmation from './MenuConfirmation';
-import {Redirect} from 'react-router-dom';
 
 //receiving updateMenu as props 
 
