@@ -5,7 +5,7 @@ import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
 // import Googler from '../../Images/Google2.png'
-import { login } from '../../functions/functions'
+import { login, logout, checkAdminEmail, checkRestaurantEmail } from '../../functions/functions'
 // import './Navbar.css'
 //material ui imports
 import PropTypes from 'prop-types'
@@ -30,17 +30,21 @@ const Navbar = props => {
 	const { classes } = props;
 	// const [user, updateUser] = useState({})
 	const [redirect, activateRedirect] = useState(false)
+	const currentUser = auth.currentUser
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
 	useEffect(() => {
-		auth.onAuthStateChanged(user => {
+		auth.onAuthStateChanged(async (user) => {
+			console.log('user on auth listener', user)
 			if (user) {
-				updateUser({ user })
+				let restaurantCheck = await checkRestaurantEmail(user.email)
+				let adminCheck = await checkAdminEmail(user.email)
+				let newUser = user
+				adminCheck ? newUser.isAdmin = true : restaurantCheck ? newUser.isRestaurant = true : newUser = newUser
+				props.updateUser(newUser)
 			}
 		})
 	}, [])
-	const logout = () => {
-		auth.signOut().then((res) => { props.updateUser({}) })
-	}
+
 	return (
 		<>
 			<div className={classes.root}>
@@ -55,6 +59,7 @@ const Navbar = props => {
 						{!Object.keys(props.user).length ?
 							<Button color="inherit" onClick={async () => {
 								let result = await login()
+								console.log('result from login', result)
 								props.updateUser(result)
 								result && activateRedirect(true)
 							}}>Login</Button>
