@@ -1,6 +1,5 @@
 import { firebase, auth, googleProvider } from '../firebase/firebase'
-// import { updateUser } from '../../ducks/reducer'
-// import {checkPropTypes} from 'prop-types'
+
 
 export const checkRestaurantEmail = async email => {
 	try {
