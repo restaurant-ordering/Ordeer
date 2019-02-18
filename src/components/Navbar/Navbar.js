@@ -4,7 +4,7 @@ import { auth, googleProvider } from '../../firebase/firebase'
 import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
-import Googler from '../../Images/Google2.png'
+// import Googler from '../../Images/Google2.png'
 import { login } from '../../functions/functions'
 // import './Navbar.css'
 //material ui imports
@@ -43,32 +43,6 @@ const Navbar = props => {
 	}
 	return (
 		<>
-			{/* <div className='Navbar_Container'>
-				<div className='Navbar_Login'>
-					<div className="Navbar_Container_Logo">
-						<img className="Navbar_Logo" src={Ordeer} />
-					</div>
-				</div>
-				{!Object.keys(props.user).length ?
-					<div className="Navbar_Container_Login"
-						onClick={async () => {
-							let result = await login()
-							props.updateUser(result)
-							result && activateRedirect(true)
-						}}
-					>
-						<div className="Navbar_Container_Login_Logo">
-							<img className="Navbar_Login_Logo" src={Googler} alt='googler' />
-						</div>
-						<div className="Navbar_Container_Login_Text">
-							<p className="Navbar_Login_Text"> Login </p>
-						</div>
-					</div> : <button onClick={() => logout()}>logout</button>}
-				{//redirects you to home after you are logged in using activateRedirect()
-					redirect ? <Redirect to="/home" /> : <></>
-				}
-			</div> */}
-			{/* MATERIAL*/}
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
