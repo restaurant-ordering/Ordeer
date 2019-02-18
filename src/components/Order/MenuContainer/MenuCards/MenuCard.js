@@ -18,10 +18,10 @@ const styles = {
 		margin: 10
 	},
 	flippedcard: {
-		minWidth: 300,
-		maxWidth: 300,
-		minHeight: 420,
-		maxHeight: 420,
+		minWidth: 600,
+		maxWidth: 600,
+		minHeight: 540,
+		maxHeight: 540,
 		margin: 10
 	},
 	title: {
@@ -38,6 +38,7 @@ const styles = {
 
 const MenuCard = props => {
 	const { classes } = props;
+	console.log(props)
 	const menu_item = props.item
 	const [flipped, flip] = useState(false)
 	const [customization, editCustomization] = useState('')

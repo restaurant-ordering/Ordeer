@@ -33,7 +33,9 @@ const Order = props => {
 	}
 	//function to add item to cart
 	const addToCart = async (menu_item, category) => {
-		console.log(menu_item)
+		console.log('addToCart')
+		console.log('menu_item', menu_item)
+		console.log('restaurantObj',restaurantObj)
 		//adds menu item to cart on state
 		const item = restaurantObj.menus.Default[category].filter(obj => obj.name === menu_item)[0]
 		updateCart([...cart, item])
