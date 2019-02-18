@@ -5,7 +5,7 @@ import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
 import Googler from '../../Images/Google2.png'
-import { checkAdminEmail, checkRestaurantEmail, alreadyUser, postUser } from '../../functions/functions'
+import { login } from '../../functions/functions'
 import './Navbar.css'
 import { convertColorToString } from 'material-ui/utils/colorManipulator';
 
@@ -35,23 +35,8 @@ const Navbar = props => {
 				{!Object.keys(props.user).length ?
 					<div className="Navbar_Container_Login"
 						onClick={async () => {
-							const result = await auth.signInWithPopup(googleProvider)
-							let adminCheck = await checkAdminEmail(result.user.email)
-							// console.log(adminCheck)
-							let restaurantCheck = await checkRestaurantEmail(result.user.email)
-							// console.log(restaurantCheck)
-							let user = result.user
-							let jsonifiedUser = JSON.parse(JSON.stringify(user))
-							console.log(jsonifiedUser)
-							let userCheck = await alreadyUser(user)
-							console.log(userCheck)
-							if (!userCheck) { postUser(jsonifiedUser) }
-
-							adminCheck ? result.user.isAdmin = true : restaurantCheck ? result.user.isRestaurant = true : user = user
-							console.log('this is the user', user)
-							props.updateUser(user)
-							//i'm going to fix this post user to db function soon.
-							activateRedirect(true)
+							let result = await login()
+							result && activateRedirect(true)
 						}}
 					>
 						<div className="Navbar_Container_Login_Logo">

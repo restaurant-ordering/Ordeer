@@ -28,7 +28,6 @@ const styles = {
 };
 const RestaurantCard = props => {
 	const { classes } = props;
-
 	const restaurant = props.restaurant
 	const [redirect, activateRedirect] = useState(false)
 	const address = Object.keys(restaurant.addresses)[0]
