@@ -8,7 +8,9 @@ import './App.css';
 const theme = createMuiTheme({
 	palette: {
 		primary: teal,
-		secondary: amber
+		secondary: {
+			main: '#66bb6a',
+		},
 	},
 });
 
