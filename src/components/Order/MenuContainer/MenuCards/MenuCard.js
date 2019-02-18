@@ -38,7 +38,6 @@ const styles = {
 
 const MenuCard = props => {
 	const { classes } = props;
-	console.log(props)
 	const menu_item = props.item
 	const [flipped, flip] = useState(false)
 	const [customization, editCustomization] = useState('')
@@ -68,22 +67,22 @@ const MenuCard = props => {
 					className={classes.media}
 					height="200"
 					width="auto"
-					image={menu_item.image}
+					image={menu_item.image || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png"}
 					title="Menu item pic"
 				/>
 				<CardContent>
 					<Typography className={classes.title}>{menu_item.name}</Typography>
 					<Typography className={classes.pos}>{menu_item.price}</Typography>
-					<Typography cclassName={classes.pos}>{menu_item.description}</Typography>
+					<Typography className={classes.pos}>{menu_item.description}</Typography>
 				</CardContent>
 				<CardContent>
-							<TextField
-								label="Notes:"
-								multiline
-								rowsMax="4"
-								value={customization}
-								onChange={customize}
-							/>
+					<TextField
+						label="Notes:"
+						multiline
+						rowsMax="4"
+						value={customization}
+						onChange={customize}
+					/>
 				</CardContent>
 				<CardActions>
 					<Button onClick={flipper}>Cancel</Button>
@@ -97,7 +96,7 @@ const MenuCard = props => {
 					alt="Menu item img"
 					className={classes.media}
 					height="200"
-					image={menu_item.image}
+					image={menu_item.image || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png"}
 					title="Menu item pic"
 				/>
 				<CardContent>
