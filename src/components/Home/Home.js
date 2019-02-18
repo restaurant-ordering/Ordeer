@@ -10,6 +10,16 @@ import './Home.css';
 const Home = props => {
 
 	const [display, changeDisplay] = useState('user')
+	const [searchResult, setSearchResult] = useState('')
+
+	//gets query params from url to store search input from home screen
+	const getLandingSearchResults = () => {
+		if(props.location.search){
+			setSearchResult(props.location.search.split('=')[1])
+		}
+	}
+
+	useEffect(() => { getLandingSearchResults() }, [])
 
 	const checkUser = () => {
 		if (props.user.isRestaurant) {
@@ -50,7 +60,7 @@ const Home = props => {
 		?
 		<div className="Home_Container">
 			<Navbar />
-			<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants} />
+			<FilterBar restaurants={restaurants} landingSearchResults={searchResult} updateDisplayedRestaurants={updateDisplayedRestaurants} />
 			<div className="RestaurantCard_Container">
 				{map}
 			</div>
