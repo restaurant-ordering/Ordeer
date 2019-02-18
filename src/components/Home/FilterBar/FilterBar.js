@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Search from '../../../Images/Search.png';
 import './FilterBar.css';
 
@@ -7,22 +7,49 @@ const FilterBar = props => {
 	const [searchTerm, changeSearchTerm] = useState('')
 	const [searchCity, changeSearchCity] = useState('')
 
+	const filter = () => {
+		if(searchTerm && searchCity){
+			let searchFilter = props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm))
+			let doubleFilter = searchFilter.filter(restaurant => {
+				let includesCity = []
+				for (let i in restaurant.addresses) {
+					includesCity.push(restaurant.addresses[i].city.includes(searchCity))
+				}
+				return includesCity
+			})
+			props.updateDisplayedRestaurants(doubleFilter)
+		} else if (searchTerm) {
+			let searchFilter = props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm))
+			props.updateDisplayedRestaurants(searchFilter)
+		} else if (searchCity) {
+			let cityFilter= []
+			let restaurants = Object.values(props.restaurants)
+			for(let i = 0; i<restaurants.length; i++){
+				if (restaurants[i].addresses[Object.keys(restaurants[i].addresses)[0]].city.includes(searchCity)){
+					cityFilter.push(restaurants[i])
+				}
+			}
+			props.updateDisplayedRestaurants(cityFilter)
+		} else {
+			props.updateDisplayedRestaurants(props.restaurants)
+		}
+	}
+
+	useEffect(filter, [searchTerm, searchCity])
+	
+	const getInitialCity = () => {
+		changeSearchCity(props.landingSearchResults)
+	}
+
+	useEffect(getInitialCity, [props.landingSearchResults])
+
 	const search = (e) => {
 		switch(e.target.name){
 			case 'changeSearchTerm':
 				changeSearchTerm(e.target.value)
-					console.log('filter',props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm)))
-					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => restaurant.name.includes(searchTerm)))
 				break;
 			case 'changeSearchCity':
 				changeSearchCity(e.target.value)
-					props.updateDisplayedRestaurants(props.restaurants.filter(restaurant => {
-						let includesCity = []
-						for(let i in restaurant.addresses){
-							includesCity.push(restaurant.addresses[i].city.includes(searchCity))
-						}
-						return includesCity
-					}))
 				break;
 			default:
 				console.log('no match')
