@@ -28,9 +28,8 @@ const styles = {
 
 const Navbar = props => {
 	const { classes } = props;
-	// const [user, updateUser] = useState({})
 	const [redirect, activateRedirect] = useState(false)
-	const currentUser = auth.currentUser
+
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
 	useEffect(() => {
 		auth.onAuthStateChanged(async (user) => {
@@ -67,7 +66,7 @@ const Navbar = props => {
 								anchorEl={props.anchorEl}
 								handleClose={props.handleClose}
 								handleClick={props.handleClick}
-								logout={props.logout}
+								logout={logout}
 							/>
 						}
 					</Toolbar>
