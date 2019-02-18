@@ -33,7 +33,7 @@ const RestaurantCard = props => {
 	const restaurant = props.restaurant
 	const [redirect, activateRedirect] = useState(false)
 	const address = Object.keys(restaurant.addresses)[0]
-	console.log(restaurant)
+
 	return (
 		<Card className={classes.card}>
 			<CardMedia
