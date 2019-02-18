@@ -69,21 +69,18 @@ const Order = props => {
 	//gets current restaurant object from list of all restaurants
 	const restaurantObj = restaurants.filter(restaurant=>restaurant.name===restaurantname)[0]
 	//set up to map over menu items
-	let preMap = []
-	let map;
+	let categories = []
 	if(restaurantObj){
-		//push objects within obj into an array
+		//push category components into array
 		for(let i in restaurantObj.menus.Default){
-			preMap.push(i)
+			categories.push(<Category addToCart={addToCart} key={i} items={restaurantObj.menus.Default[i]} category={i} />)
 		}
-		//map over that array to return menucards
-		map = preMap.map(i=><Category addToCart={addToCart} key={i} items={restaurantObj.menus.Default[i]} category={i}/>)
 	}
 
 
 	return (
 		<div>
-			{map}
+			{categories}
 			<Cart cart={cart}/>
 		</div>
 	)
