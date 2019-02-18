@@ -8,19 +8,20 @@ import RestaurantCard from './RestaurantCard/RestaurantCard';
 import './Home.css';
 
 const Home = props => {
-
+	console.log('these are the props', props)
 	const [display, changeDisplay] = useState('user')
 
 	const checkUser = () => {
+		console.log('props.user in home.js', props.user)
 		if (props.user.isRestaurant) {
 			changeDisplay('restaurant')
 		} else if (props.user.isAdmin) {
 			changeDisplay('admin')
-		} 
-		
+		}
+
 	}
-	
-	useEffect(checkUser, [])
+
+	useEffect(checkUser, [props.user])
 
 	const [restaurants, updateRestaurants] = useState([])
 	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
@@ -46,33 +47,33 @@ const Home = props => {
 	})
 
 	return (
-		display === 'user' 
-		?
-		<div className="Home_Container">
-			<Navbar />
-			<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants} />
-			<div className="RestaurantCard_Container">
-				{map}
+		display === 'user'
+			?
+			<div className="Home_Container">
+				<Navbar />
+				<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants} />
+				<div className="RestaurantCard_Container">
+					{map}
+				</div>
 			</div>
-		</div>
-		:
-		display === 'restaurant'
-		?
-		<div>
-			<Navbar />
-			<p>Restaurant view</p>
-		</div>
-		:
-		display === 'admin'
-		?
-		<div>
-			<Navbar/>
-			<p>Admin view</p>
-		</div>
-		:
-		<div>
-			<p>{display}</p>
-		</div>
+			:
+			display === 'restaurant'
+				?
+				<div>
+					<Navbar />
+					<p>Restaurant view</p>
+				</div>
+				:
+				display === 'admin'
+					?
+					<div>
+						<Navbar />
+						<p>Admin view</p>
+					</div>
+					:
+					<div>
+						<p>{display}</p>
+					</div>
 	)
 }
 const mapStateToProps = state => state
