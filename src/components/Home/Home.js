@@ -8,7 +8,6 @@ import RestaurantCard from './RestaurantCard/RestaurantCard';
 import './Home.css';
 
 const Home = props => {
-
 	const [display, changeDisplay] = useState('user')
 	const [searchResult, setSearchResult] = useState('')
 
@@ -26,11 +25,11 @@ const Home = props => {
 			changeDisplay('restaurant')
 		} else if (props.user.isAdmin) {
 			changeDisplay('admin')
-		} 
-		
+		}
+
 	}
-	
-	useEffect(checkUser, [])
+
+	useEffect(checkUser, [props.user])
 
 	const [restaurants, updateRestaurants] = useState([])
 	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
@@ -76,7 +75,7 @@ const Home = props => {
 		display === 'admin'
 		?
 		<div>
-			<Navbar/>
+			<Navbar />
 			<p>Admin view</p>
 		</div>
 		:

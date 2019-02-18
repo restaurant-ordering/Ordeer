@@ -29,7 +29,6 @@ const styles = {
 };
 const RestaurantCard = props => {
 	const { classes } = props;
-
 	const restaurant = props.restaurant
 	const [redirect, activateRedirect] = useState(false)
 	const address = Object.keys(restaurant.addresses)[0]
@@ -41,7 +40,7 @@ const RestaurantCard = props => {
 				alt="Generic Restaurant Logo"
 				className={classes.media}
 				height="200"
-				image={restaurant.image}
+				image={restaurant.image || "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png"}
 				title="Generic Restaurant Logo"
 			/>
 			<CardContent >

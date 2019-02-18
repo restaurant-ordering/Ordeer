@@ -3,10 +3,9 @@ import Search from '../../../Images/Search.png';
 import './FilterBar.css';
 
 const FilterBar = props => {
-	let initialCity = props.landingSearchResults
 
 	const [searchTerm, changeSearchTerm] = useState('')
-	const [searchCity, changeSearchCity] = useState(initialCity)
+	const [searchCity, changeSearchCity] = useState('')
 
 	const filter = () => {
 		if(searchTerm && searchCity){
@@ -37,7 +36,12 @@ const FilterBar = props => {
 	}
 
 	useEffect(filter, [searchTerm, searchCity])
+	
+	const getInitialCity = () => {
+		changeSearchCity(props.landingSearchResults)
+	}
 
+	useEffect(getInitialCity, [props.landingSearchResults])
 
 	const search = (e) => {
 		switch(e.target.name){
