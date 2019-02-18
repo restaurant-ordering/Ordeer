@@ -30,7 +30,7 @@ const Landing = props => {
 			<div className = "Landing_Footer">
 				<div className = "Landing_Footer_Button">
 					<p className= "Landing_Footer_Button_Text"> Register Restaurant </p>
-					<img className = "Landing_Footer_Button_Logo" src = {RightArrow}  />
+					<img className = "Landing_Footer_Button_Logo" alt="" src = {RightArrow}  />
 				</div>
 			</div>
 			</Link>
