@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Category from './MenuContainer/Category'
 import Cart from './CartContainer/Cart/Cart'
+import './Order.css'
 
 const Order = props => {
 
@@ -79,8 +80,10 @@ const Order = props => {
 
 
 	return (
-		<div>
-			{categories}
+		<div className="orderPage">
+			<div className="categoryContainer">
+				{categories}
+			</div>
 			<Cart cart={cart}/>
 		</div>
 	)

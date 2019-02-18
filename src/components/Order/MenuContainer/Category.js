@@ -8,7 +8,9 @@ const Category = props => {
 	return (
 		<>
 			<h1>{props.category}</h1>
-			{map}
+			<div className="menuItems">
+				{map}
+			</div>
 		</>
 	)
 }
