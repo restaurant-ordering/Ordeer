@@ -41,7 +41,6 @@ const FilterBar = props => {
 					value = {searchTerm} 
 					name = "changeSearchTerm" 
 					placeholder = "Search by Name" 
-					type = "text" 
 					onChange={search} 
 				/>
 			</div>

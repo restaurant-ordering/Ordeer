@@ -8,15 +8,19 @@ import RestaurantCard from './RestaurantCard/RestaurantCard';
 import './Home.css';
 
 const Home = props => {
-	console.log(props.user)
 
 	const [display, changeDisplay] = useState('user')
 
-	if(props.user.isRestaurant){
-		changeDisplay('restaurant')
-	} else if (props.user.isAdmin) {
-		changeDisplay('admin')
-	} 
+	const checkUser = () => {
+		if (props.user.isRestaurant) {
+			changeDisplay('restaurant')
+		} else if (props.user.isAdmin) {
+			changeDisplay('admin')
+		} 
+		
+	}
+	
+	useEffect(checkUser, [])
 
 	const [restaurants, updateRestaurants] = useState([])
 	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
