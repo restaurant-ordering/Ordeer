@@ -41,7 +41,7 @@ export const alreadyUser = async (user) => {
 		const result = await ref.once('value')
 		const users = await result.val()
 		for (let i = 0; i < users.length; i++) {
-			if (users[i] == user.email) {
+			if (users[i].email == user.email) {
 				console.log('adding to db')
 				return true
 			}
@@ -54,8 +54,9 @@ export const alreadyUser = async (user) => {
 }
 export const postUser = async (user) => {
 	let ref = firebase.database().ref('users')
-	ref.update(user)
-}
-export const logout = async () => {
-	auth().signOut()
+	let username = user.displayName
+	let objectToPush = {
+		[username]: user
+	}
+	ref.update(objectToPush)
 }

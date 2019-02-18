@@ -13,9 +13,11 @@ const getAllRestaurants = async (req, res) => {
 }
 const getMenu = async (req, res) => {
   try {
+    console.log('got here')
     const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
     let result = await restaurantRef.once('value')
     const restaurantValue = await result.val()
+    console.log(restaurantValue.menus)
     let menuRef = await restaurantValue.menus[req.body.menuName]
     res.status(200).send(menuRef)
   } catch{
@@ -39,7 +41,7 @@ const addMenu = async (req, res) => {
 
 const deleteRestaurant = async (req, res) => {
   try {
-    const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}`)
+    const restaurantRef = await firebase.database().ref('restaurants' + `/${req.query.id}`)
     restaurantRef.remove()
     res.status(200).send('Restaurant deleted')
   } catch{
@@ -48,7 +50,7 @@ const deleteRestaurant = async (req, res) => {
 }
 const deleteMenu = async (req, res) => {
   try {
-    const restaurantRef = await firebase.database().ref('restaurants' + `/${req.body.id}` + `/menus/${req.body.menuName}`)
+    const restaurantRef = await firebase.database().ref('restaurants' + `/${req.query.id}` + `/menus/${req.query.menuName}`)
     restaurantRef.remove()
     res.status(200).send('Menu deleted')
   } catch{
