@@ -7,11 +7,9 @@ import './App.css';
 class App extends Component {
 	render() {
 		return (
-			// <Router>
 			<MuiThemeProvider>
 				<div className='App_Container'>{routes}</div>
 			</MuiThemeProvider>
-			// </Router>
 		)
 	}
 }

@@ -34,7 +34,7 @@ const Order = props => {
 	//function to add item to cart
 	const addToCart = async (menu_item, category) => {
 		//adds menu item to cart on state
-		const item = restaurantObj.menus.Default[category].filter(obj => obj.name === menu_item)[0]
+		const item = restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][category].filter(obj => obj.name === menu_item)[0]
 		updateCart([...cart, item])
 	}
 	//gets all the restaurants from the backend
@@ -71,7 +71,7 @@ const Order = props => {
 	if(restaurantObj){
 		//push category components into array
 		for(let i in restaurantObj.menus.Default){
-			categories.push(<Category addToCart={addToCart} key={i} items={restaurantObj.menus.Default[i]} category={i} />)
+			categories.push(<Category addToCart={addToCart} key={i} items={restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][i]} category={i} />)
 		}
 	}
 

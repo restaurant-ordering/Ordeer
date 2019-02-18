@@ -43,7 +43,7 @@ const MenuCard = props => {
 	const [customization, editCustomization] = useState('')
 
 	const flipper = () => {
-		console.log('flipping')
+		('flipping')
 		if(flipped){
 			flip(false)
 		}else{
