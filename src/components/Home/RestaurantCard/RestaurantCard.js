@@ -13,7 +13,8 @@ const styles = {
 		// minWidth: 300,
 		maxWidth: 300,
 		minHeight: 300,
-		maxHeight: 420
+		maxHeight: 420,
+		margin: 10
 	},
 	title: {
 		fontSize: 14,

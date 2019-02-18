@@ -33,7 +33,7 @@ const FilterBar = props => {
 		<div className = "FilterBar_Container">
 			<div className = "Filter_Input_Container">
 				<div className = "Filter_Input_Button_Container">
-					<img className = "Filter_Input_Button_Icon" src = { Search } />
+					<img className = "Filter_Input_Button_Icon" alt = "" src = { Search } />
 				</div>
 				<input 
 					className = "Filter_Input" 
@@ -47,7 +47,7 @@ const FilterBar = props => {
 			</div>
 			<div className = "Filter_Input_Container">
 				<div className = "Filter_Input_Button_Container">
-					<img className = "Filter_Input_Button_Icon" src = { Search } />
+					<img className = "Filter_Input_Button_Icon" alt = "" src = { Search } />
 				</div>
 				<input 
 					className = "Filter_Input" 
@@ -63,7 +63,3 @@ const FilterBar = props => {
 }
 
 export default FilterBar
-{/* <p>Filter restaurants by name</p>
-<input value={searchTerm} name="changeSearchTerm" onChange={search}/>
-<p>Filter restaurants by city</p>
-<input value={searchCity} name="changeSearchCity" onChange={search}/> */}

@@ -1,0 +1,26 @@
+.menuItems {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.orderPage {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.categoryContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 60vw;
+}
+
+.Cart {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 40vw;
+}

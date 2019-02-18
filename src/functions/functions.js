@@ -1,4 +1,4 @@
-import { firebase, auth } from '../firebase/firebase'
+import { firebase } from '../firebase/firebase'
 // import {checkPropTypes} from 'prop-types'
 
 export const checkRestaurantEmail = async email => {
