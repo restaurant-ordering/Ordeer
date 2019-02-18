@@ -1,5 +1,5 @@
 .Home_Container {
-    display: flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: stretch;
@@ -7,10 +7,10 @@
 
 .RestaurantCard_Container {
     display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-    align-items: center;
-    
-    border: 1px solid black;
-    height: 79.5vh;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	border: 1px solid black;
+	height: 79.5vh;
 }
