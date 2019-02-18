@@ -11,17 +11,17 @@ import TextField from '@material-ui/core/TextField';
 
 const styles = {
 	card: {
-		// minWidth: 300,
+		minWidth: 300,
 		maxWidth: 300,
-		minHeight: 300,
 		maxHeight: 420,
+		minHeight: 420,
 		margin: 10
 	},
 	flippedcard: {
-		// minWidth: 300,
-		maxWidth: 700,
-		minHeight: 500,
-		maxHeight: 720,
+		minWidth: 300,
+		maxWidth: 300,
+		minHeight: 420,
+		maxHeight: 420,
 		margin: 10
 	},
 	title: {
@@ -65,7 +65,7 @@ const MenuCard = props => {
 					component="img"
 					alt="Menu item img"
 					className={classes.media}
-					height="400"
+					height="200"
 					width="auto"
 					image={menu_item.image}
 					title="Menu item pic"
