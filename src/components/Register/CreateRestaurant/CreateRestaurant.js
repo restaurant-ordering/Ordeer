@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
