@@ -36,9 +36,8 @@ const Home = props => {
 			<Navbar />
 			<FilterBar restaurants={restaurants} updateDisplayedRestaurants={updateDisplayedRestaurants} />
 			<div className="RestaurantCard_Container">
-				<h1> Restaurant Card </h1>
+				{map}
 			</div>
-			{map}
 		</div>
 	)
 }

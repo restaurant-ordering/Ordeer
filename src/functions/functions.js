@@ -1,4 +1,5 @@
-import { firebase, auth } from '../firebase/firebase'
+import { firebase, auth, googleProvider } from '../firebase/firebase'
+// import { updateUser } from '../../ducks/reducer'
 // import {checkPropTypes} from 'prop-types'
 
 export const checkRestaurantEmail = async email => {
@@ -66,7 +67,8 @@ export const login = async () => {
 	if (!userCheck) { postUser(jsonifiedUser) }
 	adminCheck ? result.user.isAdmin = true : restaurantCheck ? result.user.isRestaurant = true : user = user
 	console.log('this is the user', user)
-	props.updateUser(user)
+	return user
+	// props.updateUser(user)
 }
 export const postUser = async (user) => {
 	let ref = firebase.database().ref('users')

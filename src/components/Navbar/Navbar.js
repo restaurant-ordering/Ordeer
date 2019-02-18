@@ -7,7 +7,7 @@ import Ordeer from '../../Images/ordeer.png'
 import Googler from '../../Images/Google2.png'
 import { login } from '../../functions/functions'
 import './Navbar.css'
-import { convertColorToString } from 'material-ui/utils/colorManipulator';
+// import { convertColorToString } from 'material-ui/utils/colorManipulator';
 
 
 const Navbar = props => {
@@ -36,11 +36,12 @@ const Navbar = props => {
 					<div className="Navbar_Container_Login"
 						onClick={async () => {
 							let result = await login()
+							props.updateUser(result)
 							result && activateRedirect(true)
 						}}
 					>
 						<div className="Navbar_Container_Login_Logo">
-							<img className="Navbar_Login_Logo" src={Googler} />
+							<img className="Navbar_Login_Logo" src={Googler} alt='googler' />
 						</div>
 						<div className="Navbar_Container_Login_Text">
 							<p className="Navbar_Login_Text"> Login </p>
