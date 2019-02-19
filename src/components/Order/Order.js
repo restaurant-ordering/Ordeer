@@ -110,7 +110,7 @@ const Order = props => {
 			<div className="categoryContainer">
 				{categories}
 			</div>
-			<Cart removeItem={removeItem} cart={cart} />
+			{cart.length>0&&<Cart removeItem={removeItem} cart={cart} />}
 		</div>
 	)
 }
