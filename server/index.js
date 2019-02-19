@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const { json } = require('body-parser')
+const session = require('express-session')
 const { register } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu } = require('./controller/restaurantController')
 const { getUserOrders, getOrder, checkout, addOrder, getCart, deleteOrder, editCart, deleteItem } = require('./controller/orderController')
