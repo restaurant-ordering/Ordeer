@@ -25,7 +25,7 @@ const Order = props => {
 		}
 	}
 
-	useEffect(getOrderID, [])
+	useEffect(()=>getOrderID(), [])
 
 	//function to get cart
 	const getCart = async () => {
