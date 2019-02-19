@@ -3,7 +3,7 @@ import MenuCard from './MenuCards/MenuCard'
 
 const Category = props => {
 	const map = props.items.map(menu_item => (
-		<MenuCard addToCart={props.addToCart} key={menu_item.name} category={props.category} item={menu_item}/>
+		<MenuCard flipped={props.flipped} flipCard={props.flipCard} addToCart={props.addToCart} key={menu_item.name} category={props.category} item={menu_item}/>
 	))
 	return (
 		<>

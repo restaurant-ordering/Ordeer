@@ -15,6 +15,8 @@ const Order = props => {
 
 	const [orderId, updateOrderID] = useState([])
 
+	const [flipped, flip] = useState(false)
+
 	const getOrderID = async () => {
 		try {
 			let response = await axios.get('/api/orderId')
@@ -95,15 +97,18 @@ const Order = props => {
 	const restaurantname = filterlocation()
 	//gets current restaurant object from list of all restaurants
 	const restaurantObj = restaurants.filter(restaurant => restaurant.name === restaurantname)[0]
+
+	const flipCard = (num) => {
+		flip(num)
+	}
 	//set up to map over menu items
 	let categories = []
 	if (restaurantObj) {
 		//push category components into array
 		for (let i in restaurantObj.menus.Default) {
-			categories.push(<Category addToCart={addToCart} key={i} items={restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][i]} category={i} />)
+			categories.push(<Category flipped={flipped} flipCard={flipCard} addToCart={addToCart} key={i} items={restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][i]} category={i} />)
 		}
 	}
-
 
 	return (
 		<div className="orderPage">

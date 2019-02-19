@@ -34,6 +34,9 @@ const styles = {
 		// ⚠️ object-fit is not supported by IE 11.
 		objectFit: 'cover',
 	},
+	hide: {
+		display: 'none'
+	},
 };
 
 const MenuCard = props => {
@@ -45,9 +48,11 @@ const MenuCard = props => {
 	const flipper = () => {
 		('flipping')
 		if(flipped){
+			props.flipCard(false)
 			flip(false)
 		}else{
 			flip(true)
+			props.flipCard(menu_item.name)
 		}
 	}
 
@@ -58,7 +63,7 @@ const MenuCard = props => {
 	return (
 		<>
 		{
-		flipped
+		flipped && props.flipped === menu_item.name
 		?
 			<Card className={classes.flippedcard}>
 				<CardMedia 
@@ -90,7 +95,7 @@ const MenuCard = props => {
 				</CardActions>
 			</Card>
 		:
-			<Card className={classes.card}>
+			<Card className={!props.flipped?classes.card:classes.hide}>
 				<CardMedia
 					component="img"
 					alt="Menu item img"
