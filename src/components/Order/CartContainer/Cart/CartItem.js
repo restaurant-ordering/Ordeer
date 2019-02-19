@@ -8,29 +8,31 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-	card: {
-		minWidth: 275,
-	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
-	},
-	title: {
-		fontSize: 14,
-	},
-	pos: {
-		marginBottom: 12,
-	},
+  card: {
+    minWidth: 330,
+    maxWidth: 330,
+    margin: 5,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
 };
 
 function CartItem(props) {
-	const { classes } = props;
-	// const bull = <span className={classes.bullet}>•</span>;
-	
-	const removeItem = () => {
-		props.removeItem(props.itemid)
-	}
+  const { classes } = props;
+  // const bull = <span className={classes.bullet}>•</span>;
+
+  const removeItem = () => {
+    props.removeItem(props.itemid)
+  }
 
 	return (
 		<Card className={classes.card}>

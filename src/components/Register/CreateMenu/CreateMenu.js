@@ -23,7 +23,7 @@ const CreateMenu = props => {
 		menuName = Object.keys(menu)[0]
 		let preformattedCategories = Object.values(menu)[0].categories
 		for(let i in preformattedCategories){
-			let name = preformattedCategories[i].name 
+			let name = preformattedCategories[i].name
 			let menu_items = preformattedCategories[i].menu_items
 			categories = Object.assign({}, categories, {[name]:menu_items})
 		}
@@ -47,7 +47,7 @@ const CreateMenu = props => {
 	}
 
 	useEffect(()=>{submitMenu()},[menu])
-	
+
 	return (
 		<>
 			{redirect&&<Redirect to='/home'/>}

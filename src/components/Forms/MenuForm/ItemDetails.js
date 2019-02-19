@@ -1,23 +1,38 @@
-import React, {useState} from 'react';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, { useState } from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper'
 
-const ItemDetails = props =>{
-	
+const styles = {
+	paper: {
+		width: 500,
+		padding: 5,
+		height: 'auto',
+		display: 'flex',
+		marginTop: 200,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		margin: 'auto'
+	}
+}
+const ItemDetails = props => {
+	const { classes } = props;
 	const [itemNumber, changeItemNumber] = useState(1)
 	const [categoryNumber, changeCategoryNumber] = useState(0)
-	const { values, handleChange, setValues} = props;
+	const { values, handleChange, setValues } = props;
 
 	console.log('categoryNumber', categoryNumber)
 	console.log('values.category_details', values.category_details)
 
 	const forward = e => {
 		e.preventDefault();
-		if(itemNumber === values.category_details[categoryNumber].items && categoryNumber +1 >= values.categories){
-			let newMenuItem = {category: categoryNumber+1, name: values.menu_item, image: values.image, price: values.price, description: values.description}
-			setValues({...values, step: values.step + 1, menu_item: '', image: '', price: '', description: '', menu_items: [...values.menu_items, newMenuItem]})
-		} else if (itemNumber === values.category_details[categoryNumber].items){
+		if (itemNumber === values.category_details[categoryNumber].items && categoryNumber + 1 >= values.categories) {
+			let newMenuItem = { category: categoryNumber + 1, name: values.menu_item, image: values.image, price: values.price, description: values.description }
+			setValues({ ...values, step: values.step + 1, menu_item: '', image: '', price: '', description: '', menu_items: [...values.menu_items, newMenuItem] })
+		} else if (itemNumber === values.category_details[categoryNumber].items) {
 			let newMenuItem = { category: categoryNumber + 1, name: values.menu_item, image: values.image, price: values.price, description: values.description }
 			setValues({ ...values, menu_item: '', image: '', price: '', description: '', menu_items: [...values.menu_items, newMenuItem] })
 			changeCategoryNumber(categoryNumber + 1)
@@ -33,7 +48,7 @@ const ItemDetails = props =>{
 		e.preventDefault();
 		if (categoryNumber === 0 && itemNumber === 1) {
 			props.prevStep();
-		} else if (itemNumber ===1){
+		} else if (itemNumber === 1) {
 			let newMenuItems = [...values.menu_items]
 			let menuItem = newMenuItems.pop()
 			let prevCategory = categoryNumber - 1
@@ -44,62 +59,58 @@ const ItemDetails = props =>{
 		else {
 			let newMenuItems = [...values.menu_items]
 			let menuItem = newMenuItems.pop()
-			setValues({ ...values, menu_items: newMenuItems, menu_item: menuItem.name, image: menuItem.image, price: menuItem.price, description: menuItem.description})
+			setValues({ ...values, menu_items: newMenuItems, menu_item: menuItem.name, image: menuItem.image, price: menuItem.price, description: menuItem.description })
 			changeItemNumber(itemNumber - 1)
 		}
 	};
 
 	return (
-		<>
-			<AppBar title={`Enter Details for Item ${itemNumber} in ${values.category_details[categoryNumber].name} Category`} />
+		<Paper className={classes.paper} elevation={1}>
+			<AppBar>{`Enter Details for Item ${itemNumber} in ${values.category_details[categoryNumber].name} Category`}</AppBar>
 			<TextField
-			hintText="Enter the name of this item"
-			floatingLabelText="Name"
-			onChange={handleChange}
-			value={values.menu_item}
-			name="menu_item"
-			/>
-			<TextField
-			hintText="Enter in the Item's Image"
-			floatingLabelText="Image"
-			onChange={handleChange}
-			value={values.image}
-			name="image"
+				placeholder="Enter the name of this item"
+				label="Name"
+				onChange={handleChange}
+				value={values.menu_item}
+				name="menu_item"
 			/>
 			<TextField
-			hintText="Enter in the Item's Price"
-			floatingLabelText="Price"
-			onChange={handleChange}
-			value={values.price}
-			name="price"
+				placeholder="Enter in the Item's Image"
+				label="Image"
+				onChange={handleChange}
+				value={values.image}
+				name="image"
 			/>
 			<TextField
-			hintText="Enter in the Item's Description"
-			floatingLabelText="Description"
-			onChange={handleChange}
-			value={values.description}
-			name="description"
+				placeholder="Enter in the Item's Price"
+				label="Price"
+				onChange={handleChange}
+				value={values.price}
+				name="price"
 			/>
-			<RaisedButton
-			label="Back"
-			primary={false}
-			style={styles.button}
-			onClick={back}
+			<TextField
+				placeholder="Enter in the Item's Description"
+				label="Description"
+				onChange={handleChange}
+				value={values.description}
+				name="description"
 			/>
-			<RaisedButton
-			label="Continue"
-			primary={true}
-			style={styles.button}
-			onClick={forward}
-			/>
-		</>
+			<Button
+
+				className={classes.button}
+				onClick={back}
+			>Back</Button>
+			<Button
+
+				className={classes.button}
+				onClick={forward}
+			>Continue</Button>
+		</Paper>
 	);
 }
 
-const styles = {
-	button: {
-		margin: 15
-	}
-};
 
-export default ItemDetails;
+ItemDetails.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(ItemDetails);
