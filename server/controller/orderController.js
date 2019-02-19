@@ -63,7 +63,6 @@ const getCart = async (req, res, next) => {
 }
 const editCart = async (req, res, next) => {
   try {
-	console.log('********',req.body)
     const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`).child('cart')
 	cartRef.set(req.body.cart)
     res.status(200).send('Cart has been updated')
