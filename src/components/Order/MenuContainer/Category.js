@@ -7,7 +7,7 @@ const Category = props => {
 	))
 	return (
 		<>
-			<h1>{props.category}</h1>
+			{!props.flipped&&<h1>{props.category}</h1>}
 			<div className="menuItems">
 				{map}
 			</div>
