@@ -2,7 +2,7 @@ import React from 'react'
 import CartItem from './CartItem'
 const Cart = props => {
 
-	const map = props.cart.map(obj => (
+	const map = props.cart && props.cart.map(obj => (
 		<div key={obj.name}>
 			<CartItem
 				name={obj.name}

@@ -16,22 +16,24 @@ const Order = props => {
 
 	const getOrderID = async () => {
 		try {
-			let orderId = axios.get('/api/orderId')
-			updateOrderID(orderId)
+			let response = await axios.get('/api/orderId')
+			console.log('orderId', response.data)
+			updateOrderID(response.data)
 		}
 		catch(error){
-			let orderId = await axios.post('/api/orders')
-			updateOrderID(orderId)
+			let response = await axios.post('/api/orders')
+			updateOrderID(response.data)
+			console.log('orderId', response.data)
 		}
 	}
 
-	useEffect(()=>getOrderID(), [])
+	useEffect(()=>{getOrderID()}, [])
 
 	//function to get cart
 	const getCart = async () => {
 		try {
-			const response = await axios.get('/api/cart')
-			console.log(response)
+			const response = await axios.get(`/api/cart?orderId=${orderId}`)
+			console.log('response from getcart',response)
 			updateCart(response.data)
 		} catch (error) {
 			console.log(error)
@@ -74,7 +76,7 @@ const Order = props => {
 		return props.location.pathname.split('/')[2]
 	}
 	//gets cart on mount
-	useEffect(() => { getCart() }, [])
+	useEffect(() => { getCart() }, [orderId])
 	//gets restaurants on mount
 	useEffect(() => { getRestaurants() }, [])
 	//posts cart after items are added
