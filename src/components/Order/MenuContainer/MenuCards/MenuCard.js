@@ -60,6 +60,12 @@ const MenuCard = props => {
 		editCustomization(e.target.value)
 	}
 
+	const addToCart = () => {
+		props.flipCard(false)
+		flip(false)
+		props.addToCart(menu_item.name, props.category, customization)
+	}
+
 	return (
 		<>
 		{
@@ -91,7 +97,7 @@ const MenuCard = props => {
 				</CardContent>
 				<CardActions>
 					<Button onClick={flipper}>Cancel</Button>
-					<Button onClick={() => { props.addToCart(menu_item.name, props.category) }}>Add to Cart</Button>
+					<Button onClick={addToCart}>Add to Cart</Button>
 				</CardActions>
 			</Card>
 		:
