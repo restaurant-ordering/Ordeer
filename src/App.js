@@ -15,11 +15,7 @@ const theme = createMuiTheme({
 	},
 	typography: {
 		useNextVariants: true,
-<<<<<<< HEAD
-	},
-=======
 	}
->>>>>>> master
 });
 
 class App extends Component {

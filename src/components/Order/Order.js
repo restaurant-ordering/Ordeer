@@ -39,15 +39,9 @@ const Order = props => {
 	}
 	//function to post updated cart to db
 	const putCart = async () => {
-<<<<<<< HEAD
 		try{
 			if(cart.length){
 				const response = await axios.put('/api/cart', {cart, orderId})
-=======
-		try {
-			if (cart.length) {
-				const response = await axios.put('/api/cart', cart)
->>>>>>> master
 				console.log(response)
 			}
 		} catch (error) {
