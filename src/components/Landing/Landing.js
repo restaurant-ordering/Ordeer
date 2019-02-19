@@ -32,7 +32,7 @@ const Landing = props => {
 
 	const [search, updateSearch] = useState('')
 	const [redirect, activateRedirect] = useState(false)
-
+	const [restaurantRedirect, activateRestaurantRedirect] = useState(false)
 	const onChange = e => {
 		updateSearch(e.target.value)
 	}
@@ -44,6 +44,7 @@ const Landing = props => {
 	return (
 		<div className="Landing_Page">
 			{redirect && <Redirect to={`/home?city=${search}`} />}
+			{restaurantRedirect && <Redirect to={'/register'} />}
 			<Navbar />
 			<div className="Landing_Header">
 				<p className="Landing_Header_Title_Text"> Ordeer </p>
@@ -73,7 +74,7 @@ const Landing = props => {
 					<Button size="large" color='primary' variant="outlined" onClick={clickRedirect} className={classes.button} >Enter</Button>
 				</div>
 			</div>
-			<Button variant="outlined" size='large' className={classes.fab} color='secondary' onClick={clickRedirect}>
+			<Button variant="outlined" size='large' className={classes.fab} color='secondary' onClick={activateRestaurantRedirect}>
 				Register As A Restaurant
       </Button>
 		</div>
