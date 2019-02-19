@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { auth, googleProvider } from '../../firebase/firebase'
+import { auth } from '../../firebase/firebase'
 import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
@@ -33,7 +33,6 @@ const Navbar = props => {
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
 	useEffect(() => {
 		auth.onAuthStateChanged(async (user) => {
-			console.log('user on auth listener', user)
 			if (user) {
 				let restaurantCheck = await checkRestaurantEmail(user.email)
 				let adminCheck = await checkAdminEmail(user.email)

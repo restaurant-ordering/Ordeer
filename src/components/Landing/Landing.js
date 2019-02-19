@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Navbar from '../Navbar/Navbar';
