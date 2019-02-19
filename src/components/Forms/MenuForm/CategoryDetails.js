@@ -1,16 +1,31 @@
-import React, {useState} from 'react';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, { useState } from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper'
 
+const styles = {
+	paper: {
+		width: 500,
+		padding: 5,
+		height: 'auto',
+		display: 'flex',
+		marginTop: 200,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		margin: 'auto'
+	}
+}
 const CategoryDetails = props => {
-
-	const [ currentCategory, switchCategory ] = useState(1)
+	const { classes } = props;
+	const [currentCategory, switchCategory] = useState(1)
 	const { values, handleChange, setValues } = props;
 
 	const forward = async e => {
-		if(currentCategory >= values.categories){
-			let storedValues = {name: values.category_name, items: +values.itemQuantity}
+		if (currentCategory >= values.categories) {
+			let storedValues = { name: values.category_name, items: +values.itemQuantity }
 			setValues({ ...values, step: values.step + 1, category_name: '', itemQuantity: '', category_details: [...values.category_details, storedValues] })
 		} else {
 			let storedValues = { name: values.category_name, items: +values.itemQuantity }
@@ -20,56 +35,50 @@ const CategoryDetails = props => {
 	};
 
 	const back = e => {
-		if(currentCategory === 1){
+		if (currentCategory === 1) {
 			props.prevStep();
 		}
 		else {
 			let newCategoryDetails = [...values.category_details]
 			let category = newCategoryDetails.pop()
-			setValues({ ...values, category_details: newCategoryDetails, itemQuantity: category.items, category_name: category.name})
+			setValues({ ...values, category_details: newCategoryDetails, itemQuantity: category.items, category_name: category.name })
 			switchCategory(currentCategory - 1)
 		}
 	};
 
 	return (
-		<>
-			<AppBar title={`Enter Category ${currentCategory} Details`} />
+		<Paper className={classes.paper} elevation={1}>
+			<AppBar>{`Enter Category ${currentCategory} Details`}</AppBar>
 			<TextField
-			hintText={`Category ${currentCategory} name`}
-			floatingLabelText="Category name"
-			onChange={handleChange}
-			value={values.category_name}
-			name="category_name"
+				placeholder={`Category ${currentCategory} name`}
+				onChange={handleChange}
+				value={values.category_name}
+				name="category_name"
 			/>
 			<TextField
-			hintText="Number items in category"
-			floatingLabelText="Menu items"
-			onChange={handleChange}
-			value={values.itemQuantity}
-			type="number"
-			name="itemQuantity"
+				placeholder="Number items in category"
+				onChange={handleChange}
+				value={values.itemQuantity}
+				type="number"
+				name="itemQuantity"
 			/>
-			<RaisedButton
-			label="Back"
-			primary={false}
-			style={styles.button}
-			onClick={back}
-			/>
-			<RaisedButton
-			label="Continue"
-			primary={true}
-			style={styles.button}
-			onClick={forward}
-			/>
-		</>
+			<Button
+
+				className={classes.button}
+				onClick={back}
+			>Back</Button>
+			<Button
+
+				className={classes.button}
+				onClick={forward}
+			>Continue</Button>
+		</Paper>
 	);
 
 }
 
-const styles = {
-	button: {
-		margin: 15
-	}
-};
 
-export default CategoryDetails;
+CategoryDetails.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(CategoryDetails);
