@@ -9,7 +9,9 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    minWidth: 275,
+    minWidth: 330,
+    maxWidth: 330,
+    margin: 5,
   },
   bullet: {
     display: 'inline-block',
@@ -27,9 +29,9 @@ const styles = {
 function CartItem(props) {
   const { classes } = props;
   // const bull = <span className={classes.bullet}>•</span>;
-  
+
   const removeItem = () => {
-	  props.removeItem(props.itemid)
+    props.removeItem(props.itemid)
   }
 
   return (
