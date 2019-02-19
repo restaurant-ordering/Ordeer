@@ -4,6 +4,7 @@ import Category from './MenuContainer/Category'
 import Cart from './CartContainer/Cart/Cart'
 import './Order.css'
 import { app } from 'firebase';
+import uniqid from 'uniqid';
 
 const Order = props => {
 
@@ -54,7 +55,16 @@ const Order = props => {
 	const addToCart = async (menu_item, category) => {
 		//adds menu item to cart on state
 		const item = restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][category].filter(obj => obj.name === menu_item)[0]
-		updateCart([...cart, item])
+		const itemWithKey = {...item, key: uniqid()}
+		updateCart([...cart, itemWithKey])
+	}
+
+	const removeItem = async (key) => {
+		console.log(key)
+		const index = cart.findIndex(obj=>{return obj.key === key})
+		const newCart = [...cart]
+		newCart.splice(index,1)
+		updateCart(newCart)
 	}
 	//gets all the restaurants from the backend
 	const getRestaurants = async () => {
@@ -100,7 +110,7 @@ const Order = props => {
 			<div className="categoryContainer">
 				{categories}
 			</div>
-			<Cart cart={cart} />
+			<Cart removeItem={removeItem} cart={cart} />
 		</div>
 	)
 }
