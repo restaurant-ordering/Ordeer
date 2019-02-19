@@ -8,19 +8,29 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { NavigationFullscreenExit } from 'material-ui/svg-icons';
 const styles = {
+	root: {
+		display: 'flex',
+		justify: 'space-between'
+	},
 	card: {
-		// minWidth: 300,
+		minWidth: 300,
 		maxWidth: 300,
-		minHeight: 300,
-		maxHeight: 420,
-		margin: 10
+		minHeight: 400,
+		maxHeight: 400,
+		margin: 10,
+		raised: true,
+		display: 'flex',
+		justifyContent: 'space-between',
+		flexDirection: 'column'
 	},
 	title: {
 		fontSize: 14,
+		alignSelf: 'center'
 	},
 	pos: {
-		marginBottom: 12,
+		marginBottom: 5,
 	},
 	media: {
 		// ⚠️ object-fit is not supported by IE 11.
@@ -34,7 +44,7 @@ const RestaurantCard = props => {
 	const address = Object.keys(restaurant.addresses)[0]
 
 	return (
-		<Card className={classes.card}>
+		<Card className={classes.card} raised='true'>
 			<CardMedia
 				component="img"
 				alt="Generic Restaurant Logo"

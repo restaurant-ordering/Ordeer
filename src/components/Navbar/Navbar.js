@@ -23,6 +23,7 @@ const styles = {
 	},
 	grow: {
 		flexGrow: 1,
+		marginLeft: 10,
 	}
 };
 
@@ -48,11 +49,11 @@ const Navbar = props => {
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<Typography variant="h6" color="inherit" align="left" text='center' className={classes.grow}>
-							Ordeer
-						</Typography>
 						<Grid container justify="flex-start" alignItems="center">
 							<img src={Ordeer} alt='Ordeer logo' height="80px" width="100px" />
+							<Typography variant="h6" color="inherit" align="left" text='center' className={classes.grow}>
+								Ordeer
+						</Typography>
 						</Grid>
 						{!Object.keys(props.user).length ?
 							<Button color="inherit" onClick={async () => {
