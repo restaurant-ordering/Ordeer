@@ -1,19 +1,24 @@
 import React from 'react'
-
+import CartItem from './CartItem'
 const Cart = props => {
 
-	const map = props.cart.map(obj=> (
+	const map = props.cart.map(obj => (
 		<div key={obj.name}>
-			<p>{obj.name}</p>
-			<p>{obj.price}</p>
+			<CartItem
+				name={obj.name}
+				description={obj.description}
+				price={obj.price}
+				handleClick={() => {
+					console.log('remove item from cart')
+				}} />
 		</div>
-		)
+	)
 	)
 
 	return (
 		<div className="Cart">
-		<h1>Cart:</h1>
-		{map}
+			<h1>Cart:</h1>
+			{map}
 		</div>
 	)
 }

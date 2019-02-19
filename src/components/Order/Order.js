@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Category from './MenuContainer/Category'
 import Cart from './CartContainer/Cart/Cart'
@@ -15,19 +15,19 @@ const Order = props => {
 		try {
 			const response = await axios.get('/api/cart')
 			console.log(response)
-			// updateCart(response.data)
+			updateCart(response.data)
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	//function to post updated cart to db
 	const putCart = async () => {
-		try{
-			if(cart.length){
+		try {
+			if (cart.length) {
 				const response = await axios.put('/api/cart', cart)
 				console.log(response)
 			}
-		} catch(error){
+		} catch (error) {
 			console.log(error)
 		}
 	}
@@ -48,7 +48,7 @@ const Order = props => {
 				restaurantArray.push(response.data[i])
 			}
 			updateRestaurants(restaurantArray)
-		} catch (error){
+		} catch (error) {
 			console.log(error)
 		}
 	}
@@ -59,18 +59,18 @@ const Order = props => {
 	//gets cart on mount
 	useEffect(() => { getCart() }, [])
 	//gets restaurants on mount
-	useEffect(()=>{ getRestaurants() }, [])
+	useEffect(() => { getRestaurants() }, [])
 	//posts cart after items are added
-	useEffect(()=>{ putCart()}, [cart])
+	useEffect(() => { putCart() }, [cart])
 	//the name of the current restaurant
 	const restaurantname = filterlocation()
 	//gets current restaurant object from list of all restaurants
-	const restaurantObj = restaurants.filter(restaurant=>restaurant.name===restaurantname)[0]
+	const restaurantObj = restaurants.filter(restaurant => restaurant.name === restaurantname)[0]
 	//set up to map over menu items
 	let categories = []
-	if(restaurantObj){
+	if (restaurantObj) {
 		//push category components into array
-		for(let i in restaurantObj.menus.Default){
+		for (let i in restaurantObj.menus.Default) {
 			categories.push(<Category addToCart={addToCart} key={i} items={restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][i]} category={i} />)
 		}
 	}
@@ -81,7 +81,7 @@ const Order = props => {
 			<div className="categoryContainer">
 				{categories}
 			</div>
-			<Cart cart={cart}/>
+			<Cart cart={cart} />
 		</div>
 	)
 }
