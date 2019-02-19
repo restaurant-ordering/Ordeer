@@ -27,6 +27,10 @@ const styles = {
 function CartItem(props) {
   const { classes } = props;
   // const bull = <span className={classes.bullet}>•</span>;
+  
+  const removeItem = () => {
+	  props.removeItem(props.itemid)
+  }
 
   return (
     <Card className={classes.card}>
@@ -42,7 +46,7 @@ function CartItem(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={props.handleClick}>Remove from cart</Button>
+        <Button size="small" onClick={removeItem}>Remove from cart</Button>
       </CardActions>
     </Card>
   );
