@@ -20,7 +20,6 @@ const styles = {
 		minHeight: 400,
 		maxHeight: 400,
 		margin: 10,
-		raised: true,
 		display: 'flex',
 		justifyContent: 'space-between',
 		flexDirection: 'column'
