@@ -15,14 +15,20 @@ const styles = {
 		maxWidth: 300,
 		maxHeight: 420,
 		minHeight: 420,
-		margin: 10
+		margin: 10,
+		display: 'flex',
+		justifyContent: 'space-between',
+		flexDirection: 'column'
 	},
 	flippedcard: {
 		minWidth: 600,
 		maxWidth: 600,
 		minHeight: 540,
 		maxHeight: 540,
-		margin: 10
+		margin: 10,
+		display: 'flex',
+		justifyContent: 'space-between',
+		flexDirection: 'column'
 	},
 	title: {
 		fontSize: 14,
@@ -47,10 +53,10 @@ const MenuCard = props => {
 
 	const flipper = () => {
 		('flipping')
-		if(flipped){
+		if (flipped) {
 			props.flipCard(false)
 			flip(false)
-		}else{
+		} else {
 			flip(true)
 			props.flipCard(menu_item.name)
 		}
@@ -72,7 +78,7 @@ const MenuCard = props => {
 		flipped && props.flipped === menu_item.name
 		?
 			<Card className={classes.flippedcard}>
-				<CardMedia 
+				<CardMedia
 					component="img"
 					alt="Menu item img"
 					className={classes.media}

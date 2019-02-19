@@ -56,6 +56,7 @@ const getCart = async (req, res, next) => {
     const cartRef = await firebase.database().ref(`orders/${req.query.orderId}`).child('cart')
     const result = await cartRef.once('value')
     const cartValue = await result.val()
+    console.log(cartValue)
     res.status(200).send(cartValue)
   } catch{
     res.status(400).send('Cant get cart details')
@@ -64,7 +65,7 @@ const getCart = async (req, res, next) => {
 const editCart = async (req, res, next) => {
   try {
     const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`).child('cart')
-	cartRef.set(req.body.cart)
+	  cartRef.set(req.body.cart)
     res.status(200).send('Cart has been updated')
   } catch{
     res.status(400).send('Could not update cart details')
