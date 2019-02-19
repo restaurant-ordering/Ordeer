@@ -58,7 +58,7 @@ const Order = props => {
 	const addToCart = async (menu_item, category, customize) => {
 		//adds menu item to cart on state
 		const item = restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][category].filter(obj => obj.name === menu_item)[0]
-		const itemWithKey = {...item, key: uniqid(), customize: customize}
+		const itemWithKey = {...item, key: uniqid(), customization: customize}
 		updateCart([...cart, itemWithKey])
 	}
 
