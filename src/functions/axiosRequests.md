@@ -165,7 +165,7 @@ axios.delete('/api/orders/?orderId=' + query)
 
 ### DELETE ITEM
 
-If you want to delete an item on an order, pass in the orderId and the itemName you want deleted. The response will be status(200) and "Removed item"
+If you want to delete an item on an order, pass in the orderId and the itemId you want deleted. The response will be status(200) and "Removed item"
 ```js
 let query = "-LYhbGF1MJVAbKSZHnfc"
 let item = "New"
