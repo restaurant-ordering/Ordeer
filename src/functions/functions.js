@@ -5,10 +5,9 @@ export const checkRestaurantEmail = async email => {
 	try {
 		let ref = await firebase.database().ref('restaurants').once('value')
 		let result = await ref.val()
-		console.log('this is the result', result)
 		let filterResult
 		for (let i in result) {
-			if (result[i].email == email) {
+			if (result[i].email === email) {
 				filterResult = true
 			}
 		}
@@ -23,7 +22,7 @@ export const checkAdminEmail = async email => {
 		let result = await ref.val()
 		let filterResult
 		for (let i in result) {
-			if (result[i].email == email && result[i].isAdmin) {
+			if (result[i].email === email && result[i].isAdmin) {
 				filterResult = true
 			}
 		}
@@ -40,7 +39,7 @@ export const alreadyUser = async (user) => {
 		const result = await ref.once('value')
 		const users = await result.val()
 		for (let i = 0; i < users.length; i++) {
-			if (users[i].email == user.email) {
+			if (users[i].email === user.email) {
 				console.log('adding to db')
 				return true
 			}
@@ -59,7 +58,7 @@ export const login = async () => {
 	let restaurantCheck = await checkRestaurantEmail(result.user.email)
 	console.log(restaurantCheck)
 	let user = result.user
-	console.log(jsonifiedUser)
+
 	let userCheck = await alreadyUser(user)
 	console.log(userCheck)
 	adminCheck ? user.isAdmin = true : restaurantCheck ? user.isRestaurant = true : user = user
