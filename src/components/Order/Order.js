@@ -3,6 +3,7 @@ import axios from 'axios'
 import Category from './MenuContainer/Category'
 import Cart from './CartContainer/Cart/Cart'
 import './Order.css'
+import { app } from 'firebase';
 
 const Order = props => {
 
@@ -10,6 +11,22 @@ const Order = props => {
 	const [cart, updateCart] = useState([])
 	//stores all of the restaurants
 	const [restaurants, updateRestaurants] = useState([])
+
+	const [orderId, updateOrderID] = useState([])
+
+	const getOrderID = async () => {
+		try {
+			let orderId = axios.get('/api/orderId')
+			updateOrderID(orderId)
+		}
+		catch(error){
+			let orderId = await axios.post('/api/orders')
+			updateOrderID(orderId)
+		}
+	}
+
+	useEffect(getOrderID, [])
+
 	//function to get cart
 	const getCart = async () => {
 		try {
@@ -22,9 +39,9 @@ const Order = props => {
 	}
 	//function to post updated cart to db
 	const putCart = async () => {
-		try {
-			if (cart.length) {
-				const response = await axios.put('/api/cart', cart)
+		try{
+			if(cart.length){
+				const response = await axios.put('/api/cart', {cart, orderId})
 				console.log(response)
 			}
 		} catch (error) {
