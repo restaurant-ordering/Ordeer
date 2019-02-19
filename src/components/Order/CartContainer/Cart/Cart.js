@@ -9,6 +9,7 @@ const Cart = props => {
 				itemid={obj.key}
 				description={obj.description}
 				price={obj.price}
+				customization={obj.customization}
 				removeItem={props.removeItem} />
 		</div>
 	)

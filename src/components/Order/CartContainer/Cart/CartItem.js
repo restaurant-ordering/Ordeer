@@ -34,28 +34,28 @@ function CartItem(props) {
     props.removeItem(props.itemid)
   }
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {props.name}
-        </Typography>
-        <Typography component="p">
-          {props.description || ''}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {props.price}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={removeItem}>Remove from cart</Button>
-      </CardActions>
-    </Card>
-  );
+	return (
+		<Card className={classes.card}>
+		<CardContent>
+			<Typography className={classes.title} gutterBottom>
+			{props.name}
+			</Typography>
+			<Typography color="textSecondary" component="p">
+			{props.customization || ''}
+			</Typography>
+			<Typography className={classes.pos} color="textSecondary">
+			{props.price}
+			</Typography>
+		</CardContent>
+		<CardActions>
+			<Button size="small" onClick={removeItem}>Remove from cart</Button>
+		</CardActions>
+		</Card>
+	);
 }
 
 CartItem.propTypes = {
-  classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(CartItem);
