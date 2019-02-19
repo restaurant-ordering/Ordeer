@@ -40,8 +40,12 @@ const addOrder = async (req, res, next) => {
     }
     */
     const ordersRef = await firebase.database().ref(`orders`)
-    ordersRef.push(req.body)
-    res.status(200).send('Added order')
+    const order = await ordersRef.push(req.body)
+    console.log('order', order)
+    const orderKey = order.key
+    console.log('orderKey', orderKey)
+    req.session.orderId = orderKey
+    res.status(200).send(orderKey)
   } catch{
     res.status(400).send('Could not add order')
   }
@@ -59,7 +63,7 @@ const getCart = async (req, res, next) => {
 }
 const editCart = async (req, res, next) => {
   try {
-    const cartRef = await firebase.database().ref(`orders/${req.query.orderId}`).child('cart')
+    const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`).child('cart')
     cartRef.set(req.body)
     res.status(200).send('Cart has been updated')
   } catch{
