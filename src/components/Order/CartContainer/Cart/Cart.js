@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import CartItem from './CartItem'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 import {Redirect} from 'react-router-dom'
+import Typography from 'material-ui/styles/typography';
 
 const styles = {
 	card: {
@@ -24,6 +25,7 @@ const Cart = props => {
 	const { classes } = props;
 	const [flipped, flip] = useState(false)
 	const [redirect, activateRedirect] = useState(false)
+
 	const [values, setValues] = useState({
 		displayName: '',
 		email: '',
@@ -51,6 +53,7 @@ const Cart = props => {
 			}else {
 				total += +props.cart[i].price
 			}
+			console.log('getTotalPrice', total)
 			return total
 		}
 	}
@@ -89,6 +92,7 @@ const Cart = props => {
 					<h1>Cart</h1>
 					<Card className={classes.card}>
 						<CardActions>
+							<div>Total:{props.total}</div>
 							<Button onClick={checkout} color="primary" variant="contained">Checkout</Button>
 						</CardActions>
 						{map}

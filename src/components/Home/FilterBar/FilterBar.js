@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Search from '../../../Images/Search.png';
 import './FilterBar.css';
-import Paper from '@material-ui/core/Paper'
 
 const FilterBar = props => {
 
