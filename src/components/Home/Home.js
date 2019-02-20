@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import { connect } from 'react-redux'
 import FilterBar from './FilterBar/FilterBar';
 import RestaurantCard from './RestaurantCard/RestaurantCard';
+import Admin from '../Admin/Admin'
 
 import './Home.css';
 
@@ -13,7 +14,7 @@ const Home = props => {
 
 	//gets query params from url to store search input from home screen
 	const getLandingSearchResults = () => {
-		if(props.location.search){
+		if (props.location.search) {
 			setSearchResult(props.location.search.split('=')[1])
 		}
 	}
@@ -55,33 +56,33 @@ const Home = props => {
 	})
 
 	return (
-		display === 'user' 
-		?
-		<div className="Home_Container">
-			<Navbar />
-			<FilterBar restaurants={restaurants} landingSearchResults={searchResult} updateDisplayedRestaurants={updateDisplayedRestaurants} />
-			<div className="RestaurantCard_Container">
-				{map}
+		display === 'user'
+			?
+			<div className="Home_Container">
+				<Navbar />
+				<FilterBar restaurants={restaurants} landingSearchResults={searchResult} updateDisplayedRestaurants={updateDisplayedRestaurants} />
+				<div className="RestaurantCard_Container">
+					{map}
+				</div>
 			</div>
-		</div>
-		:
-		display === 'restaurant'
-		?
-		<div>
-			<Navbar />
-			<p>Restaurant view</p>
-		</div>
-		:
-		display === 'admin'
-		?
-		<div>
-			<Navbar />
-			<p>Admin view</p>
-		</div>
-		:
-		<div>
-			<p>{display}</p>
-		</div>
+			:
+			display === 'restaurant'
+				?
+				<div>
+					<Navbar />
+					<p>Restaurant view</p>
+				</div>
+				:
+				display === 'admin'
+					?
+					<div>
+						<Navbar />
+						<Admin />
+					</div>
+					:
+					<div>
+						<p>{display}</p>
+					</div>
 	)
 }
 const mapStateToProps = state => state
