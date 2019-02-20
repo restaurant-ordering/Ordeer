@@ -5,7 +5,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
+import OrderTable from './OrderTable'
+import RestaurantTable from './RestaurantTable';
+import UsersTable from './UsersTable'
 
 function TabContainer(props) {
   return (
@@ -40,10 +42,12 @@ function SimpleTabs(props) {
         <Tabs value={value} onChange={handleChange}>
           <Tab label="View All Orders" />
           <Tab label="View All Restaurants" />
+          <Tab label="View All Users" />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
+      {value === 0 && <TabContainer><OrderTable /></TabContainer>}
+      {value === 1 && <TabContainer><RestaurantTable /></TabContainer>}
+      {value === 2 && <TabContainer><UsersTable></UsersTable></TabContainer>}
     </div>
   );
 }
