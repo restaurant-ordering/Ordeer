@@ -1,6 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import CartItem from './CartItem'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import axios from 'axios'
+import TextField from '@material-ui/core/TextField';
+import {Redirect} from 'react-router-dom'
+
+const styles = {
+	card: {
+		minWidth: 340,
+		maxWidth: 340,
+		margin: 5,
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: "flex-end"
+	}
+};
+
 const Cart = props => {
+	const { classes } = props;
+	const [flipped, flip] = useState(false)
+	const [redirect, activateRedirect] = useState(false)
+	const [values, setValues] = useState({
+		name: '',
+		email: '',
+		phone: ''
+	})
 
 	const map = props.cart && props.cart.map(obj => (
 		<div key={obj.key}>
@@ -12,15 +40,81 @@ const Cart = props => {
 				customization={obj.customization}
 				removeItem={props.removeItem} />
 		</div>
-	)
-	)
+	))
 
-	return (
-		<div className="Cart">
-			<h1>Cart:</h1>
-			{map}
-		</div>
-	)
+	const getTotalPrice = () => {
+		let total = 0;
+		for(let i in props.cart){
+			if(isNaN(props.cart[i].price)){
+				let price = props.cart[i].price.replace(/[^\d.]/g, '')
+				total += +price
+			}else {
+				total += +props.cart[i].price
+			}
+			return total
+		}
+	}
+
+	const checkout = async () => {
+		if(Object.keys(props.user).length || flipped){
+			if(!Object.keys(props.user).length){
+				var guestUser = values
+			}
+			const orderId = props.orderId
+			const price = await getTotalPrice()
+			const cart = props.cart
+			const date = new Date()
+			const restaurant = props.restaurantname
+			let user = guestUser || props.user
+			try {
+				let result = await axios.post('/api/checkout', {orderId, cart, date, price,restaurant, user})
+				result && activateRedirect(true)
+			}
+			catch (error) {
+				console.log(error)
+			}
+		}
+		else {
+			flip(true)
+		}
+	}
+	const onChange = e => {
+		setValues({ ...values, [e.target.name]: e.target.value })
+	}
+
+	switch(flipped){
+		case false:
+			return (
+				<div className="Cart">
+					<h1>Cart</h1>
+					<Card className={classes.card}>
+						<CardActions>
+							<Button onClick={checkout} color="primary" variant="contained">Checkout</Button>
+						</CardActions>
+						{map}
+					</Card>
+					{redirect && <Redirect to={`/r/${props.orderId}`}></Redirect>}
+				</div>
+			)
+		case true:
+			return (
+				<div className="Cart">
+					<h1>Cart</h1>
+					<Card className={classes.card}>
+						<TextField onChange={onChange} name="name" placeholder="name"/>
+						<TextField onChange={onChange} name="email" placeholder="email"/>
+						<TextField onChange={onChange} name="phone" placeholder="phone number"/>
+						<CardActions>
+							<Button onClick={checkout} color="primary" variant="contained">Checkout</Button>
+						</CardActions>
+					</Card>
+					{ redirect && <Redirect to={`/r/${props.orderId}`}></Redirect> }
+				</div>
+			)
+	}
 }
+Cart.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
 
-export default Cart
+export default withStyles(styles)(Cart);
