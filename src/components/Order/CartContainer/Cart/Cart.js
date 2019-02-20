@@ -25,7 +25,7 @@ const Cart = props => {
 	const [flipped, flip] = useState(false)
 	const [redirect, activateRedirect] = useState(false)
 	const [values, setValues] = useState({
-		name: '',
+		displayName: '',
 		email: '',
 		phone: ''
 	})
@@ -101,7 +101,7 @@ const Cart = props => {
 				<div className="Cart">
 					<h1>Cart</h1>
 					<Card className={classes.card}>
-						<TextField onChange={onChange} name="name" placeholder="name"/>
+						<TextField onChange={onChange} name="displayName" placeholder="name"/>
 						<TextField onChange={onChange} name="email" placeholder="email"/>
 						<TextField onChange={onChange} name="phone" placeholder="phone number"/>
 						<CardActions>
