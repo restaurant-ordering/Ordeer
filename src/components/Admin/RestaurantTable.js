@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { CommunicationEmail } from 'material-ui/svg-icons';
 const styles = {
   root: {
     width: '100%',
@@ -54,7 +53,7 @@ const RestaurantTable = props => {
     const state = Object.values(restaurants[i].addresses)[0].state
     const zip = Object.values(restaurants[i].addresses)[0].zip
 
-    rows.push(createData(name, address, city, state, zip, CommunicationEmail))
+    rows.push(createData(name, address, city, state, zip, email))
     // let state = restaurant.addresses[0].state
     // let zip = restaurant.addresses[0].zip
   }
