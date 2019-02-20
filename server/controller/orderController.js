@@ -31,14 +31,6 @@ const getOrder = async (req, res, next) => {
 }
 const addOrder = async (req, res, next) => {
   try {
-    /*req.body = {
-      cart=[],
-      date:'',
-      price:num,
-      restaurant:'',
-      user:''
-    }
-    */
     const ordersRef = await firebase.database().ref(`orders`)
     const order = await ordersRef.push(req.body)
     console.log('order', order)
@@ -76,6 +68,7 @@ const checkout = async (req, res, next) => {
 	try{
 		const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
 		cartRef.set(checkedOutCart)
+		req.session.destroy()
 		res.status(200).json({checkedOutCart})
 	} catch(error){
 		res.sendStatus(400)

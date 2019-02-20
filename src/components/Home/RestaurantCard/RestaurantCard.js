@@ -70,7 +70,7 @@ const RestaurantCard = props => {
 				{restaurant.menus&&<Button size="small" onClick={() => { activateRedirect(true) }}>Show Menu</Button>}
 				{redirect && <Redirect to={`/order/${restaurant.name}`} />}
 			</CardActions>
-		</Card >
+		</Card>
 	)
 }
 

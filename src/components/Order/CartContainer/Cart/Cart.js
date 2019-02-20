@@ -67,8 +67,8 @@ const Cart = props => {
 			const restaurant = props.restaurantname
 			let user = guestUser || props.user
 			try {
-				await axios.post('/api/checkout', {orderId, cart, date, price,restaurant, user})
-				activateRedirect(true)
+				let result = await axios.post('/api/checkout', {orderId, cart, date, price,restaurant, user})
+				result && activateRedirect(true)
 			}
 			catch (error) {
 				console.log(error)
