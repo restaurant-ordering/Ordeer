@@ -22,7 +22,7 @@ export const checkAdminEmail = async email => {
 		let result = await ref.val()
 		let filterResult
 		for (let i in result) {
-			if (result[i].email === email && result[i].isAdmin) {
+			if (result[i].email === email) {
 				filterResult = true
 			}
 		}

@@ -43,7 +43,7 @@ const RestaurantCard = props => {
 	const address = Object.keys(restaurant.addresses)[0]
 
 	return (
-		<Card className={classes.card} raised='true'>
+		<Card className={classes.card} raised>
 			<CardMedia
 				component="img"
 				alt="Generic Restaurant Logo"
