@@ -24,12 +24,17 @@ const styles = {
 	grow: {
 		flexGrow: 1,
 		marginLeft: 10,
+		cursor: 'default'
+	},
+	logo: {
+		cursor: 'pointer'
 	}
 };
 
 const Navbar = props => {
 	const { classes } = props;
 	const [redirect, activateRedirect] = useState(false)
+	const page = props.page
 
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
 	useEffect(() => {
@@ -44,13 +49,20 @@ const Navbar = props => {
 		})
 	}, [])
 
+
+	const linkToHome = () => {
+		if(page!=='home'){
+			activateRedirect(true)
+		}
+	}
+
 	return (
 		<>
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
 						<Grid container justify="flex-start" alignItems="center">
-							<img src={Ordeer} alt='Ordeer logo' height="80px" width="100px" />
+							<img className={classes.logo} onClick={linkToHome} src={Ordeer} alt='Ordeer logo' height="80px" width="100px" />
 							<Typography variant="h6" color="inherit" align="left" text='center' className={classes.grow}>
 								Ordeer
 						</Typography>

@@ -45,7 +45,7 @@ const Landing = props => {
 		<div className="Landing_Page">
 			{redirect && <Redirect to={`/home?city=${search}`} />}
 			{restaurantRedirect && <Redirect to={'/register'} />}
-			<Navbar />
+			<Navbar page="landing"/>
 			<div className="Landing_Header">
 				<p className="Landing_Header_Title_Text"> Ordeer </p>
 				<p className="Landing_Header_Slogan_Text"> a leap above the rest </p>

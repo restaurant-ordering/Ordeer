@@ -114,7 +114,7 @@ const Order = props => {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar page="order"/>
 			<div className="orderPage">
 				<div className="categoryContainer">
 					{categories}

@@ -59,7 +59,7 @@ const Home = props => {
 		display === 'user'
 			?
 			<div className="Home_Container">
-				<Navbar />
+				<Navbar page="home"/>
 				<FilterBar restaurants={restaurants} landingSearchResults={searchResult} updateDisplayedRestaurants={updateDisplayedRestaurants} />
 				<div className="RestaurantCard_Container">
 					{map}
