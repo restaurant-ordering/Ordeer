@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper'
+import { Typography } from '@material-ui/core';
 
 const styles = {
 	paper: {
@@ -32,7 +33,7 @@ const MenuConfirmation = props => {
 		})
 	}
 
-	console.log(valuesToUse.category_details)
+	console.log('menuConfimationValues', values)
 
 	const forward = e => {
 		e.preventDefault();
@@ -50,25 +51,20 @@ const MenuConfirmation = props => {
 		props.prevStep();
 	};
 
+	const map = values.category_details.map(category=><Typography key={category.name}>{category.name}</Typography>)
+	const itemMap = values.category_details.map(category => category.menu_items)
+	console.log('itemMap', itemMap)
 	return (
 		<Paper className={classes.paper} elevation={1}>
 			<AppBar>Confirm Menu Data</AppBar>
-			{/* <List>
-				<ListItem>
-					Confirm menu options go here!
-				</ListItem>
-			</List> */}
-			<p>Confirm menu options go here!</p>
-			<Button
-
-				className={classes.button}
-				onClick={back}
-			>Back</Button>
-			<Button
-
-				className={classes.button}
-				onClick={forward}
-			>Confirm & Continue</Button>
+			<Typography>Menu Name</Typography>
+			{map}
+			<Button className={classes.button} onClick={back}>
+				Back
+			</Button>
+			<Button className={classes.button} onClick={forward}>
+				Confirm & Continue
+			</Button>
 		</Paper>
 	);
 }

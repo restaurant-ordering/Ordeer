@@ -14,7 +14,8 @@ const styles = {
   bigAvatar: {
     margin: 10,
     width: 60,
-    height: 60,
+	height: 60,
+	cursor: 'pointer'
   }
 };
 

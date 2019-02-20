@@ -111,6 +111,12 @@ const Cart = props => {
 					{ redirect && <Redirect to={`/r/${props.orderId}`}></Redirect> }
 				</div>
 			)
+		default:
+		return (
+			<div>
+				<p>loading</p>
+			</div>
+		)
 	}
 }
 Cart.propTypes = {
