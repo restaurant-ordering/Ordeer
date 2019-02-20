@@ -45,7 +45,7 @@ const RestaurantTable = props => {
   const rows = []
   //looping over all restaurants and returning a createData function for each restaurant
   for (let i in restaurants) {
-    console.log(restaurants[i])
+    // console.log(restaurants[i])
     const name = restaurants[i].name
     const email = restaurants[i].email
     const address = Object.keys(restaurants[i].addresses)[0]
