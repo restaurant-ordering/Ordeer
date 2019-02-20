@@ -72,7 +72,15 @@ const editCart = async (req, res, next) => {
   }
 }
 const checkout = async (req, res, next) => {
-  res.status(200).send('You checked out. This will do something later!')
+	const checkedOutCart = {...req.body, checkedOut: true}
+	try{
+		const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
+		cartRef.set(checkedOutCart)
+		res.status(200).json({checkedOutCart})
+	} catch(error){
+		res.sendStatus(400)
+		console.log(error)
+	}
 }
 const deleteOrder = async (req, res, next) => {
   try {

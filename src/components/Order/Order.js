@@ -3,6 +3,7 @@ import axios from 'axios'
 import Category from './MenuContainer/Category'
 import Cart from './CartContainer/Cart/Cart'
 import Navbar from '../Navbar/Navbar'
+import { connect } from 'react-redux'
 import './Order.css'
 // import { app } from 'firebase';
 import uniqid from 'uniqid';
@@ -106,7 +107,7 @@ const Order = props => {
 	let categories = []
 	if (restaurantObj) {
 		//push category components into array
-		for (let i in restaurantObj.menus.Default) {
+		for (let i in restaurantObj.menus[Object.keys(restaurantObj.menus)[0]]) {
 			categories.push(<Category flipped={flipped} flipCard={flipCard} addToCart={addToCart} key={i} items={restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][i]} category={i} />)
 		}
 	}
@@ -118,10 +119,12 @@ const Order = props => {
 				<div className="categoryContainer">
 					{categories}
 				</div>
-				{cart.length > 0 && <Cart removeItem={removeItem} cart={cart} />}
-			</ div>
+				{cart.length > 0 && <Cart user={props.user} orderId={orderId} restaurantname={restaurantname} removeItem={removeItem} cart={cart} />}
+			</div>
 		</div>
 	)
 }
 
-export default Order
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps)(Order);

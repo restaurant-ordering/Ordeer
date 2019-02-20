@@ -43,7 +43,7 @@ const RestaurantCard = props => {
 	const address = Object.keys(restaurant.addresses)[0]
 
 	return (
-		<Card className={classes.card} raised='true'>
+		<Card className={classes.card} raised={true}>
 			<CardMedia
 				component="img"
 				alt="Generic Restaurant Logo"
@@ -67,7 +67,7 @@ const RestaurantCard = props => {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button size="small" onClick={() => { activateRedirect(true) }}>Show Menu</Button>
+				{restaurant.menus&&<Button size="small" onClick={() => { activateRedirect(true) }}>Show Menu</Button>}
 				{redirect && <Redirect to={`/order/${restaurant.name}`} />}
 			</CardActions>
 		</Card >

@@ -43,6 +43,9 @@ const styles = {
 	hide: {
 		display: 'none'
 	},
+	addToCart: {
+		marginRight: 6,
+	}
 };
 
 const MenuCard = props => {
@@ -91,19 +94,25 @@ const MenuCard = props => {
 					<Typography className={classes.title}>{menu_item.name}</Typography>
 					<Typography className={classes.pos}>{menu_item.price}</Typography>
 					<Typography className={classes.pos}>{menu_item.description}</Typography>
-				</CardContent>
-				<CardContent>
 					<TextField
 						label="Notes:"
 						multiline
-						rowsMax="4"
+						rows="4"
 						value={customization}
 						onChange={customize}
 					/>
 				</CardContent>
 				<CardActions>
-					<Button onClick={flipper}>Cancel</Button>
-					<Button onClick={addToCart}>Add to Cart</Button>
+					<Button onClick={flipper}>
+						<i className="material-icons">
+							arrow_back
+						</i>
+					</Button>
+					<Button onClick={addToCart}>
+						<i className="material-icons">
+							add_shopping_cart
+						</i>
+					</Button>
 				</CardActions>
 			</Card>
 		:
@@ -122,7 +131,12 @@ const MenuCard = props => {
 					<Typography>{menu_item.description}</Typography>
 				</CardContent>
 				<CardActions>
-					<Button onClick={flipper}> Add </Button>
+					<Button onClick={flipper}>
+						<Typography className={classes.addToCart}>Add to cart</Typography>
+						<i className="material-icons">
+							add_circle_outline
+						</i>
+					</Button>
 				</CardActions>
 			</Card>
 		}
