@@ -5,28 +5,27 @@ export const checkRestaurantEmail = async email => {
 	try {
 		let ref = await firebase.database().ref('restaurants').once('value')
 		let result = await ref.val()
-		let filterResult
 		for (let i in result) {
 			if (result[i].email === email) {
-				filterResult = true
+				return true
 			}
 		}
-		return filterResult
+		return false
 	} catch{
 		console.log('could not check if restaurant')
+		return false
 	}
 }
 export const checkAdminEmail = async email => {
 	try {
 		let ref = await firebase.database().ref('admins').once('value')
 		let result = await ref.val()
-		let filterResult
 		for (let i in result) {
 			if (result[i].email === email) {
-				filterResult = true
+				return true
 			}
 		}
-		return filterResult
+		return false
 	} catch{
 		console.log('could not check if admin')
 		return false

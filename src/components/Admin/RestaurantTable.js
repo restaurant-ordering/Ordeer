@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
 const styles = {
   root: {
     width: '100%',
@@ -18,6 +19,13 @@ const styles = {
     minWidth: 700,
   },
 }
+//making our CreateData function
+let id = 0;
+export function createData(name, address, city, state, zip, email) {
+	id += 1;
+	return { id, name, address, city, state, zip, email };
+}
+
 const RestaurantTable = props => {
   const { classes } = props
   const [restaurants, updateRestaurants] = useState([])
@@ -32,15 +40,9 @@ const RestaurantTable = props => {
     }
     console.log(restaurantArray)
     updateRestaurants(restaurantArray)
-    // updateDisplayedRestaurants(restaurantArray)
   }
   useEffect(() => { getRestaurants() }, [])
-  //making our CreateData function
-  let id = 0;
-  function createData(name, address, city, state, zip, email) {
-    id += 1;
-    return { id, name, address, city, state, zip, email };
-  }
+
   //creating our empty array to hold the restaurants
   const rows = []
   //looping over all restaurants and returning a createData function for each restaurant
