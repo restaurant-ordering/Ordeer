@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 import {Redirect} from 'react-router-dom'
-import Typography from 'material-ui/styles/typography';
 
 const styles = {
 	card: {
