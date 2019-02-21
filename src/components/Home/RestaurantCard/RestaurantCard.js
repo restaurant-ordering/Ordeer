@@ -33,7 +33,6 @@ const styles = {
 	},
 	media: {
 		// ⚠️ object-fit is not supported by IE 11.
-		backgroundSize: '100%',
 		backgroundPosition: 'center',
 		objectFit: 'fit',
 	},
