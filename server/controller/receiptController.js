@@ -11,7 +11,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-
 async function sendMail(req, res) {
   //get the restaurant email based on restaurant name in req.body
   const restaurantRef = await firebase.database().ref(`restaurants/${req.body.restaurant}`).child('email')

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import CartItem from './CartItem'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
