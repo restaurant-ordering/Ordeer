@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import CartItem from './CartItem'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,6 +24,7 @@ const Cart = props => {
 	const { classes } = props;
 	const [flipped, flip] = useState(false)
 	const [redirect, activateRedirect] = useState(false)
+
 	const [values, setValues] = useState({
 		displayName: '',
 		email: '',
@@ -42,26 +43,13 @@ const Cart = props => {
 		</div>
 	))
 
-	const getTotalPrice = () => {
-		let total = 0;
-		for(let i in props.cart){
-			if(isNaN(props.cart[i].price)){
-				let price = props.cart[i].price.replace(/[^\d.]/g, '')
-				total += +price
-			}else {
-				total += +props.cart[i].price
-			}
-			return total
-		}
-	}
-
 	const checkout = async () => {
 		if(Object.keys(props.user).length || flipped){
 			if(!Object.keys(props.user).length){
 				var guestUser = values
 			}
 			const orderId = props.orderId
-			const price = await getTotalPrice()
+			const price = props.total
 			const cart = props.cart
 			const date = new Date()
 			const restaurant = props.restaurantname
@@ -89,6 +77,7 @@ const Cart = props => {
 					<h1>Cart</h1>
 					<Card className={classes.card}>
 						<CardActions>
+							<div>Total:{props.total}</div>
 							<Button onClick={checkout} color="primary" variant="contained">Checkout</Button>
 						</CardActions>
 						{map}

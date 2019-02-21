@@ -19,6 +19,8 @@ const Order = props => {
 
 	const [flipped, flip] = useState(false)
 
+	const [total, updateTotal] = useState(0)
+
 	const getOrderID = async () => {
 		try {
 			let response = await axios.get('/api/orderId')
@@ -60,6 +62,8 @@ const Order = props => {
 		//adds menu item to cart on state
 		const item = restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][category].filter(obj => obj.name === menu_item)[0]
 		const itemWithKey = {...item, key: uniqid(), customization: customize}
+		let newTotal = total + +item.price.replace(/[^\d.]/g, '')
+		updateTotal(newTotal)
 		updateCart([...cart, itemWithKey])
 	}
 
@@ -67,7 +71,9 @@ const Order = props => {
 		console.log(key)
 		const index = cart.findIndex(obj => { return obj.key === key })
 		const newCart = [...cart]
-		newCart.splice(index, 1)
+		let item = newCart.splice(index, 1)
+		let newTotal = total - +item[0].price.replace(/[^\d.]/g, '')
+		updateTotal(newTotal)
 		updateCart(newCart)
 	}
 	//gets all the restaurants from the backend
@@ -119,7 +125,7 @@ const Order = props => {
 				<div className="categoryContainer">
 					{categories}
 				</div>
-				{cart.length > 0 && <Cart user={props.user} orderId={orderId} restaurantname={restaurantname} removeItem={removeItem} cart={cart} />}
+				{cart.length > 0 && <Cart user={props.user} total={total} orderId={orderId} restaurantname={restaurantname} removeItem={removeItem} cart={cart} />}
 			</div>
 		</div>
 	)
