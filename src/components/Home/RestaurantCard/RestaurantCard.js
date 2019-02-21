@@ -37,6 +37,7 @@ const styles = {
 		objectFit: 'fit',
 	},
 };
+
 const RestaurantCard = props => {
 	const { classes } = props;
 	const restaurant = props.restaurant

@@ -43,27 +43,13 @@ const Cart = props => {
 		</div>
 	))
 
-	const getTotalPrice = () => {
-		let total = 0;
-		for(let i in props.cart){
-			if(isNaN(props.cart[i].price)){
-				let price = props.cart[i].price.replace(/[^\d.]/g, '')
-				total += +price
-			}else {
-				total += +props.cart[i].price
-			}
-			console.log('getTotalPrice', total)
-			return total
-		}
-	}
-
 	const checkout = async () => {
 		if(Object.keys(props.user).length || flipped){
 			if(!Object.keys(props.user).length){
 				var guestUser = values
 			}
 			const orderId = props.orderId
-			const price = await getTotalPrice()
+			const price = props.total
 			const cart = props.cart
 			const date = new Date()
 			const restaurant = props.restaurantname
