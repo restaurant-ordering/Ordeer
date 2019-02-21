@@ -45,14 +45,14 @@ const OrderTable = props => {
   for (let i in orders) {
     if (orders[i].checkedOut) {
       const name = orders[i].name
-      const email = Object.values(orders[i].user)[1]
+      const email = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[1] : orders[i].user['email']
       const date = orders[i].date
       const dateResult = Date.parse(date)
       let newDate = new Date(dateResult)
       let format = newDate.toLocaleString("en-US")
       const price = orders[i].price
       const restaurant = orders[i].restaurant
-      const user = Object.values(orders[i].user)[0]
+      const user = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[0] : orders[i].user['displayName']
       rows.push(createData(name, format, restaurant, price, user, email))
     }
   }
