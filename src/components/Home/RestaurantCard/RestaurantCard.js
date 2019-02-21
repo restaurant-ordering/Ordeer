@@ -33,7 +33,9 @@ const styles = {
 	},
 	media: {
 		// ⚠️ object-fit is not supported by IE 11.
-		objectFit: 'cover',
+		backgroundSize: '100%',
+		backgroundPosition: 'center',
+		objectFit: 'fit',
 	},
 };
 const RestaurantCard = props => {
