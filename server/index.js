@@ -6,6 +6,7 @@ const { register } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu } = require('./controller/restaurantController')
 const { getUserOrders, getOrder, checkout, addOrder, getCart, deleteOrder, editCart, deleteItem } = require('./controller/orderController')
 const { getAllOrders, getAllUsers } = require('./controller/adminController')
+const { sendMail } = require('./controller/receiptController')
 const { SERVER_PORT, SESSION_SECRET } = process.env
 
 const app = express()
@@ -47,6 +48,8 @@ app.get('/api/orders/user', getUserOrders)
 app.post('/api/orders', addOrder)
 app.delete('/api/orders', deleteOrder)
 app.post('/api/checkout', checkout)
+//nodemailer endpoint
+app.post('/api/receipt', sendMail)
 //admin endpoints
 app.get('/api/admin/users', getAllUsers)
 app.get('/api/admin/orders', getAllOrders)
