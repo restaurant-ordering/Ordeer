@@ -1,0 +1,28 @@
+.receipt_message {
+  width:60vw;
+  height:auto;
+  margin-left:20vw;
+  margin-top:5vw;
+  padding:10px;
+}
+.receipt_card {
+  width:60vw;
+  height:auto;
+  margin-left:20vw;
+
+  padding:10px;
+}
+.receipt_total{
+  margin-left:20vw;
+  height:5vh;
+  width:60vw;
+  display:flex;
+  align-items:center;
+  padding:10px;
+  justify-content: space-between;
+}
+.receipt_button{
+  margin-left:50vw;
+  height:10vh;
+  width:20vw;
+}
