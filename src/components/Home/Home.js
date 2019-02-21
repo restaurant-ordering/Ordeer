@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import FilterBar from './FilterBar/FilterBar';
 import RestaurantCard from './RestaurantCard/RestaurantCard';
 import Admin from '../Admin/Admin'
+import Restaurant from '../Restaurant/Restaurant'
 
 import './Home.css';
 
@@ -70,7 +71,7 @@ const Home = props => {
 				?
 				<div>
 					<Navbar />
-					<p>Restaurant view</p>
+					<Restaurant />
 				</div>
 				:
 				display === 'admin'

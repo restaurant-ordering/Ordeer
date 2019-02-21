@@ -57,10 +57,29 @@ const deleteMenu = async (req, res) => {
     res.status(400).send('Could not remove menu')
   }
 }
+
+const getRestaurantOrders = async (req,res) => {
+	try {
+		const ordersRef = await firebase.database().ref('orders')
+		const ordersVal = await ordersRef.once('value')
+		const ordersObj = ordersVal.val()
+		let ordersArray = []
+		for (let i in ordersObj){
+			if(ordersObj[i].restaurant===req.params.restaurant){
+				ordersArray.push(ordersObj[i])
+			}
+		}
+		res.status(200).send(ordersArray)
+	} catch {
+		res.sendStatus(400)
+	}
+}
+
 module.exports = {
   getAllRestaurants,
   getMenu,
   addMenu,
   deleteRestaurant,
-  deleteMenu
+  deleteMenu,
+  getRestaurantOrders
 }
