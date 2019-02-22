@@ -88,9 +88,10 @@ const Navbar = props => {
 								Ordeer
 							</Typography>
 						</div>
+						{props.restaurant && <p>{props.restaurant}</p>}
 						<div className={classes.userInfo}>
 							{	// only display cart icon on order page if user has a cart
-								props.cart.length>0 && 
+								props.cart && props.cart.length>0 && 
 								<IconButton aria-label="Cart">
 									<Badge badgeContent={props.cart.length} color="primary" classes={{ badge: classes.badge }}>
 										<ShoppingCartIcon />
