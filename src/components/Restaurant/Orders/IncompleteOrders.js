@@ -19,74 +19,91 @@ const styles = {
   table: {
     minWidth: 700,
   },
+  tablerow: {
+    order: {
+      backgroundColor: 'primary'
+    },
+    items: {
+      color: 'secondary'
+    }
+  },
+  button: {
+    color: 'secondary'
+  }
 }
 const IncompleteOrders = props => {
-  const { classes, orders } = props
-
-
+  const { classes, orders, completeOrder } = props
+  // const [orderTable, updateOrderTable] = useState([])
+  const [rows, updateRows] = useState([])
+  const [display, updateDisplay] = useState([])
   //creating our createData function to populate the table later
   let id = 0;
   function createData(name, date, items, total, user, email) {
     id += 1;
     return { id, name, date, items, total, user, email };
   }
-  //creating our empty array to hold the restaurants
-  const rows = []
-  //looping over all restaurants and returning a createData function for each restaurant
-  for (let i in orders) {
-    if (orders[i].checkedOut === true && orders[i].complete === false) {
-      const name = orders[i].name
-      const email = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[1] : orders[i].user['email']
-      const date = orders[i].date
-      const dateResult = Date.parse(date)
-      const newDate = new Date(dateResult)
-      const format = newDate.toLocaleString("en-US")
-      const price = orders[i].price
-      const items = Object.keys(orders[i].cart).length
-      // console.log(Object.keys(orders[i].cart).length)
-      const user = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[0] : orders[i].user['displayName']
-      rows.push(createData(name, format, items, price, user, email))
-    }
-  }
+  //creating our empty array to hold the orders
+  // let rows = []
+  //looping over all orders and returning a createData function for each restaurant
+
+  useEffect(() => {
+    updateDisplay(getRows())
+  }, [orders])
 
 
-  const completeOrder = async (orderName) => {
-    console.log(orderName)
-    let order = await axios.get('/api/orders?orderId=' + orderName)
-    console.log(order.data)
-    await axios.post('/api/complete-order', order.data)
+
+  const getRows = () => {
+    // console.log(orders)
+    const filteredOrders = orders.length && orders.filter(order => {
+      return (!order.hasOwnProperty('complete'))
+    })
+    console.log(filteredOrders)
+    let ordersMap = filteredOrders && filteredOrders.length && filteredOrders.map((order, i) => {
+      return (
+        [order, ...order.cart]
+      )
+    })
+
+    const flatOrders = ordersMap.length && ordersMap.flat()
+
+    return flatOrders && flatOrders.map((item, i) => {
+      if (item.cart) {
+        return (
+          <TableRow key={i} className={classes.tablerow.order} selected>
+            <TableCell component="th" scope="row">{item.orderId}</TableCell>
+            <TableCell align="center">Name: {item.user.displayName}</TableCell>
+            <TableCell align="center">Email: {item.user.email}</TableCell>
+            <TableCell align="center">Total: ${item.price}</TableCell>
+            <TableCell >
+              <Button onClick={() => { completeOrder(item.orderId) }} variant="contained" color="primary" >Complete</Button>
+            </TableCell>
+          </TableRow >
+        )
+      } else if (item.name) {
+        return (
+          <TableRow className={classes.tablerow.items} key={i}>
+            <TableCell component="th" scope="row" />
+            <TableCell align="center">{item.name}</TableCell>
+            <TableCell align="center">{item.customize || 'No customization'}</TableCell>
+            <TableCell align="center">{item.price}</TableCell>
+          </TableRow>
+        )
+      }
+    })
   }
-  const tbody = rows.length && rows.map(row => (
-    <TableRow key={row.id}>
-      <TableCell component="th" scope="row">
-        {row.name}
-      </TableCell>
-      <TableCell align="right">{row.date}</TableCell>
-      <TableCell align="right">{row.items}</TableCell>
-      <TableCell align="right">{row.total}</TableCell>
-      <TableCell align="right">{row.user}</TableCell>
-      <TableCell align="right">{row.email}</TableCell>
-      <TableCell align="right"><Button onClick={() => { completeOrder(row.name) }}>Complete</Button></TableCell>
-    </TableRow>
-  ))
+
   return (
 
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
-            <TableCell>Order Name</TableCell>
-            <TableCell align="right">Date / Time</TableCell>
-            <TableCell align="right">Number Of Items</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">User</TableCell>
-            <TableCell align="right">Email</TableCell>
+          <TableRow component="th" scope="row">
+            <TableCell >Orders</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {tbody}
+          {display}
         </TableBody>
-
       </Table>
     </Paper>
 

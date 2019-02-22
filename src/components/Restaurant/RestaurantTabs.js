@@ -30,7 +30,7 @@ const styles = {
 }
 
 function SimpleTabs(props) {
-  const { classes } = props
+  const { classes, completeOrder } = props
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -45,8 +45,8 @@ function SimpleTabs(props) {
           <Tab label="Completed Orders" />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer><IncompleteOrders orders={props.orders} /></TabContainer>}
-      {value === 1 && <TabContainer><CompletedOrders orders={props.orders} /></TabContainer>}
+      {value === 0 && <TabContainer><IncompleteOrders orders={props.orders} completeOrder={completeOrder} /></TabContainer>}
+      {value === 1 && <TabContainer><CompletedOrders orders={props.orders} completeOrder={completeOrder} /></TabContainer>}
     </div>
   );
 }

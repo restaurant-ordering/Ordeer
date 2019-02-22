@@ -45,9 +45,18 @@ const Restaurant = (props) => {
 		})()
 	}, [restaurant])
 
+	const completeOrder = async (orderName) => {
+		console.log(orderName)
+		let order = await axios.get('/api/orders?orderId=' + orderName)
+		console.log(order.data)
+		await axios.post('/api/complete-order', order.data)
+		let allOrders = await getMyOrders()
+		updateOrders(allOrders)
+		console.log(allOrders)
+	}
 	return (
 		<Paper className="restaurant_homepage">
-			<RestaurantTabs orders={orders} />
+			<RestaurantTabs orders={orders} completeOrder={completeOrder} />
 		</Paper>
 	)
 }
