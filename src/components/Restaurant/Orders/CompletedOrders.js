@@ -20,19 +20,9 @@ const styles = {
 }
 const CompletedOrders = props => {
   const { classes } = props
-  const [orders, updateOrders] = useState([])
+  const { orders } = props
+  // const [orders, updateOrders] = useState([])
 
-  const getOrders = async () => {
-    const response = await axios.get('/api/admin/orders')
-    //convert response to array of restaurant objects
-    let ordersArray = []
-    for (let i in response.data) {
-      response.data[i].name = i
-      ordersArray.push(response.data[i])
-    }
-    // console.log(ordersArray)
-    updateOrders(ordersArray)
-  }
   //creating our createData function to populate the table later
   let id = 0;
   function createData(name, date, items, price, user, email) {
@@ -42,7 +32,7 @@ const CompletedOrders = props => {
   //creating our empty array to hold the restaurants
   const rows = []
   //looping over all restaurants and returning a createData function for each restaurant
-  for (let i in orders) {
+  for (let i in props.orders) {
     console.log(orders[i])
     if (orders[i].checkedOut && orders[i].complete) {
       const name = orders[i].name
@@ -57,10 +47,6 @@ const CompletedOrders = props => {
       rows.push(createData(name, format, items, price, user, email))
     }
   }
-
-  // console.log(rows)
-  useEffect(() => { getOrders() }, [])
-  // useEffect(() => { console.log(orders) }, [orders])
 
   return (
 

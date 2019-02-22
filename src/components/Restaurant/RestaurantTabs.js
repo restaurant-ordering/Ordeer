@@ -45,8 +45,8 @@ function SimpleTabs(props) {
           <Tab label="Completed Orders" />
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer><IncompleteOrders /></TabContainer>}
-      {value === 1 && <TabContainer><CompletedOrders /></TabContainer>}
+      {value === 0 && <TabContainer><IncompleteOrders orders={props.orders} /></TabContainer>}
+      {value === 1 && <TabContainer><CompletedOrders orders={props.orders} /></TabContainer>}
     </div>
   );
 }
