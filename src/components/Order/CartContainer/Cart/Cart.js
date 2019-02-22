@@ -77,7 +77,7 @@ const Cart = props => {
 					<h1>Cart</h1>
 					<Card className={classes.card}>
 						<CardActions>
-							<div>Total:{props.total}</div>
+							<div>Total: ${props.total}</div>
 							<Button onClick={checkout} color="primary" variant="contained">Checkout</Button>
 						</CardActions>
 						{map}
