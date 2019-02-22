@@ -57,23 +57,35 @@ const getCart = async (req, res, next) => {
 const editCart = async (req, res, next) => {
   try {
     const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`).child('cart')
-	  cartRef.set(req.body.cart)
+    cartRef.set(req.body.cart)
     res.status(200).send('Cart has been updated')
   } catch{
     res.status(400).send('Could not update cart details')
   }
 }
 const checkout = async (req, res, next) => {
-	const checkedOutCart = {...req.body, checkedOut: true}
-	try{
-		const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
-		cartRef.set(checkedOutCart)
-		req.session.destroy()
-		res.status(200).json({checkedOutCart})
-	} catch(error){
-		res.sendStatus(400)
-		console.log(error)
-	}
+  const checkedOutCart = { ...req.body, checkedOut: true, complete: false }
+  try {
+    const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
+    cartRef.set(checkedOutCart)
+    req.session.destroy()
+    res.status(200).json({ checkedOutCart })
+  } catch (error) {
+    res.sendStatus(400)
+    console.log(error)
+  }
+}
+const completeOrder = async (req, res, next) => {
+  const completedOrder = { ...req.body, complete: true }
+  try {
+    const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
+    cartRef.set(completedOrder)
+    res.sendStatus(200)
+  }
+  catch{
+    res.sendStatus(400)
+    console.log(error)
+  }
 }
 const deleteOrder = async (req, res, next) => {
   try {
@@ -101,5 +113,6 @@ module.exports = {
   addOrder,
   deleteOrder,
   editCart,
-  deleteItem
+  deleteItem,
+  completeOrder
 }
