@@ -67,6 +67,9 @@ const Navbar = props => {
 								Ordeer
 						</Typography>
 						</Grid>
+						{	// only display cart icon on order page if user has a cart
+							props.cart && props.cart.length && <p>CartIcon</p>
+						}
 						{!Object.keys(props.user).length ?
 							<Button color="inherit" onClick={async () => {
 								let result = await login()
