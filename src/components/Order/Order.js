@@ -116,7 +116,7 @@ const Order = props => {
 
 	return (
 		<div>
-			<Navbar cart={cart} page="order"/>
+			<Navbar cart={cart} restaurant={filterlocation()} page="order"/>
 			<div className="orderPage">
 				<div className="categoryContainer">
 					{categories}
