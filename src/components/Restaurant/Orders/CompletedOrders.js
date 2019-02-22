@@ -18,32 +18,23 @@ const styles = {
     minWidth: 700,
   },
 }
-const OrderTable = props => {
+const CompletedOrders = props => {
   const { classes } = props
-  const [orders, updateOrders] = useState([])
+  const { orders } = props
+  // const [orders, updateOrders] = useState([])
 
-  const getOrders = async () => {
-    const response = await axios.get('/api/admin/orders')
-    //convert response to array of restaurant objects
-    let ordersArray = []
-    for (let i in response.data) {
-      response.data[i].name = i
-      ordersArray.push(response.data[i])
-    }
-    // console.log(ordersArray)
-    updateOrders(ordersArray)
-  }
   //creating our createData function to populate the table later
   let id = 0;
-  function createData(name, date, restaurant, price, user, email) {
+  function createData(name, date, items, price, user, email) {
     id += 1;
-    return { id, name, date, restaurant, price, user, email };
+    return { id, name, date, items, price, user, email };
   }
   //creating our empty array to hold the restaurants
   const rows = []
   //looping over all restaurants and returning a createData function for each restaurant
-  for (let i in orders) {
-    if (orders[i].checkedOut) {
+  for (let i in props.orders) {
+    console.log(orders[i])
+    if (orders[i].checkedOut && orders[i].complete) {
       const name = orders[i].name
       const email = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[1] : orders[i].user['email']
       const date = orders[i].date
@@ -51,15 +42,11 @@ const OrderTable = props => {
       const newDate = new Date(dateResult)
       const format = newDate.toLocaleString("en-US")
       const price = orders[i].price
-      const restaurant = orders[i].restaurant
+      const items = Object.keys(orders[i].cart).length
       const user = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[0] : orders[i].user['displayName']
-      rows.push(createData(name, format, restaurant, price, user, email))
+      rows.push(createData(name, format, items, price, user, email))
     }
   }
-
-  // console.log(rows)
-  useEffect(() => { getOrders() }, [])
-  // useEffect(() => { console.log(orders) }, [orders])
 
   return (
 
@@ -69,7 +56,7 @@ const OrderTable = props => {
           <TableRow>
             <TableCell>Order Name</TableCell>
             <TableCell align="right">Date / Time</TableCell>
-            <TableCell align="right">Restaurant</TableCell>
+            <TableCell align="right"># Of Items</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">User</TableCell>
             <TableCell align="right">Email</TableCell>
@@ -82,7 +69,7 @@ const OrderTable = props => {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">{row.restaurant}</TableCell>
+              <TableCell align="right">{row.items}</TableCell>
               <TableCell align="right">{row.price}</TableCell>
               <TableCell align="right">{row.user}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
@@ -94,7 +81,7 @@ const OrderTable = props => {
 
   )
 }
-OrderTable.propTypes = {
+CompletedOrders.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(OrderTable)
+export default withStyles(styles)(CompletedOrders)
