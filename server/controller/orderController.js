@@ -80,11 +80,16 @@ const completeOrder = async (req, res, next) => {
   try {
     const cartRef = await firebase.database().ref(`orders/${req.body.orderId}`)
     cartRef.set(completedOrder)
-    res.sendStatus(200)
+    const newCart = await cartRef.once('value')
+    const cartVal = await newCart.val()
+    
+    console.log(cartVal)
+    res.status(200).send(cartVal)
   }
-  catch{
+  catch (err) {
     res.sendStatus(400)
-    console.log(error)
+
+    console.log('could not complete order', err)
   }
 }
 const deleteOrder = async (req, res, next) => {

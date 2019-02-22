@@ -35,7 +35,7 @@ const CompletedOrders = props => {
   for (let i in props.orders) {
     console.log(orders[i])
     if (orders[i].checkedOut && orders[i].complete) {
-      const name = orders[i].name
+      const name = orders[i].orderId
       const email = !Object.keys(orders[i].user).includes('apiKey') ? Object.values(orders[i].user)[1] : orders[i].user['email']
       const date = orders[i].date
       const dateResult = Date.parse(date)
