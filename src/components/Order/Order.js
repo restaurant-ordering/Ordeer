@@ -30,7 +30,6 @@ const Order = props => {
 		catch (error) {
 			let response = await axios.post('/api/orders')
 			updateOrderID(response.data)
-			console.log('orderId', response.data)
 		}
 	}
 
@@ -40,7 +39,6 @@ const Order = props => {
 	const getCart = async () => {
 		try {
 			const response = await axios.get(`/api/cart?orderId=${orderId}`)
-			console.log('response from getcart', response)
 			updateCart(response.data)
 		} catch (error) {
 			console.log(error)
@@ -51,7 +49,6 @@ const Order = props => {
 		try {
 			if (cart.length) {
 				const response = await axios.put('/api/cart', { cart, orderId })
-				console.log(response)
 			}
 		} catch (error) {
 			console.log(error)
@@ -62,18 +59,17 @@ const Order = props => {
 		//adds menu item to cart on state
 		const item = restaurantObj.menus[Object.keys(restaurantObj.menus)[0]][category].filter(obj => obj.name === menu_item)[0]
 		const itemWithKey = {...item, key: uniqid(), customization: customize}
-		let newTotal = total + +item.price.replace(/[^\d.]/g, '')
-		updateTotal(newTotal)
+		let newTotal = +total + +item.price.replace(/[^\d.]/g, '')
+		updateTotal(newTotal.toFixed(2))
 		updateCart([...cart, itemWithKey])
 	}
 
 	const removeItem = async (key) => {
-		console.log(key)
 		const index = cart.findIndex(obj => { return obj.key === key })
 		const newCart = [...cart]
 		let item = newCart.splice(index, 1)
-		let newTotal = total - +item[0].price.replace(/[^\d.]/g, '')
-		updateTotal(newTotal)
+		let newTotal = +total - +item[0].price.replace(/[^\d.]/g, '')
+		updateTotal(newTotal.toFixed(2))
 		updateCart(newCart)
 	}
 	//gets all the restaurants from the backend
@@ -120,7 +116,7 @@ const Order = props => {
 
 	return (
 		<div>
-			<Navbar page="order"/>
+			<Navbar cart={cart} page="order"/>
 			<div className="orderPage">
 				<div className="categoryContainer">
 					{categories}
