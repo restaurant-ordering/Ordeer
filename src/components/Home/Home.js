@@ -53,7 +53,11 @@ const Home = props => {
 				cityFilter.push(restaurantArray[i])
 			}
 		}
-		updateDisplayedRestaurants(cityFilter)
+		if(cityFilter.length){
+			updateDisplayedRestaurants(cityFilter)
+		} else {
+			updateDisplayedRestaurants(restaurantArray)
+		}
 	}
 
 	useEffect(() => { getRestaurants() }, [])
