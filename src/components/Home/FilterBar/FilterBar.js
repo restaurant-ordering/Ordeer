@@ -5,7 +5,7 @@ import './FilterBar.css';
 const FilterBar = props => {
 
 	const [searchTerm, changeSearchTerm] = useState('')
-	const [searchCity, changeSearchCity] = useState('')
+	const [searchCity, changeSearchCity] = useState(props.landingSearchResults)
 
 	const filter = () => {
 		if(searchTerm && searchCity){
@@ -34,14 +34,14 @@ const FilterBar = props => {
 			props.updateDisplayedRestaurants(props.restaurants)
 		}
 	}
-
-	useEffect(filter, [searchTerm, searchCity])
-	
 	const getInitialCity = () => {
 		changeSearchCity(props.landingSearchResults)
 	}
 
 	useEffect(getInitialCity, [props.landingSearchResults])
+
+	useEffect(filter, [searchTerm, searchCity])
+	
 
 	const search = (e) => {
 		switch(e.target.name){
