@@ -1,13 +1,18 @@
 require('dotenv').config()
+//configure path for hosting
+const path = require('path');
+//imports
 const express = require('express')
 const { json } = require('body-parser')
 const session = require('express-session')
+//.env import
+const { SERVER_PORT, SESSION_SECRET } = process.env
+//controller imports
 const { register } = require('./controller/userController')
 const { getAllRestaurants, getMenu, addMenu, deleteRestaurant, deleteMenu, getRestaurantOrders } = require('./controller/restaurantController')
 const { getUserOrders, getOrder, checkout, addOrder, getCart, deleteOrder, editCart, deleteItem, completeOrder } = require('./controller/orderController')
 const { getAllOrders, getAllUsers } = require('./controller/adminController')
 const { sendMail } = require('./controller/receiptController')
-const { SERVER_PORT, SESSION_SECRET } = process.env
 
 const app = express()
 
@@ -56,6 +61,10 @@ app.post('/api/receipt', sendMail)
 app.get('/api/admin/users', getAllUsers)
 app.get('/api/admin/orders', getAllOrders)
 
+//redirect for build folder
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => {
   console.log(`Listening on ${SERVER_PORT}`)

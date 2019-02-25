@@ -1,55 +1,54 @@
 {
-  "name": "ordeer",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^3.0.0-alpha.10",
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "firebase": "^5.8.2",
-    "firebaseui": "^3.5.2",
-    "material-ui": "^0.20.2",
-    "nodemailer": "^5.1.1",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.1",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
-    "redux": "^4.0.1",
-    "redux-promise-middleware": "^6.0.1",
-    "stripe": "^6.23.1",
-    "uniqid": "^5.0.3"
-  },
-  "proxy": "http://localhost:5050",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/restaurant-ordering/Ordeer.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/restaurant-ordering/Ordeer/issues"
-  },
-  "homepage": "https://github.com/restaurant-ordering/Ordeer#readme"
+	"name": "ordeer",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@material-ui/core": "^3.9.2",
+		"@material-ui/icons": "^3.0.2",
+		"@material-ui/styles": "^3.0.0-alpha.10",
+		"axios": "^0.18.0",
+		"body-parser": "^1.18.3",
+		"express": "^4.16.4",
+		"express-session": "^1.15.6",
+		"firebase": "^5.8.2",
+		"firebaseui": "^3.5.2",
+		"material-ui": "^0.20.2",
+		"nodemailer": "^5.1.1",
+		"react": "^16.8.2",
+		"react-dom": "^16.8.1",
+		"react-redux": "^6.0.0",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "^2.1.5",
+		"redux": "^4.0.1",
+		"redux-promise-middleware": "^6.0.1",
+		"stripe": "^6.23.1",
+		"uniqid": "^5.0.3"
+	},
+	"proxy": "http://localhost:5050",
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	],
+	"description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/restaurant-ordering/Ordeer.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/restaurant-ordering/Ordeer/issues"
+	}
 }
