@@ -1,7 +1,7 @@
 # Ordeer
 
 ### An online ordering platform for restaurants
-### Created by Braden Shipley, Andrew Montgomery, and Eric Willroth
+### Created by Braden Shipley, W. Andrew Montgomery, and Eric Willroth
 
 Live site: ordeer.net
 
