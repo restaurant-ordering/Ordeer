@@ -12,6 +12,7 @@ React | Node | Axios | Firebase database | Material-UI | Nodemailer | Jest
 # Features
 
 User features
+	</br>
 	<ul>
 		<li>View restaurants that have registered with the platform and filter by city or restaurant name</li>
 		<br/>
@@ -36,15 +37,15 @@ User features
 	</ul>
 
 Restaurant features
+	</br>
 	<ul>
-		<li>Register</li>
-		<li>Upload a menu</li>
-		<li>View orders they have received</li>
-		<li>Mark orders as complete</li>
-		<li>View completed orders</li>
+		<li>Register and create a menu</li>
+		<li>View orders received, mark orders as completed, and view completed orders</li>
+		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/restaurantView.gif?alt=media&token=80ad6366-1456-4f19-aa2c-0d0fcf1bdfe8" alt="demonstrating restaurant view"/>
 	</ul>
 
 Admin features 
+	</br>
 	<ul>
 		<li>View all orders</li>
 		<li>View all restaurants</li>
