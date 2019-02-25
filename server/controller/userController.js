@@ -19,16 +19,21 @@ const checkRestaurantEmail = async email => {
 }
 const register = async (req, res, next) => {
 	try {
+		console.log(Object.keys(req.body)[0])
 		const restaurantsRef = firebase.database().ref('restaurants')
 		let result = await checkRestaurantEmail(req.body.email)
 		if (!result) {
-			const restaurantName = Object.keys(req.body.restaurant)[0]
-			const restaurantCheck = firebase
+			const restaurantName = Object.keys(req.body)[0]
+			console.log('restaurantName :', restaurantName)
+			const restaurantCheck = await firebase
 				.database()
 				.ref('restaurants')
 				.child(restaurantName)
-			if (!restaurantCheck) {
-				restaurantsRef.update(req.body.restaurant)
+			const restaurantCheckVal = await restaurantCheck.once('value')
+			const restaurantResult = await restaurantCheckVal.val()
+			console.log('restaurantResult: ', restaurantResult)
+			if (!restaurantResult) {
+				restaurantsRef.update(req.body)
 				res.sendStatus(200)
 			}
 		}
