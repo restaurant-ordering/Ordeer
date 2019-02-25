@@ -33,13 +33,15 @@ const register = async (req, res, next) => {
 			const restaurantResult = await restaurantCheckVal.val()
 			console.log('restaurantResult: ', restaurantResult)
 			if (!restaurantResult) {
+				console.log('updating')
 				restaurantsRef.update(req.body)
 				res.sendStatus(200)
 			} else {
 				res.status(400).send('There is already a restaurant with that name')
 			}
 		}
-	} catch {
+	} catch (error){
+		console.log(error)
 		res.status(400).send('There was an error')
 	}
 }

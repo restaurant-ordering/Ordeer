@@ -5,13 +5,12 @@ import { updateUser } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import Ordeer from '../../Images/ordeer.png'
 // import Googler from '../../Images/Google2.png'
-import { login, logout, checkAdminEmail, checkRestaurantEmail } from '../../functions/functions'
+import { login, checkAdminEmail, checkRestaurantEmail } from '../../functions/functions'
 // import './Navbar.css'
 //material ui imports
 import PropTypes from 'prop-types'
 import Avatar from './Avatar/Avatar'
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -55,6 +54,7 @@ const styles = {
 const Navbar = props => {
 	const { classes } = props;
 	const [redirect, activateRedirect] = useState(false)
+	const [redirectLanding, activateRedirectLanding] = useState(false)
 	const page = props.page
 
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
@@ -75,6 +75,11 @@ const Navbar = props => {
 		if(page!=='home'){
 			activateRedirect(true)
 		}
+	}
+
+	const logout = () => {
+		props.updateUser({})
+		activateRedirectLanding(true)
 	}
 
 	return (
@@ -116,6 +121,7 @@ const Navbar = props => {
 					</Toolbar>
 				</AppBar>
 				{redirect ? <Redirect to="/home" /> : <></>}
+				{redirectLanding ? <Redirect to="/" /> : <></>}
 			</div>
 		</>
 	)

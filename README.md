@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ordeer
 
-## Available Scripts
+### An online ordering platform for restaurants
+### Created by Braden Shipley, W. Andrew Montgomery, and Eric Willroth
 
-In the project directory, you can run:
+Live site: ordeer.net
 
-### `npm start`
+# Technology Used
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+React | Node | Axios | Firebase database | Material-UI | Nodemailer | Jest 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# Features
 
-### `npm test`
+User features
+	<ul>
+		<li>View restaurants that have registered with the platform and filter by city or restaurant name</li>
+		<br/>
+		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/LandingToHome.gif?alt=media&token=49ad2d25-d453-40b2-8678-435f08227974" alt="demonstrating landing page" />
+		<br/>
+		<br/>
+		<li>View the menu of each restaurant including images, descriptions, and price</li>
+		<br/>
+		<img  width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/HomeToMenu.gif?alt=media&token=ca7d092a-6d2b-4759-a1b1-447900b6583b" alt="demonstrating home page" />
+		<br/>
+		<br/>
+		<li>Add and remove items from cart with the option to add a note for customization</li>
+		<br/>
+		<img  width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/addToCart.gif?alt=media&token=b3577f91-e307-4861-8dce-bf9ccd17a347" alt="demonstrating adding items to cart" />
+		<br/>
+		<br/>
+		<li>Submit their order to the restaurant and receive an email confirmation</li>
+		<br/>
+		<img  width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/placeOrder.gif?alt=media&token=0fea17b6-8b1a-44bf-a89d-f64e744b5418" alt="demonstrating checkout" />
+		<br/>
+		<br/>
+	</ul>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Restaurant features
+	<ul>
+		<li>Register</li>
+		<li>Upload a menu</li>
+		<li>View orders they have received</li>
+		<li>Mark orders as complete</li>
+		<li>View completed orders</li>
+	</ul>
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Admin features 
+	<ul>
+		<li>View all orders</li>
+		<li>View all restaurants</li>
+		<li>View all users</li>
+	</ul>

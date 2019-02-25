@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { withStyles } from '@material-ui//styles';
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper';
+
 const styles = {
   root: {
     width: '100%',
@@ -33,18 +32,7 @@ const styles = {
 }
 const IncompleteOrders = props => {
   const { classes, orders, completeOrder } = props
-  // const [orderTable, updateOrderTable] = useState([])
-  const [rows, updateRows] = useState([])
   const [display, updateDisplay] = useState([])
-  //creating our createData function to populate the table later
-  let id = 0;
-  function createData(name, date, items, total, user, email) {
-    id += 1;
-    return { id, name, date, items, total, user, email };
-  }
-  //creating our empty array to hold the orders
-  // let rows = []
-  //looping over all orders and returning a createData function for each restaurant
 
   useEffect(() => {
     updateDisplay(getRows())
