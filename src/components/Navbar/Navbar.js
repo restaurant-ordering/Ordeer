@@ -55,6 +55,7 @@ const styles = {
 const Navbar = props => {
 	const { classes } = props;
 	const [redirect, activateRedirect] = useState(false)
+	const [redirectLanding, activateRedirectLanding] = useState(false)
 	const page = props.page
 
 	//this will work like the componentDidMount, checking for a currently logged in user on our firebase Auth
@@ -75,6 +76,11 @@ const Navbar = props => {
 		if(page!=='home'){
 			activateRedirect(true)
 		}
+	}
+
+	const logout = () => {
+		props.updateUser({})
+		activateRedirectLanding(true)
 	}
 
 	return (
@@ -116,6 +122,7 @@ const Navbar = props => {
 					</Toolbar>
 				</AppBar>
 				{redirect ? <Redirect to="/home" /> : <></>}
+				{redirectLanding ? <Redirect to="/" /> : <></>}
 			</div>
 		</>
 	)

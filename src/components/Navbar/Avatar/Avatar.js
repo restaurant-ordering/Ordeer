@@ -20,34 +20,33 @@ const styles = {
 };
 
 function ImageAvatars(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
-  function logout() {
-    auth.signOut().then((res) => {
-      console.log('logged out')
-      props.updateUser({})
-    })
-  }
-  function handleClose() {
-    setAnchorEl(null);
-  }
-  const { classes } = props;
-  return (
-    <Grid container justify="flex-end" alignItems="center">
-      <Avatar alt="User Avatar" src={props.profile} className={classes.bigAvatar} onClick={handleClick} />
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu>
-    </Grid>
-  )
+	function handleClick(event) {
+		setAnchorEl(event.currentTarget);
+	}
+	function logout() {
+		auth.signOut().then((res) => {
+		props.logout()
+		})
+	}
+	function handleClose() {
+		setAnchorEl(null);
+	}
+	const { classes } = props;
+	return (
+		<Grid container justify="flex-end" alignItems="center">
+		<Avatar alt="User Avatar" src={props.profile} className={classes.bigAvatar} onClick={handleClick} />
+		<Menu
+			id="simple-menu"
+			anchorEl={anchorEl}
+			open={Boolean(anchorEl)}
+			onClose={handleClose}
+		>
+			<MenuItem onClick={logout}>Logout</MenuItem>
+		</Menu>
+		</Grid>
+	)
 }
 
 ImageAvatars.propTypes = {
