@@ -73,7 +73,7 @@ const CreateRestaurant = props => {
 		}
 		try {
 			console.log('submitting restaurant', restaurant)
-			const response = await axios.post('/api/register', { restaurant })
+			const response = await axios.post('/api/register', restaurant)
 			console.log('submission successful', response)
 		} catch (error) {
 			console.log('submission not successful')
