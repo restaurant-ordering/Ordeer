@@ -14,11 +14,8 @@ const Order = props => {
 	const [cart, updateCart] = useState([])
 	//stores all of the restaurants
 	const [restaurants, updateRestaurants] = useState([])
-
 	const [orderId, updateOrderID] = useState([])
-
 	const [flipped, flip] = useState(false)
-
 	const [total, updateTotal] = useState(0)
 
 	const getOrderID = async () => {
@@ -48,7 +45,7 @@ const Order = props => {
 	const putCart = async () => {
 		try {
 			if (cart.length) {
-				const response = await axios.put('/api/cart', { cart, orderId })
+				await axios.put('/api/cart', { cart, orderId })
 			}
 		} catch (error) {
 			console.log(error)

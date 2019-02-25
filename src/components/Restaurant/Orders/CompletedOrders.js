@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui//styles';
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
 const styles = {
   root: {
     width: '100%',
@@ -21,7 +21,6 @@ const styles = {
 const CompletedOrders = props => {
   const { classes } = props
   const { orders } = props
-  // const [orders, updateOrders] = useState([])
 
   //creating our createData function to populate the table later
   let id = 0;

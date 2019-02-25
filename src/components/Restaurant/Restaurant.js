@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Card from '@material-ui/core/Card'
 import Paper from '@material-ui/core/Paper'
 import './Restaurant.css'
 import RestaurantTabs from './RestaurantTabs';
