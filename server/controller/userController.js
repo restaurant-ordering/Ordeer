@@ -35,12 +35,12 @@ const register = async (req, res, next) => {
 			if (!restaurantResult) {
 				restaurantsRef.update(req.body)
 				res.sendStatus(200)
+			} else {
+				res.status(400).send('There is already a restaurant with that name')
 			}
 		}
 	} catch {
-		res
-			.status(400)
-			.send('There is already a restaurant with that email or name')
+		res.status(400).send('There was an error')
 	}
 }
 module.exports = {
