@@ -17,6 +17,7 @@ const Home = props => {
 	const getLandingSearchResults = () => {
 		if (props.location.search) {
 			setSearchResult(props.location.search.split('=')[1])
+			return props.location.search.split('=')[1]
 		}
 	}
 
@@ -32,9 +33,9 @@ const Home = props => {
 	}
 
 	useEffect(checkUser, [props.user])
-
-	const [restaurants, updateRestaurants] = useState([])
+	
 	const [displayedRestaurants, updateDisplayedRestaurants] = useState([])
+	const [restaurants, updateRestaurants] = useState([])
 
 	const getRestaurants = async () => {
 		const response = await axios.get('/api/restaurants')
@@ -45,12 +46,23 @@ const Home = props => {
 			restaurantArray.push(response.data[i])
 		}
 		updateRestaurants(restaurantArray)
-		updateDisplayedRestaurants(restaurantArray)
+		let cityFilter = []
+		let searchCity = getLandingSearchResults()
+		for (let i = 0; i < restaurantArray.length; i++) {
+			if (restaurantArray[i].addresses[Object.keys(restaurantArray[i].addresses)[0]].city.includes(searchCity)) {
+				cityFilter.push(restaurantArray[i])
+			}
+		}
+		if(cityFilter.length){
+			updateDisplayedRestaurants(cityFilter)
+		} else {
+			updateDisplayedRestaurants(restaurantArray)
+		}
 	}
 
 	useEffect(() => { getRestaurants() }, [])
 
-	const map = displayedRestaurants.map(restaurant => {
+	const map = displayedRestaurants && displayedRestaurants.map(restaurant => {
 		return (
 			<RestaurantCard key={restaurant.name} restaurant={restaurant} />
 		)
