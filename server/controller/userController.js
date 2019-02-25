@@ -1,5 +1,5 @@
 // import { firebase, auth, googleProvider } from '../../src/firebase/firebase'
-const { firebase } = require('../../src/firebase/firebase')
+const {firebase} = require('../../src/firebase/firebase')
 
 const checkRestaurantEmail = async email => {
 	try {
@@ -13,7 +13,7 @@ const checkRestaurantEmail = async email => {
 			}
 		}
 		return filterResult
-	} catch{
+	} catch {
 		console.log('could not check if restaurant')
 	}
 }
@@ -23,14 +23,19 @@ const register = async (req, res, next) => {
 		let result = await checkRestaurantEmail(req.body.email)
 		if (!result) {
 			const restaurantName = Object.keys(req.body.restaurant)[0]
-			const restaurantCheck = firebase.database().ref('restaurants').child(restaurantName)
+			const restaurantCheck = firebase
+				.database()
+				.ref('restaurants')
+				.child(restaurantName)
 			if (!restaurantCheck) {
-				restaurantsRef.update(info)
+				restaurantsRef.update(req.body.restaurant)
 				res.sendStatus(200)
 			}
 		}
 	} catch {
-		res.status(400).send('There is already a restaurant with that email or name')
+		res
+			.status(400)
+			.send('There is already a restaurant with that email or name')
 	}
 }
 module.exports = {
