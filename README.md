@@ -47,7 +47,6 @@ Restaurant features
 Admin features 
 	</br>
 	<ul>
-		<li>View all orders</li>
-		<li>View all restaurants</li>
-		<li>View all users</li>
+		<li>View all orders, restaurants, and users</li>
+		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/adminPage.gif?alt=media&token=81012c89-e665-4605-97ab-d8326f00f17e" alt="demonstrating admin view"/>
 	</ul>
