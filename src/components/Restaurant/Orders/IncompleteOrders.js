@@ -38,12 +38,10 @@ const IncompleteOrders = props => {
     updateDisplay(getRows())
   }, [orders])
 
-
-
   const getRows = () => {
-    // console.log(orders)
+    console.log(orders)
     const filteredOrders = orders.length && orders.filter(order => {
-      return (!order.hasOwnProperty('complete'))
+      return (order.complete === false)
     })
     console.log(filteredOrders)
     let ordersMap = filteredOrders && filteredOrders.length && filteredOrders.map((order, i) => {
@@ -65,7 +63,7 @@ const IncompleteOrders = props => {
             <TableCell >
               <Button onClick={() => { completeOrder(item.orderId) }} variant="contained" color="primary" >Complete</Button>
             </TableCell>
-          </TableRow >
+          </TableRow>
         )
       } else if (item.name) {
         return (
