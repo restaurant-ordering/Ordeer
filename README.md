@@ -41,12 +41,12 @@ Restaurant features
 	<ul>
 		<li>Register and create a menu</li>
 		<li>View orders received, mark orders as completed, and view completed orders</li>
-		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/restaurantView.gif?alt=media&token=80ad6366-1456-4f19-aa2c-0d0fcf1bdfe8" alt="demonstrating restaurant view"/>
+		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/restaurantView.gif?alt=media&token=66b16bf0-ddde-4d9e-9fb9-26fc24c77884" alt="demonstrating restaurant view"/>
 	</ul>
 
 Admin features 
 	</br>
 	<ul>
 		<li>View all orders, restaurants, and users</li>
-		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/adminPage.gif?alt=media&token=81012c89-e665-4605-97ab-d8326f00f17e" alt="demonstrating admin view"/>
+		<img width='400px' src="https://firebasestorage.googleapis.com/v0/b/ordeer-5c616.appspot.com/o/adminPage.gif?alt=media&token=e66e6091-a6b0-4d95-945a-4329dbc2f432" alt="demonstrating admin view"/>
 	</ul>
