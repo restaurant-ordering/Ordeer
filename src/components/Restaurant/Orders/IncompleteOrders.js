@@ -70,7 +70,7 @@ const IncompleteOrders = props => {
           <TableRow className={classes.tablerow.items} key={i}>
             <TableCell component="th" scope="row" />
             <TableCell align="center">{item.name}</TableCell>
-            <TableCell align="center">{item.customize || 'No customization'}</TableCell>
+            <TableCell align="center">{item.customization || 'No customization'}</TableCell>
             <TableCell align="center">{item.price}</TableCell>
           </TableRow>
         )
